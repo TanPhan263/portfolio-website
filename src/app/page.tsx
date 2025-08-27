@@ -1,17 +1,25 @@
-import CTA from '@/components/ui/CTA';
-import Features from '@/components/ui/Features';
-import Hero from '@/components/ui/Hero';
-import Showcase from '@/components/ui/Showcase';
-import Testimonials from '@/components/ui/Testimonials';
+import { FullScreen } from "@/components/full-screen"
+import { MyInformation } from "@/containers/about-me"
+
+import { MyUniverse } from "@/containers/my-universe"
+import { PersonalInterests } from "@/containers/personal-interests"
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <Showcase />
-      <Testimonials />
-      <Features />
-      <CTA />
-    </>
-  );
+    <div>
+      <FullScreen className="w-full xl:w-[85%] mx-auto">
+        <MyUniverse />
+      </FullScreen>
+
+      <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6">
+        <MyInformation />
+      </FullScreen>
+
+      <div className="my-10">
+        <PersonalInterests />
+      </div>
+
+      {/* <Resume /> */}
+    </div>
+  )
 }
