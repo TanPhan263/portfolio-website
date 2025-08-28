@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Nathan Phan | Frontend Developer Portfolio',
     description:
       "Discover Nathan Phan's expertise in Frontend Development, React, and Next.js. View projects, case studies, and technical skills.",
-    url: 'https://kinhdev.id.vn',
+    url: 'https://nathan-phan.vercel.app',
     type: 'website',
     images: [
       {
