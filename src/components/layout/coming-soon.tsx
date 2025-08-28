@@ -1,25 +1,25 @@
-"use client"
+'use client';
 
-import { useEffect, useState } from "react"
-import { AnimatedSpan, Terminal, TypingAnimation } from "../magicui/terminal"
-import { HoverBorderGradient } from "../ui/hover-border-gradient"
-import { Logo } from "../svg/logo"
-import { useRouter } from "next/navigation"
-import { FullScreen } from "../full-screen"
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { FullScreen } from '../full-screen';
+import { AnimatedSpan, Terminal, TypingAnimation } from '../magicui/terminal';
+import { Logo } from '../svg/logo';
+import { HoverBorderGradient } from '../ui/hover-border-gradient';
 
 export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-  if (!mounted) return null
+    setMounted(true);
+  }, []);
+  if (!mounted) return null;
   return (
     <FullScreen className="flex-col">
       <Terminal>
-        <TypingAnimation>&gt; pnpm dlx kinhdev@portfolio init</TypingAnimation>
+        <TypingAnimation>&gt; pnpm dlx nathan@portfolio init</TypingAnimation>
 
         <AnimatedSpan delay={1500} className="text-green-500">
           <span>✔ Design checks.</span>
@@ -67,7 +67,7 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
         </TypingAnimation>
 
         <TypingAnimation delay={7000} className="text-muted-foreground">
-          Launching soon at kinhdev.id.vn
+          Launching soon at nathan.id.vn
         </TypingAnimation>
       </Terminal>
 
@@ -76,12 +76,12 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
           containerClassName="rounded-full"
           as="button"
           className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 cursor-pointer"
-          onClick={() => router.push("/")}
+          onClick={() => router.push('/')}
         >
           <Logo className="size-5" />
           <span>Back to home</span>
         </HoverBorderGradient>
       </div>
     </FullScreen>
-  )
-}
+  );
+};

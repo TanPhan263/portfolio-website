@@ -318,7 +318,7 @@ export const BlurImage = ({
       loading="lazy"
       decoding="async"
       blurDataURL={typeof src === 'string' ? src : undefined}
-      alt={alt ? alt : 'Background of a beautiful view'}
+      alt={alt ? alt : 'Im coding in my room'}
       {...rest}
     />
   );

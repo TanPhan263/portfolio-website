@@ -91,7 +91,7 @@ export const Header = () => {
       >
         <div
           className={cn(
-            'mx-auto flex justify-between gap-10 items-center transition-all duration-300 p-4 z-50 ',
+            'mx-auto flex justify-between gap-10 items-center transition-all duration-300 p-4 z-50',
             isScrolled
               ? 'bg-white/80 backdrop-blur-md md:p-6 dark:bg-zinc-900/80 xl:w-[90%] shadow -translate-y-8 md:rounded-3xl'
               : 'bg-transparent w-full xl:w-[70%]'
@@ -110,16 +110,8 @@ export const Header = () => {
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <iframe
-              className="hidden sm:block"
-              src="https://github.com/sponsors/kinhdev24/button"
-              title="Sponsor kinhdev24"
-              height="32"
-              width="114"
-              style={{ border: '0', borderRadius: '6px' }}
-            ></iframe>
             <a
-              href={'https://github.com/kinhdev24/kinhdev24-portfolio'}
+              href={'#'}
               target="_blank"
               rel="noopener noreferrer"
               className="border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300"
@@ -143,7 +135,7 @@ export const Header = () => {
                 <DrawerHeader className="flex justify-between">
                   <DrawerTitle className="flex items-center gap-2">
                     <Logo className="size-14" />
-                    kinhdev.id.vn
+                    nathan-phan.vercel.app
                   </DrawerTitle>
                   <DrawerClose
                     asChild
@@ -177,13 +169,6 @@ export const Header = () => {
                     </Link>
                   ))}
                   <Separator />
-                  <iframe
-                    src="https://github.com/sponsors/kinhdev24/button"
-                    title="Sponsor kinhdev24"
-                    height="32"
-                    width="114"
-                    style={{ border: '0', borderRadius: '6px' }}
-                  ></iframe>
                 </div>
               </DrawerContent>
             </Drawer>

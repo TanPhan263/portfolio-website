@@ -16,8 +16,8 @@ export default function Page() {
         className="dark:bg-[#0d1117] bg-white text-black dark:text-white flex items-center space-x-2 cursor-pointer w-full"
       >
         <iframe
-          src="https://github.com/sponsors/kinhdev24/card"
-          title="Sponsor kinhdev24"
+          src="https://github.com/sponsors/TanPhan263/card"
+          title="Sponsor TanPhan263"
           className="w-full h-full"
           style={{ border: '0' }}
         ></iframe>
