@@ -1,20 +1,20 @@
-"use client"
+'use client';
 
-import React, { useRef, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence, motion } from 'motion/react';
+import React, { useRef, useState } from 'react';
 
 interface LensProps {
-  children: React.ReactNode
-  zoomFactor?: number
-  lensSize?: number
+  children: React.ReactNode;
+  zoomFactor?: number;
+  lensSize?: number;
   position?: {
-    x: number
-    y: number
-  }
-  isStatic?: boolean
-  isFocusing?: () => void
-  hovering?: boolean
-  setHovering?: (hovering: boolean) => void
+    x: number;
+    y: number;
+  };
+  isStatic?: boolean;
+  isFocusing?: () => void;
+  hovering?: boolean;
+  setHovering?: (hovering: boolean) => void;
 }
 
 export const Lens: React.FC<LensProps> = ({
@@ -24,31 +24,31 @@ export const Lens: React.FC<LensProps> = ({
   isStatic = false,
   position = { x: 200, y: 150 },
   hovering,
-  setHovering,
+  setHovering
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const [localIsHovering, setLocalIsHovering] = useState(false)
+  const [localIsHovering, setLocalIsHovering] = useState(false);
 
-  const isHovering = hovering !== undefined ? hovering : localIsHovering
-  const setIsHovering = setHovering || setLocalIsHovering
+  const isHovering = hovering !== undefined ? hovering : localIsHovering;
+  const setIsHovering = setHovering || setLocalIsHovering;
 
   // const [isHovering, setIsHovering] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 })
+  const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    setMousePosition({ x, y })
-  }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setMousePosition({ x, y });
+  };
 
   return (
     <div
       ref={containerRef}
       className="relative overflow-hidden rounded-lg z-20"
       onMouseEnter={() => {
-        setIsHovering(true)
+        setIsHovering(true);
       }}
       onMouseLeave={() => setIsHovering(false)}
       onMouseMove={handleMouseMove}
@@ -61,7 +61,7 @@ export const Lens: React.FC<LensProps> = ({
             initial={{ opacity: 0, scale: 0.58 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
             className="absolute inset-0 overflow-hidden"
             style={{
               maskImage: `radial-gradient(circle ${lensSize / 2}px at ${
@@ -70,14 +70,14 @@ export const Lens: React.FC<LensProps> = ({
               WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${
                 position.x
               }px ${position.y}px, black 100%, transparent 100%)`,
-              transformOrigin: `${position.x}px ${position.y}px`,
+              transformOrigin: `${position.x}px ${position.y}px`
             }}
           >
             <div
               className="absolute inset-0"
               style={{
                 transform: `scale(${zoomFactor})`,
-                transformOrigin: `${position.x}px ${position.y}px`,
+                transformOrigin: `${position.x}px ${position.y}px`
               }}
             >
               {children}
@@ -92,7 +92,7 @@ export const Lens: React.FC<LensProps> = ({
                 initial={{ opacity: 0, scale: 0.58 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="absolute inset-0 overflow-hidden"
                 style={{
                   maskImage: `radial-gradient(circle ${lensSize / 2}px at ${
@@ -104,14 +104,14 @@ export const Lens: React.FC<LensProps> = ({
                     mousePosition.y
                   }px, black 100%, transparent 100%)`,
                   transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
-                  zIndex: 50,
+                  zIndex: 50
                 }}
               >
                 <div
                   className="absolute inset-0"
                   style={{
                     transform: `scale(${zoomFactor})`,
-                    transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
+                    transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`
                   }}
                 >
                   {children}
@@ -122,5 +122,5 @@ export const Lens: React.FC<LensProps> = ({
         </AnimatePresence>
       )}
     </div>
-  )
-}
+  );
+};

@@ -1,4 +1,5 @@
 'use client';
+import { cn } from '@/app/lib/utils';
 import { IconDotsVertical, IconHeart, IconMessage2 } from '@tabler/icons-react';
 import Image from 'next/image';
 
@@ -43,24 +44,29 @@ export const SocialCard = ({
 
       <div className="mb-4">
         <p className="text-black dark:text-white">{status}</p>
-        {tags.map((tag, index) => (
-          <a className="text-blue-400" key={index}>
-            #{tag}
-          </a>
-        ))}
+        <div className="flex flex-wrap">
+          {tags.map((tag, index) => (
+            <a className="text-blue-700 dark:text-blue-400" key={tag + index}>
+              #{tag}
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-3 auto-rows-[80px] md:auto-rows-[50px] lg:auto-rows-[80px] gap-1">
         {images.map((image, i) => (
-          <div key={`${image}_${i}`}>
+          <div
+            key={`${image}_${i}`}
+            className={cn(
+              'relative bg-white dark:bg-black w-full h-full',
+              i === 0 ? 'col-span-2 row-span-2' : ''
+            )}
+          >
             <Image
               src={`/images/logo/${image}`}
               alt="thumbnail"
-              objectFit="contain"
-              width={0}
-              height={0}
-              sizes="100vw"
-              style={{ width: '100%', height: '100%', maxHeight: '100px' }}
+              fill
+              className="object-cover"
             />
           </div>
         ))}

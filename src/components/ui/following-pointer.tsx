@@ -45,7 +45,6 @@ export const FollowerPointerCard = ({
     setIsInside(true);
   };
 
-  console.log({ FollowPointer });
   return (
     <div
       onMouseLeave={handleMouseLeave}

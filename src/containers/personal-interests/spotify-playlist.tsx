@@ -1,34 +1,34 @@
-"use client"
+'use client';
 
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export const SpotifyPlaylist = () => {
-  const { theme, systemTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  const currentTheme = theme === "system" ? systemTheme : theme
+  const currentTheme = theme === 'system' ? systemTheme : theme;
 
   useEffect(() => {
-    setIsLoading(true)
-  }, [currentTheme])
+    setIsLoading(true);
+  }, [currentTheme]);
 
   // Handle iframe load event
   const handleIframeLoad = () => {
-    setIsLoading(false)
-  }
+    setIsLoading(false);
+  };
 
   if (!mounted) {
     // Return a placeholder with the same dimensions to prevent layout shift
     return (
       <div className="w-full h-[352px] rounded-xl bg-gray-200 dark:bg-gray-800 animate-pulse" />
-    )
+    );
   }
 
   return (
@@ -66,15 +66,15 @@ export const SpotifyPlaylist = () => {
           exit={{ opacity: 0, y: -10 }}
           transition={{
             duration: 0.4,
-            ease: [0.22, 1, 0.36, 1], // Custom easing for smoother animation
+            ease: [0.22, 1, 0.36, 1] // Custom easing for smoother animation
           }}
         >
           <iframe
-            style={{ borderRadius: "12px" }}
+            style={{ borderRadius: '12px' }}
             src={`https://open.spotify.com/embed/playlist/${
               process.env.NEXT_PUBLIC_SPOTIFY_PLAYLIST_ID
             }?utm_source=generator&theme=${
-              currentTheme === "dark" ? "0" : "1"
+              currentTheme === 'dark' ? '0' : '1'
             }`}
             width="100%"
             height="500px"
@@ -82,10 +82,10 @@ export const SpotifyPlaylist = () => {
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
             onLoad={handleIframeLoad}
-            onLoadStart={() => console.log("1")}
+            onLoadStart={() => console.log('loaded')}
           ></iframe>
         </motion.div>
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
