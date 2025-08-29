@@ -3,7 +3,6 @@ import { cn } from '@/app/lib/utils';
 import { ProjectTimelineItem, StackBrand } from '@/shared/data/experience';
 import { IconCheckbox } from '@tabler/icons-react';
 import { motion, Variants } from 'motion/react';
-import { useTheme } from 'next-themes';
 import { Badge } from './badge';
 
 interface TimelineCardProps {
@@ -56,10 +55,7 @@ export function TimelineCard({ data }: TimelineCardProps) {
   );
 }
 
-('use-client');
 const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
-  const { theme, systemTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
