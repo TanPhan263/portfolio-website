@@ -31,7 +31,7 @@ export const MyUniverse = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row justify-between items-center md:gap-20 px-2 md:px-6 lg:mt-8">
       <div className="flex-1 relative w-full lg:w-auto">
-        <div className="flex flex-row gap-4 my-4 lg:my-0 lg:block">
+        <div className="flex flex-row gap-4 my-4 lg:my-0 lg:block items-center sm:items-start">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700">
             <TypeWriter text="Hello," />
           </h1>
@@ -63,7 +63,7 @@ export const MyUniverse = () => {
           </span>
         </div>
       </div>
-      <div className="relative flex-1 flex justify-center lg:justify-end w-full mt-8 lg:mt-0">
+      <div className="relative flex-1 flex justify-center w-full mt-8 lg:mt-0">
         {/* Responsive positioning for floating elements */}
         <div className="px-3 py-2 hidden sm:block absolute top-0 left-16 sm:left-16 bg-purple-500/20 rounded-[6px] w-max font-medium dark:text-purple-300 text-purple-500 border border-purple-500/20 animate-wiggle duration-1000 z-30">
           Responsive UI
@@ -116,7 +116,7 @@ export function CompareDemo() {
 
 export const Title = memo(() => {
   return (
-    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700">
+    <h1 className="flex flex-row sm:flex-col items-center sm:items-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700 gap-2">
       <TypeWriter text="I'm" />
       <Cover>
         <TypeWriter text="Nathan Phan" />

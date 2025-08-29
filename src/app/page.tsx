@@ -1,8 +1,9 @@
-import { FullScreen } from "@/components/full-screen"
-import { MyInformation } from "@/containers/about-me"
+import { FullScreen } from '@/components/full-screen';
+import { MyInformation } from '@/containers/about-me';
 
-import { MyUniverse } from "@/containers/my-universe"
-import { PersonalInterests } from "@/containers/personal-interests"
+import { MyUniverse } from '@/containers/my-universe';
+import { PersonalInterests } from '@/containers/personal-interests';
+import { ExperienceTimeline } from './experience/containers/experience-timeline';
 
 export default function Home() {
   return (
@@ -15,11 +16,15 @@ export default function Home() {
         <MyInformation />
       </FullScreen>
 
+      <FullScreen>
+        <ExperienceTimeline />
+      </FullScreen>
+
       <div className="my-10">
         <PersonalInterests />
       </div>
 
       {/* <Resume /> */}
     </div>
-  )
+  );
 }

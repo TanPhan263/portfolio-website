@@ -52,7 +52,7 @@ const SkeletonOne = () => {
       <EvervaultCard
         text={
           <a
-            href="f"
+            href="/files/nathan_phan_resume.pdf"
             download
             className="flex flex-col items-center justify-center"
           >
@@ -226,8 +226,8 @@ const items = [
     title: 'Music & Mood',
     description: (
       <span className="text-sm">
-        From deep focus to feel-good vibes, I create playlists that fuel my day
-        — &ldquo;Working Energy&ldquo; is one of my favorites.
+        Throw on some hype beats and I’m instantly powered up, vibes max level
+        ⚡🎶 &ldquo;League of Legend&ldquo; is one of my favorites playlist.
       </span>
     ),
     header: <SkeletonThree />,
