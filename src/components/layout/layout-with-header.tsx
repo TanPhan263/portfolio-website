@@ -1,4 +1,5 @@
 import React from 'react';
+import { Footer } from './footer';
 import { Header } from './header';
 import { HeroBackground } from './hero-background';
 
@@ -15,9 +16,7 @@ export const LayoutWithHeader = ({
         <main className="overflow-auto overflow-x-hidden container mx-auto flex-1 p-4">
           {children}
         </main>
-        <footer className="text-sm md:text-lg row-start-3 flex gap-[24px] flex-wrap items-center justify-center text-zinc-600 p-4">
-          © 2025 Nathan Phan. All rights reserved.
-        </footer>
+        <Footer />
       </HeroBackground>
     </div>
   );
