@@ -1,24 +1,38 @@
-'use client';
-import { cn } from '@/app/lib/utils';
-import { ProjectTimelineDetail, StackBrand } from '@/shared/data/experience';
-import { IconCircleCheck } from '@tabler/icons-react';
-import { motion, Variants } from 'motion/react';
-import { Badge } from './badge';
+"use client";
+import { cn } from "@/app/lib/utils";
+import { ProjectTimelineDetail, StackBrand } from "@/shared/data/experience";
+import { IconCircleCheck } from "@tabler/icons-react";
+import { motion, Variants } from "motion/react";
+import { Badge } from "./badge";
 
 interface TimelineCardProps {
   data: ProjectTimelineDetail;
   isActive?: boolean;
+  year?: string;
 }
 
-export function TimelineCard({ data, isActive }: TimelineCardProps) {
+export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
   return (
     <>
+      {year && (
+        <h3
+          className={cn(
+            "md:hidden text-2xl -mt-1 text-left font-bold pl-0",
+            "transition-colors duration-200 ease-in-out",
+            isActive
+              ? "text-neutral-800 dark:text-neutral-300"
+              : "text-neutral-500 dark:text-neutral-500"
+          )}
+        >
+          {year}
+        </h3>
+      )}
       <h3
         className={cn(
-          'md:hidden block text-xl mb-2 text-left font-bold',
+          "md:hidden block text-xl mb-2 text-left font-bold",
           isActive
-            ? 'text-neutral-800 dark:text-neutral-300'
-            : 'text-neutral-500 dark:text-neutral-500'
+            ? "text-neutral-800 dark:text-neutral-300"
+            : "text-neutral-500 dark:text-neutral-500"
         )}
       >
         {data.title}
@@ -69,9 +83,9 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   // Animation variants for individual skill badges
@@ -80,8 +94,8 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: 'spring', stiffness: 300, damping: 20 }
-    }
+      transition: { type: "spring", stiffness: 300, damping: 20 },
+    },
   };
 
   return (
@@ -98,15 +112,15 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
           whileHover={{
             scale: 1.1,
             boxShadow:
-              '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-            y: -5
+              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+            y: -5,
           }}
           whileTap={{ scale: 0.95 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <Badge
             className={cn(
-              'px-3 py-1 cursor-pointer dark:bg-gray-700 dark:text-gray-200 duration-300',
+              "px-3 py-1 cursor-pointer dark:bg-gray-700 dark:text-gray-200 duration-300",
               `outline-[${skill.darkColor}] transition hover:outline-2`
             )}
           >

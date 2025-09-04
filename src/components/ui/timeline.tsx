@@ -43,7 +43,7 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
 
   return (
     <div className="w-full md:px-10 overflow-hidden" ref={containerRef}>
-      <div className="max-w-7xl mx-auto py-6 px-4 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto py-6 px-4">
         <h2 className="text-2xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl font-bold">
           My Journey as a Frontend Developer
         </h2>
@@ -53,7 +53,7 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
         </p>
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+      <div ref={ref} className="relative max-w-7xl mx-auto pb-10 md:pb-20">
         {data.map((item, index) => {
           return (
             <TimelineItem
@@ -116,9 +116,9 @@ function TimelineItem({
     <div
       key={data.year}
       ref={ref}
-      className="relative flex justify-start pb-10 md:gap-0"
+      className="relative flex justify-start pb-10 lg:gap-0"
     >
-      <div className="pl-[13px] sticky flex flex-col md:flex-row z-40 items-center self-start max-w-xs lg:max-w-sm md:w-full">
+      <div className="pl-[13px] sticky flex flex-col md:flex-row shrink-0 z-40 items-center self-start max-w-xs md:w-1/3 lg:max-w-sm lg:w-full">
         <div
           className={cn(
             'h-6 w-6 rounded-full shrink-0 border ml-2 transition duration-200 ease-in-out',
@@ -153,7 +153,7 @@ function TimelineItem({
               once: true
             }}
           >
-            <TimelineCard data={project} isActive={startAnimation} />
+            <TimelineCard data={project} isActive={startAnimation} year={index === 0 ? data.year : undefined} />
           </motion.div>
         ))}
       </div>
