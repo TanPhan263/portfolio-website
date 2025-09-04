@@ -1,7 +1,8 @@
 'use client';
+import { cn } from '@/app/lib/utils';
 import { ProjectTimelineItem } from '@/shared/data/experience';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 
 export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
@@ -34,7 +35,7 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 20%', 'end 80%']
+    offset: ['start 20%', 'end 20%']
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
@@ -53,9 +54,16 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
-        {data.map((item, index) => (
-          <TimelineItem key={`${item.year}_${index}`} data={item} />
-        ))}
+        {data.map((item, index) => {
+          return (
+            <TimelineItem
+              key={`${item.year}_${index}`}
+              data={item}
+              heightTransform={heightTransform}
+              containerRef={containerRef}
+            />
+          );
+        })}
         <div
           style={{
             height: height + 'px'
@@ -75,92 +83,79 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
   );
 };
 
-function TimelineItem({ data }: { data: ProjectTimelineItem }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start 40%', 'end end']
-  });
+function TimelineItem({
+  data,
+  heightTransform,
+  containerRef
+}: {
+  data: ProjectTimelineItem;
+  heightTransform: MotionValue<number>;
+  containerRef: RefObject<HTMLDivElement | null>;
+}) {
+  const [startAnimation, setStartAnimation] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
-  const processCircle: React.CSSProperties = {
-    strokeDashoffset: 0,
-    strokeWidth: 7,
-    fill: 'none'
-  };
+  useEffect(() => {
+    if (!ref.current || !containerRef.current) return;
+    const unsubscribe = heightTransform.on('change', (value) => {
+      if (!ref.current || !containerRef.current) return;
+      const relativeTop = ref.current.offsetTop;
 
-  const progressIcon: React.CSSProperties = {
-    ...processCircle,
-    transform: 'rotate(-90deg)',
-    stroke: '#c27aff'
-  };
-
-  const progressIconIndicator: React.CSSProperties = {
-    ...processCircle,
-    strokeDashoffset: 0,
-    strokeWidth: 7,
-    fill: 'none'
-  };
-
-  const progressIconBg: React.CSSProperties = {
-    opacity: 0.2
-  };
+      if (value >= relativeTop && value > 0) {
+        setStartAnimation(true);
+      } else if (value < relativeTop) {
+        setStartAnimation(false);
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [heightTransform, containerRef]);
 
   return (
     <div
       key={data.year}
       ref={ref}
-      className="relative flex justify-start pt-10 md:gap-0"
+      className="relative flex justify-start pb-10 md:gap-0"
     >
-      <div className="pl-[13px] sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-        <figure className="bg-white dark:bg-black rounded-full">
-          <svg
-            style={progressIcon}
-            width="40"
-            height="40"
-            viewBox="0 0 100 100"
-          >
-            <circle
-              style={progressIconBg}
-              cx="50"
-              cy="50"
-              r="30"
-              pathLength="1"
-              className="bg"
-            />
-            <motion.circle
-              cx="50"
-              cy="50"
-              r="30"
-              pathLength="1"
-              style={{
-                ...progressIconIndicator,
-                pathLength: scrollYProgress
-              }}
-            />
-          </svg>
-        </figure>
-
-        <h3 className="hidden md:block text-2xl lg:text-4xl mb-4 md:mb-0 text-left font-bold text-neutral-500 dark:text-neutral-500 pl-0 md:pl-5  ">
+      <div className="pl-[13px] sticky flex flex-col md:flex-row z-40 items-center self-start max-w-xs lg:max-w-sm md:w-full">
+        <div
+          className={cn(
+            'h-6 w-6 rounded-full shrink-0 border ml-2 transition duration-200 ease-in-out',
+            startAnimation
+              ? 'from-purple-500 from-30% to-blue-500 bg-radial border-none'
+              : 'bg-white dark:bg-black border-neutral-700 dark:border-neutral-700'
+          )}
+        />
+        <h3
+          className={cn(
+            'hidden md:block text-2xl lg:text-3xl mb-4 md:mb-0 text-left font-bold pl-0 md:pl-5',
+            'transition-colors duration-200 ease-in-out',
+            startAnimation
+              ? 'text-neutral-800 dark:text-neutral-300'
+              : 'text-neutral-500 dark:text-neutral-500'
+          )}
+        >
           {data.year}
         </h3>
       </div>
 
       <div className="relative pl-4 pr-4 md:pl-4 w-full">
-        <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
-          {data.title}
-        </h3>
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{
-            opacity: 1,
-            y: 0
-          }}
-          viewport={{
-            once: true
-          }}
-        >
-          <TimelineCard data={data} />
-        </motion.div>
+        {data?.projects.map((project, index) => (
+          <motion.div
+            key={project.title.replaceAll(' ', '_') + '_' + index}
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{
+              opacity: 1,
+              y: 0
+            }}
+            viewport={{
+              once: true
+            }}
+          >
+            <TimelineCard data={project} isActive={startAnimation} />
+          </motion.div>
+        ))}
       </div>
     </div>
   );

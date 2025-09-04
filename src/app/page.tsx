@@ -3,7 +3,7 @@ import { MyInformation } from '@/containers/about-me';
 
 import { MyUniverse } from '@/containers/my-universe';
 import { PersonalInterests } from '@/containers/personal-interests';
-import { ExperienceTimeline } from './experience/containers/experience-timeline';
+import { ExperienceTimeline } from '../components/ui/experience-timeline';
 
 export default function Home() {
   return (

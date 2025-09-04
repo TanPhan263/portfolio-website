@@ -1,12 +1,15 @@
 export type StackBrand = { name: string; color: string; darkColor: string };
 
-export type ProjectTimelineItem = {
-  year: string;
+export type ProjectTimelineDetail = {
   title: string;
   summary: string;
-  description: string;
   stacks: StackBrand[];
   achievements: string[];
+};
+
+export type ProjectTimelineItem = {
+  year: string;
+  projects: ProjectTimelineDetail[];
 };
 
 const BRAND_COLORS: Record<string, StackBrand> = {
@@ -72,7 +75,6 @@ const BRAND_COLORS: Record<string, StackBrand> = {
   BEM: { name: 'BEM', color: '#00B5AD', darkColor: '#008B83' }
 };
 
-// Helper: chuyển list tên stack → list {name,color,darkColor}
 const stacks = (...names: string[]): StackBrand[] =>
   names.map(
     (n) =>
@@ -81,116 +83,132 @@ const stacks = (...names: string[]): StackBrand[] =>
 
 export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
   {
-    year: 'Late 2020',
-    title: 'Sport Management Dashboard – Internship',
-    summary:
-      'First internship project, worked on a sport app management website, collaborating with backend and design teams.',
-    description:
-      'Implemented UI features, collaborated with team to deliver tasks, and learned how to apply frontend fundamentals in real-world projects.',
-    stacks: stacks(
-      'Vue.js',
-      'JavaScript',
-      'MaterialUI',
-      'Google Map API',
-      'RestAPI',
-      'GitLab'
-    ),
-    achievements: [
-      'Adapted quickly to real project workflow',
-      'Built UI features based on design team input',
-      'Collaborated with backend team to complete modules'
-    ]
-  },
-  {
     year: 'Start 2021',
-    title: 'Real-Estate Website – bdsvinh.com.vn',
-    summary:
-      'A real estate platform providing listings, payments, and post management.',
-    description:
-      'Developed storefront and admin features, integrated payments, and optimized SEO performance for end-users.',
-    stacks: stacks(
-      'Vue.js',
-      'Nuxt.js',
-      'JavaScript',
-      'Vuetify',
-      'TailwindCSS',
-      'RestAPI',
-      'Cloudinary'
-    ),
-    achievements: [
-      'Delivered admin and storefront features',
-      'Implemented SEO and online payment integration',
-      'Created reusable components using Atomic design'
+    projects: [
+      {
+        title: 'Real-Estate Website – Bat Dong San Vinh',
+        summary:
+          'A real estate platform providing listings, payments, and post management for those who want to sell or rent their real-estate`',
+        stacks: stacks(
+          'Nuxt.js',
+          'Vuejs',
+          'VueX',
+          'Vuetify',
+          'TailwindCSS',
+          'RestAPI',
+          'Cloudinary',
+          'Atomic Design'
+        ),
+        achievements: [
+          'Delivered admin and storefront features with SEO optimization and online payment integration.',
+          'Built reusable UI components following Atomic Design principles, improving maintainability and consistency.'
+        ]
+      }
     ]
   },
   {
     year: 'Late 2021',
-    title: 'Mipart – Ecommerce Website',
-    summary:
-      'Developed a customizable eCommerce website for component ordering with real-time pricing and back-office management.',
-    description:
-      'Built both storefront and back-office systems, created UI library with Storybook, and ensured smooth cross-device experiences.',
-    stacks: stacks(
-      'Vue.js',
-      'Nuxt.js',
-      'TypeScript',
-      'TailwindCSS',
-      'GSAP',
-      'GraphQL',
-      'Vendure.io',
-      'Agile/Scrum'
-    ),
-    achievements: [
-      'Success developed UI library with Storybook & Buefy',
-      'Built customizable product configuration',
-      'Improved performance and UX with animations',
-      'Collaborated with cross-functional team to deliver UI assets'
+    projects: [
+      {
+        title: 'MIPART – Ecommerce Website',
+        summary:
+          'Developed a customizable eCommerce website for component ordering with real-time pricing and back-office management.',
+        stacks: stacks(
+          'Vue.js',
+          'Nuxt.js',
+          'TypeScript',
+          'TailwindCSS',
+          'GSAP Animation',
+          'GraphQL Integration'
+        ),
+        achievements: [
+          'Developed and delivered a reusable UI library from scratch, reducing duplicate code and boosting team productivity.',
+          'Worked closely with German team to translate design specs into production-ready UI assets',
+          'Applied Agile and Scrum practices, enabling the team to self-organize and run Scrum efficiently without a Scrum Master after 6 months.'
+        ]
+      }
     ]
   },
   {
     year: '2022',
-    title: 'QR Code Generator Website - QR TIGER',
-    summary:
-      'A QR code generator website that allows users to customize QR codes and track valuable customer data.',
-    description:
-      'Delivered dynamic QR codes (URL, files, vCards, multi-URL,...), improved codebase, and ensured cross-browser compatibility.',
-    stacks: stacks(
-      'Next.js',
-      'JavaScript',
-      'React Query',
-      'HTML5',
-      'SASS',
-      'Bootstrap',
-      'Formik',
-      'RestAPI',
-      'Google Map API'
-    ),
-    achievements: [
-      'Migrated and refactored old codebase',
-      'Implemented dynamic QR code generation',
-      'Collaborated with teams to identify and prioritize features'
+    projects: [
+      {
+        title: 'QR Code Generator Website - QR TIGER',
+        summary:
+          'A QR code generator website with vary type of qr code that allows users to customize QR codes and track valuable customer data.',
+        stacks: stacks(
+          'Next.js',
+          'JavaScript',
+          'React Query',
+          'Bootstrap',
+          'Formik',
+          'RestAPI',
+          'Google Map API'
+        ),
+        achievements: [
+          'Refactored legacy QR code generator website, reducing bundle size by 25% and improving load time by 40%, by remove old redux and apply react Query combined with Context for both Store-front and Admin Dashboard',
+          'Collaborated with global teams to convert user requirements into high-quality, production-ready UI assets.',
+          'Became a core project member, taking ownership of key features and ensuring on-time delivery.'
+        ]
+      }
     ]
   },
   {
     year: '2023',
-    title: 'Japanese Waste Management System',
-    summary:
-      'Enhanced legacy Japanese Waste Management system, migrating from bizDesigner to modern ReactJS frontend.',
-    description:
-      'Rebuilt UI with ReactJS while keeping core business logic intact. Focused on reusable components and scalable architecture.',
-    stacks: stacks(
-      'React.js',
-      'TypeScript',
-      'Redux',
-      'Redux Thunk',
-      'React Hook Form',
-      'SASS',
-      'PHP'
-    ),
-    achievements: [
-      'Collaborated with clients for requirement analysis',
-      'Created reusable components and custom hooks',
-      'Improved maintainability and team productivity'
+    projects: [
+      {
+        title: 'Japanese Waste Management System',
+        summary:
+          'Enhanced a legacy Japanese Waste Management system by migrating from BizDesigner to a modern ReactJS frontend.',
+        stacks: stacks(
+          'React.js',
+          'Bootstrap',
+          'TypeScript',
+          'Redux',
+          'Redux Thunk',
+          'React Hook Form'
+        ),
+        achievements: [
+          'Initiated and delivered project from scratch with dynamic customization features.',
+          'Recognized as a core contributor to the project, driving major features and mentoring fresher teammates.',
+          'Interviewed and mentored fresher developers, improving team growth and accelerating onboarding.'
+        ]
+      }
+    ]
+  },
+  {
+    year: 'Start 2024',
+    projects: [
+      {
+        title:
+          'Vietcap IQ - The Most Comprehensive Stock Analysis Platform in Vietnam',
+        summary:
+          'Website provides insights into stock market news on companies, industries, macroeconomics, and strategies in the Vietnamese market, evaluated by experts from Vietcap Securities.',
+        stacks: stacks(
+          'React.js',
+          'TypeScript',
+          'Redux',
+          'Bootstrap',
+          'Mantine',
+          'E-Chart',
+          'AgGrid',
+          'TradingView'
+        ),
+        achievements: [
+          'Optimized rendering and state management to ensure smooth UI performance under high-frequency real-time updates.',
+          'Developed real-time features using WebSockets with Redux, ECharts, and Ag-Grid to display live data'
+        ]
+      },
+      {
+        title: 'Vietcap AI News - AI-Powered Stock Investment News',
+        summary:
+          'A website about Vietnamese stock market news aggregation platform with continuous updates and AI-powered article and company evaluations.',
+        stacks: stacks('React.js', 'TypeScript', 'Redux', 'Mantine', 'Echart'),
+        achievements: [
+          'Initiated and delivered project, implementing core features and launching successfully within one month.',
+          'Enhanced SEO and page performance by implementing server-side rendering content for a React.js application'
+        ]
+      }
     ]
   }
 ];

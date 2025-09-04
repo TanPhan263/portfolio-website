@@ -29,16 +29,8 @@ const links = [
     href: '/'
   },
   {
-    title: 'Experience',
-    href: '/experience'
-  },
-  {
-    title: 'Projects',
-    href: '/projects'
-  },
-  {
-    title: 'About',
-    href: '/about',
+    title: 'Blog',
+    href: '/blog',
     isComingSoon: true
   }
 ];
