@@ -72,7 +72,7 @@ export const SpotifyPlaylist = () => {
           <iframe
             style={{ borderRadius: '12px' }}
             src={`https://open.spotify.com/embed/playlist/${
-              process.env.NEXT_SPOTIFY_PLAYLIST_ID
+              process.env.NEXT_PUBLIC_SPOTIFY_PLAYLIST_ID
             }?utm_source=generator&theme=${
               currentTheme === 'dark' ? '0' : '1'
             }`}
