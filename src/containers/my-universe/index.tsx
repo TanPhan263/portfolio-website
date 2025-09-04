@@ -65,23 +65,23 @@ export const MyUniverse = () => {
       </div>
       <div className="relative flex-1 flex justify-center w-full mt-8 lg:mt-0">
         {/* Responsive positioning for floating elements */}
-        <div className="px-3 py-2 hidden sm:block absolute top-0 left-16 sm:left-16 bg-purple-500/20 rounded-[6px] w-max font-medium dark:text-purple-300 text-purple-500 border border-purple-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-0 left-16 sm:left-16 bg-purple-500/20 rounded-[6px] w-max font-medium dark:text-purple-300 text-purple-500 border border-purple-500/20 animate-wiggle duration-1000 z-30">
           Responsive UI
         </div>
 
-        <div className="px-3 py-2 hidden sm:block absolute top-24 right-4 sm:right-8 bg-blue-500/20 rounded-[6px] w-max font-medium dark:text-blue-300 text-blue-500 border border-blue-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-24 right-4 sm:right-8 bg-blue-500/20 rounded-[6px] w-max font-medium dark:text-blue-300 text-blue-500 border border-blue-500/20 animate-wiggle duration-1000 z-30">
           Clean Code
         </div>
 
-        <div className="px-3 py-2 hidden sm:block absolute top-20 right-26 sm:right-52 bg-yellow-500/20 rounded-[6px] w-max font-medium dark:text-yellow-300 text-yellow-500 border border-yellow-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-20 right-26 sm:right-52 bg-yellow-500/20 rounded-[6px] w-max font-medium dark:text-yellow-300 text-yellow-500 border border-yellow-500/20 animate-wiggle duration-1000 z-30">
           Performance
         </div>
 
-        <div className="px-3 py-2 hidden sm:block absolute top-32 left-0 sm:left-4 bg-red-700/20 rounded-[6px] w-max font-medium dark:text-red-300 text-red-500 border border-red-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-32 left-0 sm:left-4 bg-red-700/20 rounded-[6px] w-max font-medium dark:text-red-300 text-red-500 border border-red-500/20 animate-wiggle duration-1000 z-30">
           SEO
         </div>
 
-        <div className="px-3 py-2 hidden sm:block absolute top-6 right-6 sm:right-16 bg-green-700/20 rounded-[6px] w-max font-medium dark:text-green-300 text-green-500 border border-green-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-6 right-6 sm:right-16 bg-green-700/20 rounded-[6px] w-max font-medium dark:text-green-300 text-green-500 border border-green-500/20 animate-wiggle duration-1000 z-30">
           Teamwork
         </div>
 
