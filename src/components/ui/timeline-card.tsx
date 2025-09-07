@@ -4,7 +4,8 @@ import { ProjectTimelineDetail, StackBrand } from "@/shared/data/experience";
 import { IconCircleCheck } from "@tabler/icons-react";
 import { motion, Variants } from "motion/react";
 import { Badge } from "./badge";
-
+import { Safari } from "./safari";
+import Iphone15Pro from "../magicui/iphone-15-pro";
 interface TimelineCardProps {
   data: ProjectTimelineDetail;
   isActive?: boolean;
@@ -17,7 +18,7 @@ export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
       {year && (
         <h3
           className={cn(
-            "md:hidden text-2xl -mt-1 text-left font-bold pl-0",
+            "lg:hidden text-2xl -mt-1 text-left font-bold pl-0",
             "transition-colors duration-200 ease-in-out",
             isActive
               ? "text-neutral-800 dark:text-neutral-300"
@@ -29,7 +30,7 @@ export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
       )}
       <h3
         className={cn(
-          "md:hidden block text-xl mb-2 text-left font-bold",
+          "lg:hidden block text-xl mb-2 text-left font-bold",
           isActive
             ? "text-neutral-800 dark:text-neutral-300"
             : "text-neutral-500 dark:text-neutral-500"
@@ -37,38 +38,47 @@ export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
       >
         {data.title}
       </h3>
-      <div className="relative h-full rounded-2xl border p-1 md:rounded-3xl md:p-3 mb-4">
-        <div className="border-0.75 relative flex h-full flex-col gap-4 overflow-hidden rounded-xl p-3 md:p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
-          {/* Year + Title */}
-          <div>
-            <h3 className="hidden md:block text-lg sm:text-xl md:text-2xl font-semibold text-black dark:text-white">
+      <div className="relative h-full rounded-2xl border p-3 md:rounded-3xl md:p-3 mb-4">
+        <div className="border-0.75 relative flex h-full flex-col overflow-hidden rounded-xl dark:shadow-[0px_0px_27px_0px_#2D2D2D] group/item">
+          
+          <div className="p-3 !pb-0">
+            <h3 className="hidden lg:block text-lg sm:text-xl md:text-2xl font-semibold text-black dark:text-white">
               {data.title}
             </h3>
-            {/* Summary */}
             <small className="text-sm md:text-base text-neutral-700 dark:text-neutral-300">
               {data.summary}
             </small>
           </div>
 
-          {/* Stacks */}
-          <div>
-            <h4 className="text-md font-semibold mb-2">Tech Stacks</h4>
-            <div className="flex flex-wrap gap-2">
-              <KeySkills skills={data.stacks} />
-            </div>
-          </div>
+          <div className="relative overflow-hidden p-3 rounded-2xl">
+            <Safari
+              imageSrc={`/images/experiences${data.imageUrl}`}
+              className="hidden md:block left-0 h-auto w-full"
+            />
+             <Iphone15Pro
+              src={`/images/experiences${data.imageUrl}`}
+              className="md:hidden left-0 h-auto w-full"
+            />
+            <div className="absolute top-0 left-0 h-full w-full bg-gray-200/70 dark:bg-neutral-800/80 group-hover/item:translate-y-0 -translate-y-full transition-all duration-300 rounded-2xl" />
 
-          {/* Achievements */}
-          <div>
-            <h4 className="text-md font-semibold mb-2">Achievements</h4>
-            <ul className="pl-3 space-y-1 text-sm md:text-base text-neutral-700 dark:text-neutral-300 list-none">
-              {data.achievements.map((ach, idx) => (
-                <li key={idx} className="flex items-start gap-1">
-                  <IconCircleCheck className="mr-2 shrink-0" />
-                  {ach}
-                </li>
-              ))}
-            </ul>
+            <div className="absolute w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] bottom-4 left-4 md:bottom-6 md:left-6 group-hover/item:opacity-100 group-hover/item:translate-y-0 opacity-0 translate-y-8 transition-all duration-300">
+             <h4 className="text-md font-semibold mb-2">Tech Stacks</h4>
+              <div className="flex flex-wrap gap-2">
+                <KeySkills skills={data.stacks} />
+              </div>
+              <h4 className="text-md font-semibold mt-2">Achievements</h4>
+              <ul className="pl-3 space-y-1 text-sm md:text-base text-neutral-700 dark:text-neutral-300 list-none">
+                {data.achievements.map((ach, idx) => (
+                  <li
+                    key={"achievements" + idx}
+                    className="flex items-start gap-1"
+                  >
+                    <IconCircleCheck className="mr-2 shrink-0" />
+                    {ach}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -88,7 +98,6 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
     },
   };
 
-  // Animation variants for individual skill badges
   const badgeVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -107,7 +116,7 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
     >
       {skills.map((skill, index) => (
         <motion.div
-          key={index}
+          key={skill.name + index}
           variants={badgeVariants as Variants}
           whileHover={{
             scale: 1.1,
@@ -120,7 +129,7 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
         >
           <Badge
             className={cn(
-              "px-3 py-1 cursor-pointer dark:bg-gray-700 dark:text-gray-200 duration-300",
+              "px-3 py-1 cursor-pointer dark:bg-gray-500 dark:text-gray-200 duration-300",
               `outline-[${skill.darkColor}] transition hover:outline-2`
             )}
           >

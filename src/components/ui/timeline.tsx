@@ -2,7 +2,7 @@
 import { cn } from '@/app/lib/utils';
 import { ProjectTimelineItem } from '@/shared/data/experience';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { Fragment, RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 
 export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
@@ -35,7 +35,7 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 20%', 'end 20%']
+    offset: ['start 20%', 'end 80%']
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
@@ -56,12 +56,14 @@ export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
       <div ref={ref} className="relative max-w-7xl mx-auto pb-10 md:pb-20">
         {data.map((item, index) => {
           return (
-            <TimelineItem
-              key={`${item.year}_${index}`}
-              data={item}
-              heightTransform={heightTransform}
-              containerRef={containerRef}
-            />
+            <Fragment key={`${item.year}_${index}`}>
+              <TimelineItem
+                key={`${item.year}_${index}`}
+                data={item}
+                heightTransform={heightTransform}
+                containerRef={containerRef}
+              />
+            </Fragment>
           );
         })}
         <div
@@ -101,11 +103,9 @@ function TimelineItem({
       if (!ref.current || !containerRef.current) return;
       const relativeTop = ref.current.offsetTop;
 
-      if (value >= relativeTop && value > 0) {
-        setStartAnimation(true);
-      } else if (value < relativeTop) {
-        setStartAnimation(false);
-      }
+      requestAnimationFrame(() => {
+        setStartAnimation(value >= relativeTop && value > 0);
+      });
     });
     return () => {
       unsubscribe();
@@ -116,9 +116,9 @@ function TimelineItem({
     <div
       key={data.year}
       ref={ref}
-      className="relative flex justify-start pb-10 lg:gap-0"
+      className="relative flex justify-start lg:justify-between pb-10 gap-4 lg:gap-0"
     >
-      <div className="pl-[13px] sticky flex flex-col md:flex-row shrink-0 z-40 items-center self-start max-w-xs md:w-1/3 lg:max-w-sm lg:w-full">
+      <div className="pl-[13px] sticky flex flex-col md:flex-row shrink-0 z-40 items-center self-start max-w-xs lg:max-w-1/4 lg:w-full xl:max-w-sm">
         <div
           className={cn(
             'h-6 w-6 rounded-full shrink-0 border ml-2 transition duration-200 ease-in-out',
@@ -129,7 +129,7 @@ function TimelineItem({
         />
         <h3
           className={cn(
-            'hidden md:block text-2xl lg:text-3xl mb-4 md:mb-0 text-left font-bold pl-0 md:pl-5',
+            'hidden lg:block text-2xl lg:text-3xl mb-4 md:mb-0 text-left font-bold pl-0 md:pl-5',
             'transition-colors duration-200 ease-in-out',
             startAnimation
               ? 'text-neutral-800 dark:text-neutral-300'
@@ -140,10 +140,10 @@ function TimelineItem({
         </h3>
       </div>
 
-      <div className="relative pl-4 pr-4 md:pl-4 w-full">
+      <div className="relative w-full lg:min-w-3/4 xl:min-w-1/2 max-w-[750px] pr-4 md:pr-0">
         {data?.projects.map((project, index) => (
           <motion.div
-            key={project.title.replaceAll(' ', '_') + '_' + index}
+            key={project.title.replaceAll(' ', '') + '_' + index}
             initial={{ opacity: 0, y: 100 }}
             whileInView={{
               opacity: 1,

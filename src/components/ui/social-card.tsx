@@ -17,7 +17,7 @@ export const SocialCard = ({
   images
 }: SocialCardProps) => {
   return (
-    <div className="shadow-md max-w-md border-0.75 relative flex h-fit flex-col justify-between gap-2 md:gap-3 overflow-hidden rounded-xl p-3 md:p-6 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+    <div className="shadow-md max-w-md border-0.75 relative flex h-fit flex-col justify-between gap-2 md:gap-3 overflow-hidden rounded-xl p-3 md:p-4 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-2 ">
           <Image
@@ -53,7 +53,7 @@ export const SocialCard = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[80px] gap-1">
+      <div className="grid grid-cols-3 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[80px] gap-0.5">
         {images.map((image, i) => (
           <div
             key={`${image}_${i}`}

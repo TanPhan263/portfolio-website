@@ -5,6 +5,7 @@ export type ProjectTimelineDetail = {
   summary: string;
   stacks: StackBrand[];
   achievements: string[];
+  imageUrl: string;
 };
 
 export type ProjectTimelineItem = {
@@ -88,7 +89,7 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
       {
         title: 'Real-Estate Website – Bat Dong San Vinh',
         summary:
-          'A real estate platform providing listings, payments, and post management for those who want to sell or rent their real-estate`',
+          'A real estate platform providing listings, payments, and post management for those who want to sell or rent their real-estate',
         stacks: stacks(
           'Nuxt.js',
           'Vuejs',
@@ -102,7 +103,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
         achievements: [
           'Delivered admin and storefront features with SEO optimization and online payment integration.',
           'Built reusable UI components following Atomic Design principles, improving maintainability and consistency.'
-        ]
+        ],
+        imageUrl: '/bds-vinh.png'
       }
     ]
   },
@@ -122,10 +124,11 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'GraphQL Integration'
         ),
         achievements: [
-          'Developed and delivered a reusable UI library from scratch, reducing duplicate code and boosting team productivity.',
+          'Developed and delivered a reusable UI library, reducing duplicate code and boosting team productivity.',
           'Worked closely with German team to translate design specs into production-ready UI assets',
-          'Applied Agile and Scrum practices, enabling the team to self-organize and run Scrum efficiently without a Scrum Master after 6 months.'
-        ]
+          'Applied Agile and Scrum practices to ensure efficient project management and delivery.'
+        ],
+        imageUrl: '/qr-tiger.png'
       }
     ]
   },
@@ -146,10 +149,10 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Google Map API'
         ),
         achievements: [
-          'Refactored legacy QR code generator website, reducing bundle size by 25% and improving load time by 40%, by remove old redux and apply react Query combined with Context for both Store-front and Admin Dashboard',
-          'Collaborated with global teams to convert user requirements into high-quality, production-ready UI assets.',
-          'Became a core project member, taking ownership of key features and ensuring on-time delivery.'
-        ]
+          'Refactored legacy codebase, reducing bundle size by 25% and improving load time by 40%, using react Query, Context for both Store-front and Admin Dashboard',
+          'Became a core project member, developing key features and ensuring on-time delivery.'
+        ],
+        imageUrl: '/qr-tiger.png'
       }
     ]
   },
@@ -170,9 +173,9 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
         ),
         achievements: [
           'Initiated and delivered project from scratch with dynamic customization features.',
-          'Recognized as a core contributor to the project, driving major features and mentoring fresher teammates.',
-          'Interviewed and mentored fresher developers, improving team growth and accelerating onboarding.'
-        ]
+          'Recognized as a core member of the project, developing major features and interviewed fresher teammates.',
+        ],
+         imageUrl: '/qr-tiger.png'
       }
     ]
   },
@@ -197,7 +200,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
         achievements: [
           'Optimized rendering and state management to ensure smooth UI performance under high-frequency real-time updates.',
           'Developed real-time features using WebSockets with Redux, ECharts, and Ag-Grid to display live data'
-        ]
+        ],
+        imageUrl: '/vietcap-iq.png'
       },
       {
         title: 'Vietcap AI News - AI-Powered Stock Investment News',
@@ -207,7 +211,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
         achievements: [
           'Initiated and delivered project, implementing core features and launching successfully within one month.',
           'Enhanced SEO and page performance by implementing server-side rendering content for a React.js application'
-        ]
+        ],
+        imageUrl: '/vietcap-ai-news.png'
       }
     ]
   }

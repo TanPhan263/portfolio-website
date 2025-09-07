@@ -1,9 +1,7 @@
 import { FullScreen } from '@/components/full-screen';
 import { MyInformation } from '@/containers/about-me';
-
 import { MyUniverse } from '@/containers/my-universe';
-import { PersonalInterests } from '@/containers/personal-interests';
-import { ExperienceTimeline } from '../components/ui/experience-timeline';
+import { PersonalValuation } from '@/containers/personal-valuation';
 
 export default function Home() {
   return (
@@ -12,17 +10,13 @@ export default function Home() {
         <MyUniverse />
       </FullScreen>
 
-      <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6">
+      <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6 mt-10">
         <MyInformation />
       </FullScreen>
 
-      <FullScreen>
-        <ExperienceTimeline />
+      <FullScreen className="w-full xl:w-[85%] mx-auto mt-10 lg:mt-20">
+        <PersonalValuation />
       </FullScreen>
-
-      <div className="my-10">
-        <PersonalInterests />
-      </div>
 
       {/* <Resume /> */}
     </div>

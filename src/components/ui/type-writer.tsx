@@ -30,6 +30,9 @@ export const TypeWriter = ({
       variants={sentenceVariants}
       initial="hidden"
       animate="visible"
+      viewport={{
+        once: true,
+      }}
       className={className}
     >
       {text.split('').map((char, i) => (

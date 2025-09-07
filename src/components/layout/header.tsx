@@ -2,6 +2,7 @@
 
 import { cn } from '@/shared/utils/common';
 import { Separator } from '@radix-ui/react-dropdown-menu';
+import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import {
   IconArrowUp,
   IconBrandGithub,
@@ -11,7 +12,6 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ModeToggle } from '../mode-toggle';
 import { Logo } from '../svg/logo';
 import { Button } from '../ui/button';
 import {
@@ -29,10 +29,14 @@ const links = [
     href: '/'
   },
   {
+    title: 'Experience',
+    href: '/experience',
+  },
+  {
     title: 'Blog',
     href: '/blog',
     isComingSoon: true
-  }
+  },
 ];
 
 const pathNameDisableHeaderScroll = [''];
@@ -83,9 +87,9 @@ export const Header = () => {
       >
         <div
           className={cn(
-            'mx-auto flex justify-between gap-10 items-center transition-all duration-300 p-4 z-50',
+            'mx-auto flex justify-between items-center transition-all duration-300 p-4 z-50',
             isScrolled
-              ? 'bg-white/80 backdrop-blur-md md:p-6 dark:bg-zinc-900/80 xl:w-[90%] shadow -translate-y-8 md:rounded-3xl'
+              ? 'bg-white/80 backdrop-blur-md md:px-6 md:py-3 dark:bg-zinc-900/80 w-[90%] shadow -translate-y-8 md:rounded-3xl'
               : 'bg-transparent w-full xl:w-[70%]'
           )}
         >
@@ -110,7 +114,7 @@ export const Header = () => {
             >
               <IconBrandGithub />
             </a>
-            <ModeToggle />
+            <AnimatedThemeToggler className='border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300' />
 
             <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
               <DrawerTrigger asChild>
