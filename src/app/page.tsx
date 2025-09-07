@@ -10,11 +10,11 @@ export default function Home() {
         <MyUniverse />
       </FullScreen>
 
-      <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6 mt-10">
+      <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6">
         <MyInformation />
       </FullScreen>
 
-      <FullScreen className="w-full xl:w-[85%] mx-auto mt-10 lg:mt-20">
+      <FullScreen className="w-full xl:w-[85%] mx-auto mt-10">
         <PersonalValuation />
       </FullScreen>
 

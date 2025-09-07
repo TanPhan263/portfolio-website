@@ -13,7 +13,7 @@ export const LayoutWithHeader = ({
       <HeroBackground>
         <Header />
 
-        <main className="overflow-auto overflow-x-hidden container mx-auto flex-1 p-4">
+        <main className="overflow-auto overflow-x-hidden container mx-auto flex-1 lg:p-4">
           {children}
         </main>
         <Footer />

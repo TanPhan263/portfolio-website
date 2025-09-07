@@ -75,7 +75,7 @@ const items = [
           repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
         }}
-        className="absolute left-0 top-0 flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2"
+        className="absolute left-0 top-0 [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2"
       >
         <motion.div className="h-full w-full rounded-lg flex-1">
           <SpotifyPlaylist />

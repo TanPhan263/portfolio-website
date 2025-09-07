@@ -19,7 +19,7 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
   return (
     <FullScreen className="flex-col">
       <Terminal>
-        <TypingAnimation>&gt; pnpm dlx nathan@portfolio init</TypingAnimation>
+        <TypingAnimation>&gt; pnpm dlx nathan-phan@latest init</TypingAnimation>
 
         <AnimatedSpan delay={1500} className="text-green-500">
           <span>✔ Design checks.</span>
@@ -67,7 +67,7 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
         </TypingAnimation>
 
         <TypingAnimation delay={7000} className="text-muted-foreground">
-          Launching soon at nathan.id.vn
+          Launching soon at nathan-phan.vercel.app
         </TypingAnimation>
       </Terminal>
 

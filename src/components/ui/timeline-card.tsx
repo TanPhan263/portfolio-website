@@ -6,6 +6,7 @@ import { motion, Variants } from "motion/react";
 import { Badge } from "./badge";
 import { Safari } from "./safari";
 import Iphone15Pro from "../magicui/iphone-15-pro";
+import { GlowingEffect } from "./glowing-effect";
 interface TimelineCardProps {
   data: ProjectTimelineDetail;
   isActive?: boolean;
@@ -39,6 +40,15 @@ export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
         {data.title}
       </h3>
       <div className="relative h-full rounded-2xl border p-3 md:rounded-3xl md:p-3 mb-4">
+        <GlowingEffect
+          blur={0}
+          borderWidth={3}
+          spread={80}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+        />
         <div className="border-0.75 relative flex h-full flex-col overflow-hidden rounded-xl dark:shadow-[0px_0px_27px_0px_#2D2D2D] group/item">
           
           <div className="p-3 !pb-0">
@@ -56,25 +66,25 @@ export function TimelineCard({ data, isActive, year }: TimelineCardProps) {
               className="hidden md:block left-0 h-auto w-full"
             />
              <Iphone15Pro
-              src={`/images/experiences${data.imageUrl}`}
+              src={`/images/experiences${data.imageUrlMobile}`}
               className="md:hidden left-0 h-auto w-full"
             />
-            <div className="absolute top-0 left-0 h-full w-full bg-gray-200/70 dark:bg-neutral-800/80 group-hover/item:translate-y-0 -translate-y-full transition-all duration-300 rounded-2xl" />
+            <div className="absolute top-0 left-0 h-full w-full bg-gray-200/70 dark:bg-neutral-800/80 group-hover/item:translate-y-0 md:-translate-y-full transition-all duration-300 rounded-2xl" />
 
-            <div className="absolute w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] bottom-4 left-4 md:bottom-6 md:left-6 group-hover/item:opacity-100 group-hover/item:translate-y-0 opacity-0 translate-y-8 transition-all duration-300">
+            <div className="absolute w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] bottom-4 left-4 md:bottom-6 md:left-6 group-hover/item:opacity-100 md:translate-y-8 md:opacity-0 group-hover/item:translate-y-0 transition-all duration-300">
              <h4 className="text-md font-semibold mb-2">Tech Stacks</h4>
               <div className="flex flex-wrap gap-2">
                 <KeySkills skills={data.stacks} />
               </div>
               <h4 className="text-md font-semibold mt-2">Achievements</h4>
-              <ul className="pl-3 space-y-1 text-sm md:text-base text-neutral-700 dark:text-neutral-300 list-none">
+              <ul className="pl-0 md:pl-3 space-y-1 text-sm md:text-base text-neutral-700 dark:text-neutral-300 list-none">
                 {data.achievements.map((ach, idx) => (
                   <li
                     key={"achievements" + idx}
-                    className="flex items-start gap-1"
+                    className="flex gap-1 md:gap-2"
                   >
-                    <IconCircleCheck className="mr-2 shrink-0" />
-                    {ach}
+                    <IconCircleCheck className="size-4 md:size-5 shrink-0" />
+                    <span className="leading-tight">{ach}</span>
                   </li>
                 ))}
               </ul>
@@ -109,7 +119,7 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => {
 
   return (
     <motion.div
-      className="flex flex-wrap gap-2"
+      className="flex flex-wrap gap-1 md:gap-2"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

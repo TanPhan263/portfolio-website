@@ -6,6 +6,7 @@ export type ProjectTimelineDetail = {
   stacks: StackBrand[];
   achievements: string[];
   imageUrl: string;
+  imageUrlMobile: string;
 };
 
 export type ProjectTimelineItem = {
@@ -104,7 +105,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Delivered admin and storefront features with SEO optimization and online payment integration.',
           'Built reusable UI components following Atomic Design principles, improving maintainability and consistency.'
         ],
-        imageUrl: '/bds-vinh.png'
+        imageUrl: '/bds-vinh.png',
+        imageUrlMobile: '/bds-vinh-mobile.png'
       }
     ]
   },
@@ -128,7 +130,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Worked closely with German team to translate design specs into production-ready UI assets',
           'Applied Agile and Scrum practices to ensure efficient project management and delivery.'
         ],
-        imageUrl: '/qr-tiger.png'
+        imageUrl: '',
+        imageUrlMobile: ''
       }
     ]
   },
@@ -152,7 +155,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Refactored legacy codebase, reducing bundle size by 25% and improving load time by 40%, using react Query, Context for both Store-front and Admin Dashboard',
           'Became a core project member, developing key features and ensuring on-time delivery.'
         ],
-        imageUrl: '/qr-tiger.png'
+        imageUrl: '/qr-tiger.png',
+        imageUrlMobile: '/qr-tiger-mobile.png'
       }
     ]
   },
@@ -175,7 +179,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Initiated and delivered project from scratch with dynamic customization features.',
           'Recognized as a core member of the project, developing major features and interviewed fresher teammates.',
         ],
-         imageUrl: '/qr-tiger.png'
+        imageUrl: '',
+        imageUrlMobile: ''
       }
     ]
   },
@@ -201,7 +206,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Optimized rendering and state management to ensure smooth UI performance under high-frequency real-time updates.',
           'Developed real-time features using WebSockets with Redux, ECharts, and Ag-Grid to display live data'
         ],
-        imageUrl: '/vietcap-iq.png'
+        imageUrl: '/vietcap-iq.png',
+        imageUrlMobile: '/vietcap-iq-mobile.png'
       },
       {
         title: 'Vietcap AI News - AI-Powered Stock Investment News',
@@ -212,7 +218,8 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Initiated and delivered project, implementing core features and launching successfully within one month.',
           'Enhanced SEO and page performance by implementing server-side rendering content for a React.js application'
         ],
-        imageUrl: '/vietcap-ai-news.png'
+        imageUrl: '/vietcap-ai-news.png',
+        imageUrlMobile: '/vietcap-ai-news-mobile.png'
       }
     ]
   }
