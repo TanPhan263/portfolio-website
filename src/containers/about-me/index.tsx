@@ -26,8 +26,8 @@ const socialPosts = [
       ],
       images: [
         'react-logo.png',
-        'next-logo.jpeg',
-        'vue-logo.jpeg',
+        'next-logo.webp',
+        'vue-logo.png',
         'nuxt-logo.png',
         'ts-logo.png',
         'js-logo.png'
@@ -37,7 +37,7 @@ const socialPosts = [
   {
     id: 2,
     variants: undefined,
-    colSpan: 'col-span-1 md:col-span-1 lg:col-span-2',
+    colSpan: 'hidden md:block col-span-1 md:col-span-1 lg:col-span-2',
     order: 'order-2 md:order-1',
     data: {
       status: '🎨 UI Vibes: making apps pretty, smooth, and on point',
@@ -65,14 +65,63 @@ const socialPosts = [
       initial: { x: -20, rotate: 5 },
       hover: { x: 0, rotate: 0 }
     },
-    colSpan: 'col-span-1 md:col-span-1 lg:col-span-2',
+    colSpan: 'md:hidden col-span-1 md:col-span-1 lg:col-span-2',
+    order: 'order-2 md:order-1',
+    data: {
+      status: '🎨 UI Vibes: making apps pretty, smooth, and on point',
+      tags: [
+        'TailwindCSS',
+        'Mantine',
+        'Bootstrap',
+        'Motion',
+        'Echart',
+        'AgGrid'
+      ],
+      images: [
+        'tailwind-logo.png',
+        'mantine-logo.png',
+        'bs-logo.png',
+        'motion-logo.png',
+        'ag-grid-logo.png',
+        'echart-logo.png'
+      ]
+    }
+  },
+  {
+    id: 4,
+    variants: {
+      initial: { x: -20, rotate: 5 },
+      hover: { x: 0, rotate: 0 }
+    },
+    colSpan: 'hidden md:block col-span-1 md:col-span-1 lg:col-span-2',
     order: 'order-2 md:order-1',
     data: {
       status: '🚀 Flow Tools: stuff that keeps the dev life smooth & fast',
       tags: ['Redux', 'ReactQuery', 'Vite', 'Webpack', 'GitHub', 'GitLab'],
       images: [
         'redux-logo.png',
-        'react-query-logo.avif',
+        'react-query-logo.png',
+        'vite-logo.png',
+        'webpack-logo.png',
+        'git-logo.jpg',
+        'gitlab.png'
+      ]
+    }
+  },
+  {
+    id: 5,
+    variants: {
+      initial: { x: 20, rotate: -5 },
+      hover: { x: 0, rotate: 0 }
+    },
+    colSpan: 'md:hidden col-span-1 md:col-span-1 lg:col-span-2',
+    order: 'order-2 md:order-1',
+    data: {
+      status: '🚀 Flow Tools: stuff that keeps the dev life smooth & fast',
+      tags: ['Redux', 'ReactQuery', 'Vite', 'Webpack', 'GitHub', 'GitLab'],
+      images: [
+        'redux-logo.png',
+        'react-query-logo.png',
         'vite-logo.png',
         'webpack-logo.png',
         'git-logo.jpg',

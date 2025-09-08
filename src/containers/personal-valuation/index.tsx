@@ -23,7 +23,7 @@ export function PersonalValuation() {
 
   return (
     <>
-      <BentoGrid className="w-full mx-auto md:auto-rows-[20rem]">
+      <BentoGrid className="w-full mx-auto md:auto-rows-[20rem] px-4">
         {items.map((item) => (
           <BentoCard key={item.name} {...item} />
         ))}

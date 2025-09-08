@@ -89,7 +89,7 @@ export const Header = () => {
           className={cn(
             'mx-auto flex justify-between items-center transition-all duration-300 p-4 z-50',
             isScrolled
-              ? 'bg-white/80 backdrop-blur-md md:px-6 md:py-3 dark:bg-zinc-900/80 w-[90%] shadow -translate-y-8 md:rounded-3xl'
+              ? 'bg-white/80 backdrop-blur-md md:px-6 md:py-3 dark:bg-zinc-900/80 w-[90%] shadow -translate-y-8 rounded-xl md:rounded-3xl'
               : 'bg-transparent w-full xl:w-[70%]'
           )}
         >

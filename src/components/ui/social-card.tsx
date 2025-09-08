@@ -1,9 +1,14 @@
-'use client';
-import { cn } from '@/app/lib/utils';
-import { IconDotsVertical, IconHeartFilled, IconMessage2 } from '@tabler/icons-react';
-import Image from 'next/image';
+"use client";
+import { cn } from "@/app/lib/utils";
+import {
+  IconDotsVertical,
+  IconHeartFilled,
+  IconMessage2,
+} from "@tabler/icons-react";
+import Image from "next/image";
 import { motion } from "motion/react";
-import { useState } from 'react';
+import { useState } from "react";
+import { TechnicalMarquee } from "./technical-maquee";
 
 interface SocialCardProps {
   status: string;
@@ -16,15 +21,16 @@ export const SocialCard = ({
   status,
   tags,
   index,
-  images
+  images,
 }: SocialCardProps) => {
   const [isClicked, setIsClicked] = useState(false);
+
   return (
     <div className="shadow-md max-w-md border-0.75 relative flex h-fit flex-col justify-between gap-2 md:gap-3 overflow-hidden rounded-xl p-3 md:p-4 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 ">
           <Image
-            src={'/images/avt.jpeg'}
+            src={"/images/avt.jpeg"}
             alt="thumbnail"
             objectFit="cover"
             width={60}
@@ -32,7 +38,9 @@ export const SocialCard = ({
             className="border-gray-600 rounded-full overflow-hidden shrink-0"
           />
           <div>
-            <p className="dark:text-white font-semibold line-clamp-1">Nathan Phan</p>
+            <p className="dark:text-white font-semibold line-clamp-1">
+              Nathan Phan
+            </p>
             <p className="text-black dark:text-white text-sm line-clamp-1">
               {index * 2} hours ago
             </p>
@@ -56,23 +64,11 @@ export const SocialCard = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[90px] gap-0.5 rounded-sm overflow-hidden">
-        {images.map((image, i) => (
-          <div
-            key={`${image}_${i}`}
-            className={cn(
-              'relative bg-white dark:bg-black w-full h-full',
-              i === 0 ? 'col-span-2 row-span-2' : ''
-            )}
-          >
-            <Image
-              src={`/images/logo/${image}`}
-              alt="thumbnail"
-              fill
-              className="object-cover"
-            />
-          </div>
-        ))}
+      <div className="grid grid-cols-3 min-h-40 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[90px] gap-0.5 rounded-sm overflow-hidden">
+        <TechnicalMarquee
+          className="col-span-full row-span-2"
+          images={images.map((image) => `/images/logo/${image}`)}
+        />
       </div>
       <hr className="bg-gray-950 dark:bg-white" />
       <div className="flex items-center justify-between text-black dark:text-white">
@@ -83,10 +79,15 @@ export const SocialCard = ({
               whileTap={{ scale: 0.8 }}
               onClick={() => setIsClicked(!isClicked)}
             >
-              <IconHeartFilled className={cn({
-                'fill-pink-500 dark:fill-pink-700': isClicked,
-                'fill-white': !isClicked,
-              }, 'transition-colors duration-300')} />
+              <IconHeartFilled
+                className={cn(
+                  {
+                    "fill-pink-500 dark:fill-pink-700": isClicked,
+                    "fill-white": !isClicked,
+                  },
+                  "transition-colors duration-300"
+                )}
+              />
             </motion.div>
             <span className="whitespace-nowrap">Like</span>
           </button>

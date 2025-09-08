@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { FollowerPointerCard } from "@/components/ui/following-pointer"
+import Image from "next/image";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 
 export function Resume() {
   return (
@@ -14,17 +14,8 @@ export function Resume() {
           />
         }
       >
-        {/* <div className="w-full bg-red-400 h-[200px]">123</div> */}
         <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100">
-            {/* <Image
-              src={blogContent.image}
-              alt="thumbnail"
-              layout="fill"
-              objectFit="cover"
-              className={`transform object-cover transition duration-200 group-hover:scale-95 group-hover:rounded-2xl`}
-            /> */}
-          </div>
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100"></div>
           <div className="p-4">
             <h2 className="my-4 text-lg font-bold text-zinc-700">
               {blogContent.title}
@@ -42,7 +33,7 @@ export function Resume() {
         </div>
       </FollowerPointerCard>
     </div>
-  )
+  );
 }
 
 const blogContent = {
@@ -54,14 +45,14 @@ const blogContent = {
     "Grids are cool, but Tailwindcss grids are cooler. In this article, we will learn how to create amazing Grid layouts with Tailwindcs grid and React.",
   image: "/demo/thumbnail.png",
   authorAvatar: "/images/emoji.webp",
-}
+};
 
 const TitleComponent = ({
   title,
   avatar,
 }: {
-  title: string
-  avatar: string
+  title: string;
+  avatar: string;
 }) => (
   <div className="flex items-center space-x-2">
     <Image
@@ -73,4 +64,4 @@ const TitleComponent = ({
     />
     <p>{title}</p>
   </div>
-)
+);

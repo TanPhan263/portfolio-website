@@ -17,8 +17,6 @@ export default function Home() {
       <FullScreen className="w-full xl:w-[85%] mx-auto mt-10">
         <PersonalValuation />
       </FullScreen>
-
-      {/* <Resume /> */}
     </div>
   );
 }

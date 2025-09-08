@@ -29,7 +29,7 @@ export const MyUniverse = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="w-full flex flex-col lg:flex-row justify-between items-center md:gap-20 px-2 md:px-6 lg:mt-8">
+    <div className="w-full flex flex-col lg:flex-row justify-between items-center md:gap-20 px-4 md:px-6 lg:mt-8">
       <div className="flex-1 relative w-full lg:w-auto">
         <div className="flex flex-row gap-4 my-4 lg:my-0 lg:block items-center sm:items-start">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700">
@@ -55,7 +55,7 @@ export const MyUniverse = () => {
           </div>
         </div>
         <div className="text-lg text-zinc-600 dark:text-zinc-400 my-4 md:my-8 font-bold bg-gray-500/20 rounded-xs p-4">
-          Frontend Wizard 🪄 | React ⚛️ & Next.js 🚀
+          Frontend Wizard 🪄
           <br />
           <span className="font-normal italic">
             Turning pixels into magic ✨, coding with coffee ☕, and vibin’
@@ -73,11 +73,11 @@ export const MyUniverse = () => {
           Clean Code
         </div>
 
-        <div className="px-3 py-2 absolute top-20 right-26 sm:right-52 bg-yellow-500/20 rounded-[6px] w-max font-medium dark:text-yellow-300 text-yellow-500 border border-yellow-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-20 right-40 sm:right-52 bg-yellow-500/20 rounded-[6px] w-max font-medium dark:text-yellow-300 text-yellow-500 border border-yellow-500/20 animate-wiggle duration-1000 z-30">
           Performance
         </div>
 
-        <div className="px-3 py-2 absolute top-32 left-0 sm:left-4 bg-red-700/20 rounded-[6px] w-max font-medium dark:text-red-300 text-red-500 border border-red-500/20 animate-wiggle duration-1000 z-30">
+        <div className="px-3 py-2 absolute top-26 sm:top-32 left-0 sm:left-4 bg-red-700/20 rounded-[6px] w-max font-medium dark:text-red-300 text-red-500 border border-red-500/20 animate-wiggle duration-1000 z-30">
           SEO
         </div>
 
