@@ -207,7 +207,7 @@ export const PROJECT_TIMELINE: ProjectTimelineItem[] = [
           'Developed real-time features using WebSockets with Redux, ECharts, and Ag-Grid to display live data'
         ],
         imageUrl: '/vietcap-iq.png',
-        imageUrlMobile: '/vietcap-iq-mobile.png'
+        imageUrlMobile: '/vietcapiq-mobile.png'
       },
       {
         title: 'Vietcap AI News - AI-Powered Stock Investment News',

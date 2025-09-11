@@ -70,7 +70,7 @@ export const SocialCard = ({
           images={images.map((image) => `/images/logo/${image}`)}
         />
       </div>
-      <hr className="bg-gray-950 dark:bg-white" />
+      <hr className="bg-gray-950 dark:bg-gray-600" />
       <div className="flex items-center justify-between text-black dark:text-white">
         <div className="flex items-center space-x-2">
           <button className="flex justify-center items-center gap-2 px-2 p-1">

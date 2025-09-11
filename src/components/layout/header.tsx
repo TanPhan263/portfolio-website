@@ -11,8 +11,7 @@ import {
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Logo } from '../svg/logo';
+import { useCallback, useEffect, useRef, useState } from 'react';;
 import { Button } from '../ui/button';
 import {
   Drawer,
@@ -22,6 +21,7 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '../ui/drawer';
+import Image from 'next/image';
 
 const links = [
   {
@@ -94,7 +94,8 @@ export const Header = () => {
           )}
         >
           <div className="flex items-center gap-2">
-            <Logo className="size-14" />
+            <Image className='hidden dark:block' src="/logo-dark.png" alt="Logo" width={56} height={56} />
+            <Image className='dark:hidden' src="/logo-light.png" alt="Logo" width={56} height={56} />
           </div>
           <div className="flex-1 items-center gap-3 justify-center hidden sm:flex">
             {links.map((link) => (
@@ -130,7 +131,8 @@ export const Header = () => {
               <DrawerContent className="min-h-dvh">
                 <DrawerHeader className="flex justify-between">
                   <DrawerTitle className="flex items-center gap-2">
-                    <Logo className="size-14" />
+                    <Image className='hidden dark:block' src="/logo-dark.png" alt="Logo" width={56} height={56} />
+                    <Image className='dark:hidden' src="/logo-light.png" alt="Logo" width={56} height={56} />
                     nathan-phan.vercel.app
                   </DrawerTitle>
                   <DrawerClose
