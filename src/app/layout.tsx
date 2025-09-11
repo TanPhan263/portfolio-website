@@ -70,6 +70,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           disableTransitionOnChange
+          enableSystem={false}
         >
           <LayoutWithHeader>{children}</LayoutWithHeader>
         </ThemeProvider>
