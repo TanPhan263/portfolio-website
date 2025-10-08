@@ -75,28 +75,26 @@ export function MyTechStack() {
           whileHover="hover"
           className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full py-4 overflow-visible"
         >
-          {mappedSocialPost.map(
-            ({ id, variants, colSpan, order, data }, index) => (
-              <motion.div
-                key={id}
-                variants={variants}
-                className={`${colSpan} dark:bg-black/50 bg-white/50 p-0 ${order}`}
-              >
-                <div className="relative rounded-2xl border p-2 md:rounded-3xl md:p-3 col-span-1 md:col-span-2 lg:col-span-3">
-                  <GlowingEffect
-                    blur={0}
-                    borderWidth={3}
-                    spread={80}
-                    glow={true}
-                    disabled={false}
-                    proximity={64}
-                    inactiveZone={0.01}
-                  />
-                  <SocialCard {...data} />
-                </div>
-              </motion.div>
-            )
-          )}
+          {mappedSocialPost.map(({ id, variants, colSpan, order, data }) => (
+            <motion.div
+              key={id}
+              variants={variants}
+              className={`${colSpan} dark:bg-black/50 bg-white/50 p-0 ${order}`}
+            >
+              <div className="relative rounded-2xl border p-2 md:rounded-3xl md:p-3 col-span-1 md:col-span-2 lg:col-span-3">
+                <GlowingEffect
+                  blur={0}
+                  borderWidth={3}
+                  spread={80}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                />
+                <SocialCard {...data} />
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </>
