@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { BlurImage } from '@/components/ui/apple-cards-carousel';
-import { Compare } from '@/components/ui/compare';
-import { Cover } from '@/components/ui/cover';
-import { Lens } from '@/components/ui/lens';
-import { TypeWriter } from '@/components/ui/type-writer';
-import TypewriterArray from '@/components/ui/type-writer-array';
-import useHomePage from '@/shared/hooks/queries/useHomePage';
-import { cn, getCloudinaryUrl } from '@/shared/utils/common';
-import { useTheme } from 'next-themes';
-import { useMemo, useState } from 'react';
+import { BlurImage } from "@/components/ui/apple-cards-carousel";
+import { Compare } from "@/components/ui/compare";
+import { Cover } from "@/components/ui/cover";
+import { Lens } from "@/components/ui/lens";
+import { TypeWriter } from "@/components/ui/type-writer";
+import TypewriterArray from "@/components/ui/type-writer-array";
+import useHomePage from "@/shared/hooks/queries/useHomePage";
+import { cn, getCloudinaryUrl } from "@/shared/utils/common";
+import { useTheme } from "next-themes";
+import { useMemo, useState } from "react";
 
 // const animationTypes: AnimationVariant[] = [
 //   'fadeIn',
@@ -32,11 +32,11 @@ export const MyUniverse = () => {
   const imageSrc = useMemo(
     () =>
       getCloudinaryUrl(
-        (theme === 'light'
+        (theme === "light"
           ? data?.greeting?.image
           : data?.greeting?.imageDark) as string
       ),
-    [theme, JSON.stringify(data)]
+    [theme, data?.greeting?.image, data?.greeting?.imageDark]
   );
 
   if (!data) return <></>;
@@ -62,8 +62,8 @@ export const MyUniverse = () => {
         <div className="flex items-center justify-center md:justify-start">
           <div
             className={cn(
-              'relative md:w-fit w-full py-2 px-4 sm:px-8 text-base sm:text-lg md:text-xl font-bold my-5 pt-2 pb-3 text-center text-black dark:text-white',
-              'border-y border-dashed dark:border-white border-gray-600'
+              "relative md:w-fit w-full py-2 px-4 sm:px-8 text-base sm:text-lg md:text-xl font-bold my-5 pt-2 pb-3 text-center text-black dark:text-white",
+              "border-y border-dashed dark:border-white border-gray-600"
             )}
           >
             <div className="absolute -top-2 left-2 h-[calc(100%+1rem)] w-[calc(100%-1rem)] border-x border-dashed dark:border-white border-gray-600" />
@@ -81,7 +81,6 @@ export const MyUniverse = () => {
         </div>
       </div>
       <div className="relative flex-1 flex justify-center w-full mt-8 lg:mt-0">
-        {/* Responsive positioning for floating elements */}
         <div className="px-3 py-2 absolute top-0 left-16 sm:left-16 bg-purple-500/20 rounded-[6px] w-max font-medium dark:text-purple-300 text-purple-500 border border-purple-500/20 animate-wiggle duration-1000 z-30">
           Responsive UI
         </div>
@@ -106,9 +105,11 @@ export const MyUniverse = () => {
           <BlurImage
             src={imageSrc}
             alt={greeting.name}
-            width={450}
+            width={420}
             height={400}
             unoptimized
+            priority
+            loading={undefined}
             className="rounded-5xl object-contain"
           />
         </Lens>

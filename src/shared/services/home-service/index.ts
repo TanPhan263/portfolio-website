@@ -17,6 +17,17 @@ class HomeService extends BaseService {
       return null;
     }
   };
+
+  updateHomeContent = async (payload: IHomeContent): Promise<IHomeContent | null> => {
+    try {
+      const res = await this.patch<IHomeContent, IHomeContent>(`${END_POINTS.HOME}/${payload?._id}`, payload);
+
+      return res;
+    } catch (err) {
+      console.log('Get Home Content Error', err);
+      return null;
+    }
+  };
 }
 
 export default new HomeService();

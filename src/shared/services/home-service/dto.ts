@@ -17,6 +17,7 @@ export interface IGreeting {
 }
 
 export interface ISocial {
+  _id: string;
   name: string;
   createdAt: string;
   text: string;

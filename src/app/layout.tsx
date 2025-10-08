@@ -1,62 +1,65 @@
-import { LayoutWithHeader } from '@/components/layout/layout-with-header';
-import { ThemeProvider } from '@/components/theme-provider';
-import TanstackProvider from '@/shared/providers/tanstack.provider';
-import '@/styles/globals.css';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from 'next';
-import { Exo_2 } from 'next/font/google';
+import { LayoutWithHeader } from "@/components/layout/layout-with-header";
+import { ThemeProvider } from "@/components/theme-provider";
+import TanstackProvider from "@/shared/providers/tanstack.provider";
+import "@/styles/globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Exo_2 } from "next/font/google";
 
 const exo2 = Exo_2({
-  subsets: ['latin', 'vietnamese', 'cyrillic'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-exo2'
+  subsets: ["latin", "vietnamese", "cyrillic"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-exo2",
 });
 
 export const metadata: Metadata = {
-  title: 'Nathan Phan | Frontend Developer Portfolio',
+  title: "Nathan Phan | Frontend Developer Portfolio",
   description:
     "Explore Nathan Phan's portfolio – a skilled Frontend Developer specializing in Next.js, React, and modern web technologies. Showcasing innovative projects, UI/UX expertise, and high-performance web applications.",
   keywords: [
-    'Frontend Developer',
-    'Next.js Developer',
-    'React Developer',
-    'Nathan Phan Portfolio',
-    'Web Development',
-    'UI/UX Design',
-    'JavaScript',
-    'TypeScript',
-    'Modern Web Technologies'
+    "Frontend Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Nathan Phan Portfolio",
+    "Web Development",
+    "UI/UX Design",
+    "JavaScript",
+    "TypeScript",
+    "Modern Web Technologies",
   ],
   openGraph: {
-    title: 'Nathan Phan | Frontend Developer Portfolio',
+    title: "Nathan Phan | Frontend Developer Portfolio",
     description:
       "Discover Nathan Phan's expertise in Frontend Development, React, and Next.js. View projects, case studies, and technical skills.",
-    url: 'https://nathan-phan.vercel.app',
-    type: 'website',
+    url: "https://nathan-phan.vercel.app",
+    type: "website",
     images: [
       {
-        url: '',
+        url: "",
         width: 1200,
         height: 630,
-        alt: 'Nathan Phan - Frontend Developer Portfolio'
-      }
-    ]
+        alt: "Nathan Phan - Frontend Developer Portfolio",
+      },
+    ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Nathan Phan | Frontend Developer Portfolio',
+    card: "summary_large_image",
+    title: "Nathan Phan | Frontend Developer Portfolio",
     description:
       "Explore Nathan Phan's frontend projects and expertise in React, Next.js, and modern web development.",
-    images: ['']
+    images: [""],
   },
   icons: {
-    icon: '/favicon.ico'
-  }
+    icon: "/favicon.ico",
+  },
+  verification: {
+    google: "VV7pjAaA2v2TlFhxBWvhCGN3rQR7Ddh2kH1gB0chkrY",
+  },
 };
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {

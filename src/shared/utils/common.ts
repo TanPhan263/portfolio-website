@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getCloudinaryUrl(id: string) {
-  return `${
-    process.env.NEXT_PUBLIC_CLOUNDINARY_URL
-  }v${new Date().getTime()}/${id}`;
+  return `${process.env.NEXT_PUBLIC_CLOUNDINARY_URL
+    }v${new Date().getTime()}/${id}.webp`;
 }
