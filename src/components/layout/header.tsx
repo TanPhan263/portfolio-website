@@ -24,22 +24,6 @@ import {
   DrawerTrigger
 } from '../ui/drawer';
 
-const links = [
-  {
-    title: 'All',
-    href: '/'
-  },
-  {
-    title: 'Experience',
-    href: '/experience'
-  },
-  {
-    title: 'Blog',
-    href: '/blog',
-    isComingSoon: true
-  }
-];
-
 const pathNameDisableHeaderScroll = [''];
 
 export const Header = () => {

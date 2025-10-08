@@ -92,7 +92,7 @@ export function MyTechStack() {
                     proximity={64}
                     inactiveZone={0.01}
                   />
-                  <SocialCard {...data} index={index} />
+                  <SocialCard {...data} />
                 </div>
               </motion.div>
             )

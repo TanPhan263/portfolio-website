@@ -14,11 +14,10 @@ import { TechnicalMarquee } from './technical-maquee';
 export const SocialCard = ({
   text,
   tags,
-  index,
   images,
   name,
   createdAt
-}: ISocial & { index: number }) => {
+}: ISocial) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
