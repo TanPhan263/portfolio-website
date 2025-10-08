@@ -1,11 +1,11 @@
 'use client';
-import { cn } from '@/app/lib/utils';
-import { ProjectTimelineItem } from '@/shared/data/experience';
+import { IExperience } from '@/shared/services/experience-service/dto';
+import { cn } from '@/shared/utils/common';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { Fragment, RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 
-export const Timeline = ({ data }: { data: ProjectTimelineItem[] }) => {
+export const Timeline = ({ data }: { data: IExperience[] }) => {
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
@@ -90,7 +90,7 @@ function TimelineItem({
   heightTransform,
   containerRef
 }: {
-  data: ProjectTimelineItem;
+  data: IExperience;
   heightTransform: MotionValue<number>;
   containerRef: RefObject<HTMLDivElement | null>;
 }) {
@@ -153,7 +153,11 @@ function TimelineItem({
               once: true
             }}
           >
-            <TimelineCard data={project} isActive={startAnimation} year={index === 0 ? data.year : undefined} />
+            <TimelineCard
+              data={project}
+              isActive={startAnimation}
+              year={index === 0 ? data.year : undefined}
+            />
           </motion.div>
         ))}
       </div>

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { forwardRef, useRef } from "react";
+import React, { forwardRef, useRef } from 'react';
 
-import { cn } from "@/app/lib/utils";
-import { AnimatedBeam } from "@/components/magicui/animated-beam";
-import Image from "next/image";
-import { IconBrandFigma, IconUser } from "@tabler/icons-react";
+import { AnimatedBeam } from '@/components/magicui/animated-beam';
+import { cn } from '@/shared/utils/common';
+import { IconBrandFigma, IconUser } from '@tabler/icons-react';
+import Image from 'next/image';
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -15,7 +15,7 @@ const Circle = forwardRef<
     <div
       ref={ref}
       className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border-2 border-border bg-white p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]",
+        'z-10 flex size-12 items-center justify-center rounded-full border-2 border-border bg-white p-3 shadow-[0_0_20px_-12px_rgba(0,0,0,0.8)]',
         className
       )}
     >
@@ -24,7 +24,7 @@ const Circle = forwardRef<
   );
 });
 
-Circle.displayName = "Circle";
+Circle.displayName = 'Circle';
 
 export function AnimatedBeamConvert({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ export function AnimatedBeamConvert({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative flex h-full w-full items-center justify-center overflow-hidden p-10",
+        'relative flex h-full w-full items-center justify-center overflow-hidden p-10',
         className
       )}
       ref={containerRef}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Sponsors of Nathan Phan'
 };
 
-export default function Page() {
+export default function Sponsors() {
   return (
     <FullScreen>
       <HoverBorderGradient

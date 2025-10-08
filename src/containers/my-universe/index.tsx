@@ -6,10 +6,10 @@ import { Cover } from '@/components/ui/cover';
 import { Lens } from '@/components/ui/lens';
 import { TypeWriter } from '@/components/ui/type-writer';
 import TypewriterArray from '@/components/ui/type-writer-array';
-import { ROLE_TITLES } from '@/shared/data/role-titles';
-import { cn } from '@/shared/utils/common';
+import useHomePage from '@/shared/hooks/queries/useHomePage';
+import { cn, getCloudinaryUrl } from '@/shared/utils/common';
 import { useTheme } from 'next-themes';
-import { memo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // const animationTypes: AnimationVariant[] = [
 //   'fadeIn',
@@ -27,6 +27,21 @@ import { memo, useState } from 'react';
 export const MyUniverse = () => {
   const [hovering, setHovering] = useState(false);
   const { theme } = useTheme();
+  const { data } = useHomePage();
+
+  const imageSrc = useMemo(
+    () =>
+      getCloudinaryUrl(
+        (theme === 'light'
+          ? data?.greeting?.image
+          : data?.greeting?.imageDark) as string
+      ),
+    [theme, JSON.stringify(data)]
+  );
+
+  if (!data) return <></>;
+
+  const { greeting } = data;
 
   return (
     <div className="w-full flex flex-col lg:flex-row justify-between items-center md:gap-20 px-4 md:px-6 lg:mt-8">
@@ -36,7 +51,12 @@ export const MyUniverse = () => {
             <TypeWriter text="Hello," />
           </h1>
 
-          <Title />
+          <h1 className="flex flex-row sm:flex-col items-center sm:items-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700 gap-2">
+            <TypeWriter text="I'm" />
+            <Cover>
+              <TypeWriter text={greeting?.name as string} />
+            </Cover>
+          </h1>
         </div>
 
         <div className="flex items-center justify-center md:justify-start">
@@ -51,16 +71,13 @@ export const MyUniverse = () => {
             <div className="absolute bg-gray-600 dark:bg-white h-2 w-2 -bottom-1 left-1" />
             <div className="absolute bg-gray-600 dark:bg-white h-2 w-2 -top-1 right-1" />
             <div className="absolute bg-gray-600 dark:bg-white h-2 w-2 -bottom-1 right-1" />
-            <TypewriterArray words={ROLE_TITLES} />
+            <TypewriterArray words={greeting?.roles} />
           </div>
         </div>
         <div className="text-lg text-zinc-600 dark:text-zinc-400 my-4 md:my-8 font-bold bg-gray-500/20 rounded-xs p-4">
-          Frontend Wizard 🪄
+          {greeting?.bioTitle}
           <br />
-          <span className="font-normal italic">
-            Turning pixels into magic ✨, coding with coffee ☕, and vibin’
-            while building smooth, modern UIs 🌈
-          </span>
+          <span className="font-normal italic">{greeting?.bioDescription}</span>
         </div>
       </div>
       <div className="relative flex-1 flex justify-center w-full mt-8 lg:mt-0">
@@ -87,10 +104,11 @@ export const MyUniverse = () => {
 
         <Lens hovering={hovering} setHovering={setHovering}>
           <BlurImage
-            src={`/images/avt-card${theme === 'light' ? '-light' : ''}.png`}
-            alt="image"
+            src={imageSrc}
+            alt={greeting.name}
             width={450}
             height={400}
+            unoptimized
             className="rounded-5xl object-contain"
           />
         </Lens>
@@ -113,16 +131,3 @@ export function CompareDemo() {
     </div>
   );
 }
-
-export const Title = memo(() => {
-  return (
-    <h1 className="flex flex-row sm:flex-col items-center sm:items-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700 gap-2">
-      <TypeWriter text="I'm" />
-      <Cover>
-        <TypeWriter text="Nathan Phan" />
-      </Cover>
-    </h1>
-  );
-});
-
-Title.displayName = 'Title';

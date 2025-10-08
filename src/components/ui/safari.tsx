@@ -1,7 +1,7 @@
 'use client';
-import { SVGProps } from "react";
+import { SVGProps } from 'react';
 
-type SafariMode = "default" | "simple";
+type SafariMode = 'default' | 'simple';
 
 export interface SafariProps extends SVGProps<SVGSVGElement> {
   url?: string;
@@ -18,7 +18,7 @@ export function Safari({
   url,
   width = 1203,
   height = 753,
-  mode = "default",
+  mode = 'default',
   ...props
 }: SafariProps) {
   return (
@@ -86,7 +86,7 @@ export function Safari({
             {url}
           </text>
         </g>
-        {mode === "default" ? (
+        {mode === 'default' ? (
           <>
             <g className="mix-blend-luminosity">
               <path

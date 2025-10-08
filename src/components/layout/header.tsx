@@ -1,17 +1,19 @@
 'use client';
 
+import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import useHomePage from '@/shared/hooks/queries/useHomePage';
 import { cn } from '@/shared/utils/common';
 import { Separator } from '@radix-ui/react-dropdown-menu';
-import { AnimatedThemeToggler } from "@/components/magicui/animated-theme-toggler";
 import {
   IconArrowUp,
   IconBrandGithub,
   IconMenu2,
   IconX
 } from '@tabler/icons-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState } from 'react';;
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button } from '../ui/button';
 import {
   Drawer,
@@ -21,7 +23,6 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '../ui/drawer';
-import Image from 'next/image';
 
 const links = [
   {
@@ -30,13 +31,13 @@ const links = [
   },
   {
     title: 'Experience',
-    href: '/experience',
+    href: '/experience'
   },
   {
     title: 'Blog',
     href: '/blog',
     isComingSoon: true
-  },
+  }
 ];
 
 const pathNameDisableHeaderScroll = [''];
@@ -45,7 +46,6 @@ export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   const pathname = usePathname();
 
   const isDisableHeaderScroll = pathNameDisableHeaderScroll.includes(pathname);
@@ -77,6 +77,11 @@ export const Header = () => {
     };
   }, [handleScroll, isDisableHeaderScroll]);
 
+  const { data } = useHomePage();
+  if (!data) return <></>;
+
+  const { menu } = data;
+
   return (
     <>
       <header
@@ -94,16 +99,24 @@ export const Header = () => {
           )}
         >
           <div className="flex items-center gap-2">
-            <Image className='hidden dark:block' src="/logo-dark.png" alt="Logo" width={56} height={56} />
-            <Image className='dark:hidden' src="/logo-light.png" alt="Logo" width={56} height={56} />
+            <Image
+              className="hidden dark:block"
+              src="/logo-dark.png"
+              alt="Logo"
+              width={56}
+              height={56}
+            />
+            <Image
+              className="dark:hidden"
+              src="/logo-light.png"
+              alt="Logo"
+              width={56}
+              height={56}
+            />
           </div>
           <div className="flex-1 items-center gap-3 justify-center hidden sm:flex">
-            {links.map((link) => (
-              <HeaderLink
-                key={link.title}
-                title={link.title}
-                href={link.href}
-              />
+            {menu.map((link) => (
+              <HeaderLink key={link.text} title={link.text} href={link.url} />
             ))}
           </div>
           <div className="flex items-center gap-2">
@@ -115,7 +128,7 @@ export const Header = () => {
             >
               <IconBrandGithub />
             </a>
-            <AnimatedThemeToggler className='border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300' />
+            <AnimatedThemeToggler className="border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300" />
 
             <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
               <DrawerTrigger asChild>
@@ -131,8 +144,20 @@ export const Header = () => {
               <DrawerContent className="min-h-dvh">
                 <DrawerHeader className="flex justify-between">
                   <DrawerTitle className="flex items-center gap-2">
-                    <Image className='hidden dark:block' src="/logo-dark.png" alt="Logo" width={56} height={56} />
-                    <Image className='dark:hidden' src="/logo-light.png" alt="Logo" width={56} height={56} />
+                    <Image
+                      className="hidden dark:block"
+                      src="/logo-dark.png"
+                      alt="Logo"
+                      width={56}
+                      height={56}
+                    />
+                    <Image
+                      className="dark:hidden"
+                      src="/logo-light.png"
+                      alt="Logo"
+                      width={56}
+                      height={56}
+                    />
                     nathan-phan.vercel.app
                   </DrawerTitle>
                   <DrawerClose
@@ -151,14 +176,14 @@ export const Header = () => {
                 </DrawerHeader>
 
                 <div className="px-6 flex flex-col gap-4">
-                  {links.map((link) => (
+                  {menu.map((link) => (
                     <Link
-                      key={link.title}
-                      href={link.href}
+                      key={link.text}
+                      href={link.url}
                       className="flex items-center gap-2 font-medium text-xl"
                       onClick={() => setIsDrawerOpen(false)}
                     >
-                      {link.title}
+                      {link.text}
                       {link.isComingSoon && (
                         <span className="text-sm bg-blue-300/10 text-blue-500 px-2 py-1 rounded-full">
                           Coming Soon

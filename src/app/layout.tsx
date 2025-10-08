@@ -1,5 +1,6 @@
 import { LayoutWithHeader } from '@/components/layout/layout-with-header';
 import { ThemeProvider } from '@/components/theme-provider';
+import TanstackProvider from '@/shared/providers/tanstack.provider';
 import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -47,9 +48,7 @@ export const metadata: Metadata = {
     title: 'Nathan Phan | Frontend Developer Portfolio',
     description:
       "Explore Nathan Phan's frontend projects and expertise in React, Next.js, and modern web development.",
-    images: [
-      ''
-    ]
+    images: ['']
   },
   icons: {
     icon: '/favicon.ico'
@@ -66,14 +65,16 @@ export default function RootLayout({
       <body
         className={`${exo2.variable} antialiased scroll-smooth w-full max-w-dvw overflow-x-hidden`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-          enableSystem={false}
-        >
-          <LayoutWithHeader>{children}</LayoutWithHeader>
-        </ThemeProvider>
+        <TanstackProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+            enableSystem={false}
+          >
+            <LayoutWithHeader>{children}</LayoutWithHeader>
+          </ThemeProvider>
+        </TanstackProvider>
         <Analytics />
         <SpeedInsights />
       </body>

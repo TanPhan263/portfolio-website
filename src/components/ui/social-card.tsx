@@ -1,28 +1,24 @@
-"use client";
-import { cn } from "@/app/lib/utils";
+'use client';
+import { ISocial } from '@/shared/services/home-service/dto';
+import { cn, getCloudinaryUrl } from '@/shared/utils/common';
 import {
   IconDotsVertical,
   IconHeartFilled,
-  IconMessage2,
-} from "@tabler/icons-react";
-import Image from "next/image";
-import { motion } from "motion/react";
-import { useState } from "react";
-import { TechnicalMarquee } from "./technical-maquee";
-
-interface SocialCardProps {
-  status: string;
-  tags: string[];
-  index: number;
-  images: string[];
-}
+  IconMessage2
+} from '@tabler/icons-react';
+import { motion } from 'motion/react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { TechnicalMarquee } from './technical-maquee';
 
 export const SocialCard = ({
-  status,
+  text,
   tags,
   index,
   images,
-}: SocialCardProps) => {
+  name,
+  createdAt
+}: ISocial & { index: number }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -30,19 +26,18 @@ export const SocialCard = ({
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 ">
           <Image
-            src={"/images/avt.jpeg"}
+            src={getCloudinaryUrl('avt')}
             alt="thumbnail"
             objectFit="cover"
             width={60}
             height={60}
+            unoptimized
             className="border-gray-600 rounded-full overflow-hidden shrink-0"
           />
           <div>
-            <p className="dark:text-white font-semibold line-clamp-1">
-              Nathan Phan
-            </p>
+            <p className="dark:text-white font-semibold line-clamp-1">{name}</p>
             <p className="text-black dark:text-white text-sm line-clamp-1">
-              {index * 2} hours ago
+              {createdAt}
             </p>
           </div>
         </div>
@@ -54,10 +49,13 @@ export const SocialCard = ({
       </div>
 
       <div>
-        <p className="text-black dark:text-white">{status}</p>
+        <p className="text-black dark:text-white">{text}</p>
         <div className="flex flex-wrap">
           {tags.map((tag, index) => (
-            <a className="text-blue-700 dark:text-blue-400" key={tag + index}>
+            <a
+              className="text-blue-700 dark:text-blue-400 text-xs"
+              key={tag + index}
+            >
               #{tag}
             </a>
           ))}
@@ -67,7 +65,7 @@ export const SocialCard = ({
       <div className="grid grid-cols-3 min-h-40 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[90px] gap-0.5 rounded-sm overflow-hidden">
         <TechnicalMarquee
           className="col-span-full row-span-2"
-          images={images.map((image) => `/images/logo/${image}`)}
+          images={images.map((image) => getCloudinaryUrl(image))}
         />
       </div>
       <hr className="bg-gray-950 dark:bg-gray-600" />
@@ -82,10 +80,10 @@ export const SocialCard = ({
               <IconHeartFilled
                 className={cn(
                   {
-                    "fill-pink-500 dark:fill-pink-700": isClicked,
-                    "fill-white": !isClicked,
+                    'fill-pink-500 dark:fill-pink-700': isClicked,
+                    'fill-white': !isClicked
                   },
-                  "transition-colors duration-300"
+                  'transition-colors duration-300'
                 )}
               />
             </motion.div>

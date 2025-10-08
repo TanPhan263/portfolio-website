@@ -8,7 +8,11 @@ const nextConfig: NextConfig = {
       { hostname: 'yt3.googleusercontent.com' },
       { hostname: 'cdn.prod.website-files.com' },
       { hostname: 'assets.aceternity.com' },
-      { hostname: 'images.unsplash.com' }
+      { hostname: 'images.unsplash.com' },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      }
     ]
   }
 };
