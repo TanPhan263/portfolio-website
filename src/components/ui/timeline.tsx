@@ -2,7 +2,7 @@
 import { IExperience } from '@/shared/services/experience-service/dto';
 import { cn } from '@/shared/utils/common';
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
-import { Fragment, RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 
 export const Timeline = ({ data }: { data: IExperience[] }) => {
@@ -42,7 +42,7 @@ export const Timeline = ({ data }: { data: IExperience[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className="w-full md:px-10 overflow-hidden" ref={containerRef}>
+    <div className="w-full overflow-hidden" ref={containerRef}>
       <div className="max-w-7xl mx-auto py-6 px-4">
         <h2 className="text-2xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl font-bold">
           My Journey as a Frontend Developer
@@ -54,30 +54,26 @@ export const Timeline = ({ data }: { data: IExperience[] }) => {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-10 md:pb-20">
-        {data.map((item, index) => {
-          return (
-            <Fragment key={`${item.year}_${index}`}>
-              <TimelineItem
-                key={`${item.year}_${index}`}
-                data={item}
-                heightTransform={heightTransform}
-                containerRef={containerRef}
-              />
-            </Fragment>
-          );
-        })}
+        {data.map((item, index) => (
+          <TimelineItem
+            key={`${item.year}_${index}`}
+            data={item}
+            heightTransform={heightTransform}
+            containerRef={containerRef}
+          />
+        ))}
         <div
           style={{
             height: height + 'px'
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
+          className="absolute md:left-8 left-8 top-0 overflow-hidden w-0.5 bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-0% via-neutral-200 dark:via-neutral-700 to-transparent to-99%  mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0  w-0.5 bg-linear-to-t from-purple-500 via-blue-500 to-transparent from-0% via-10% rounded-full"
           />
         </div>
       </div>
@@ -113,12 +109,8 @@ function TimelineItem({
   }, [heightTransform, containerRef]);
 
   return (
-    <div
-      key={data.year}
-      ref={ref}
-      className="relative flex justify-start lg:justify-between pb-10 gap-4 lg:gap-0"
-    >
-      <div className="pl-[13px] sticky flex flex-col md:flex-row shrink-0 z-40 items-center self-start max-w-xs lg:max-w-1/4 lg:w-full xl:max-w-sm">
+    <div key={data.year} ref={ref} className="relative space-y-4 pb-10">
+      <div className="pl-3.25 sticky flex items-start flex-col md:flex-row shrink-0 z-40 lg:items-center self-start max-w-xs lg:max-w-1/4 lg:w-full xl:max-w-sm">
         <div
           className={cn(
             'h-6 w-6 rounded-full shrink-0 border ml-2 transition duration-200 ease-in-out',
@@ -140,11 +132,11 @@ function TimelineItem({
         </h3>
       </div>
 
-      <div className="relative w-full lg:min-w-3/4 xl:min-w-1/2 max-w-[750px] pr-4 md:pr-0">
+      <div className="-mt-11.5 lg:mt-0 ml-16 relative w-[calc(100%-64px)] pr-4 md:pr-0">
         {data?.projects.map((project, index) => (
           <motion.div
             key={project.title.replaceAll(' ', '') + '_' + index}
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{
               opacity: 1,
               y: 0
