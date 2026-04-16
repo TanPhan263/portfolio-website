@@ -6,9 +6,9 @@ if (!process.env.MONGO_URI) {
 
 const uri = process.env.MONGO_URI as string;
 const options = {
-  family: 4 as 4, // Forces IPv4
+  family: 4 as const, // Forces IPv4
   connectTimeoutMS: 10000, // 10 seconds timeout
-};
+} as const;
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;

@@ -19,6 +19,6 @@ export async function GET(request: Request) {
     
     return NextResponse.json(data);
   } catch (e) {
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
+    return NextResponse.json({ error: e instanceof Error ? e.message : "Database error" }, { status: 500 });
   }
 }
