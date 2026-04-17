@@ -4,7 +4,13 @@ import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import { Exo_2 } from 'next/font/google';
+import { Exo_2, Orbitron } from 'next/font/google';
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-orbitron'
+});
 
 const exo2 = Exo_2({
   subsets: ['latin', 'vietnamese', 'cyrillic'],
@@ -65,7 +71,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${exo2.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-hidden`}
+        suppressHydrationWarning
+        className={`${exo2.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-hidden`}
       >
         <TanstackProvider>
           <SiteWrapper>{children}</SiteWrapper>

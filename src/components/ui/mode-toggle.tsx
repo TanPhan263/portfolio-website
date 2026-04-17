@@ -15,7 +15,7 @@ export function ModeToggle({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'group relative flex items-center p-1 bg-zinc-100/50 dark:bg-black/20 border border-black/50 dark:border-black/30 rounded-full cursor-pointer transition-all duration-300 backdrop-blur-md',
+        'group relative flex items-center p-1 bg-white/30 backdrop-blur-md border border-black/50 dark:border-black/30 rounded-full cursor-pointer transition-all duration-300',
         className
       )}
       onClick={() => setMode(isUniverse ? 'normal' : 'universe')}
@@ -49,7 +49,7 @@ export function ModeToggle({ className }: { className?: string }) {
         onMouseLeave={() => setHovered(null)}
         className={cn(
           'relative z-10 flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-300',
-          !isUniverse ? 'text-blue-500' : 'text-zinc-500'
+          !isUniverse ? 'dark:text-white text-black' : 'text-zinc-500'
         )}
       >
         <IconLayoutGrid size={18} />
@@ -61,7 +61,7 @@ export function ModeToggle({ className }: { className?: string }) {
         onMouseLeave={() => setHovered(null)}
         className={cn(
           'relative z-10 flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-300',
-          isUniverse ? 'text-blue-500' : 'text-zinc-500'
+          isUniverse ? 'dark:text-white text-black' : 'text-zinc-500'
         )}
       >
         <IconRocket size={18} />

@@ -2,7 +2,7 @@
 
 import { useCosmosStore } from '@/shared/stores/use-cosmos-store';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { PLANET_CONFIG } from './solar-system-scene';
 
 import { ComingSoonPage } from '@/components/layout/coming-soon';
@@ -33,7 +33,7 @@ const SECTION_MAP: Record<string, React.ComponentType<any>> = {
 };
 
 const LoadingScreen = ({ text = '' }: { text?: string }) => (
-  <div className="absolute inset-0 bg-[#152238] flex flex-col items-center justify-center z-[100]">
+  <div className="absolute inset-0 bg-[#152238] flex flex-col items-center justify-center z-100 font-orbitron!">
     <motion.div
       animate={{ rotate: 360 }}
       transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
@@ -74,8 +74,8 @@ export const ExperienceOrbit = () => {
   const activePlanet = useCosmosStore((s) => s.activePlanet);
   const scrollProgress = useCosmosStore((s) => s.scrollProgress);
   const setMode = useSiteSettingStore((s) => s.setMode);
-
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isDrawerOpen = useSiteSettingStore((s) => s.openDrawer);
+  const setIsDrawerOpen = useSiteSettingStore((s) => s.setOpenDrawer);
 
   useEffect(() => {
     if (isDrawerOpen) {
@@ -98,14 +98,14 @@ export const ExperienceOrbit = () => {
       </Suspense>
 
       {/* FIXED HUD LAYER */}
-      <div className="fixed inset-0 pointer-events-none z-[60]">
+      <div className="fixed inset-0 pointer-events-none z-60 font-orbitron!">
         {/* Top Right Controls */}
         <div className="absolute top-10 right-10 flex items-center gap-4 pointer-events-auto">
           {/* Mode Switcher */}
           <ModeToggle />
 
           {/* Social Links */}
-          <div className="h-10 w-[1px] bg-white/10 mx-2" />
+          <div className="h-10 w-px bg-white/10 mx-2" />
 
           <a
             href="https://github.com/tanphan263"
@@ -143,9 +143,8 @@ export const ExperienceOrbit = () => {
                   {activeConfig.label}
                 </h3>
                 <div className="h-1 w-20 bg-blue-500 ml-auto" />
-
-                <p className="text-[#a1a1aa] text-xs font-medium leading-relaxed tracking-wider ml-auto max-w-[200px]">
-                  {activeConfig.description}
+                <p className="text-[#a1a1aa] text-xs font-medium leading-relaxed tracking-wider ml-auto max-w-50">
+                  {activeConfig.bio}
                 </p>
 
                 <div className="pointer-events-auto pt-4">
@@ -183,9 +182,9 @@ export const ExperienceOrbit = () => {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="absolute top-0 right-0 h-full w-full max-w-4xl bg-black/50 backdrop-blur-xl overflow-y-auto pointer-events-auto border-l border-white/10 shadow-2xl"
+                className="absolute top-0 right-0 h-full w-full max-w-4xl bg-dark/50 backdrop-blur-xl overflow-y-auto pointer-events-auto border-l border-white/10 shadow-2xl"
               >
-                <div className="p-10 flex flex-col min-h-full">
+                <div className="p-4 md:p-6 flex flex-col min-h-full">
                   <div className="flex items-center justify-between mb-10 pb-4 border-b border-white/10">
                     <h2 className="text-2xl font-black text-white uppercase tracking-widest">
                       {activeConfig.label}
