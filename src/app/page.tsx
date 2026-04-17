@@ -1,9 +1,4 @@
-import { FullScreen } from '@/components/full-screen';
-import { ExperienceTimeline } from '@/components/ui/experience-timeline';
-import { ContactSection } from '@/containers/contact-section';
-import { MyUniverse } from '@/containers/my-universe';
-import { PersonalValuation } from '@/containers/personal-valuation';
-import { MyTechStack } from '@/containers/techstacks';
+import { HomeClient } from '@/components/home/home-client';
 import getQueryClient from '@/shared/query-client';
 import { ExperienceService } from '@/shared/services';
 import HomeService from '@/shared/services/home-service';
@@ -24,27 +19,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div>
-        <FullScreen className="w-full xl:w-[85%] mx-auto">
-          <MyUniverse />
-        </FullScreen>
-
-        <FullScreen className="w-full xl:w-[85%] mx-auto flex flex-col gap-6">
-          <MyTechStack />
-        </FullScreen>
-
-        <FullScreen className="w-full xl:w-[85%] mx-auto mt-10">
-          <PersonalValuation />
-        </FullScreen>
-
-        <FullScreen className="w-full xl:w-[85%] mx-auto mt-10">
-          <ExperienceTimeline />
-        </FullScreen>
-
-        <FullScreen className="w-full xl:w-[85%] mx-auto mb-10">
-          <ContactSection />
-        </FullScreen>
-      </div>
+      <HomeClient />
     </HydrationBoundary>
   );
 }

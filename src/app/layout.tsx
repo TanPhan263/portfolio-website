@@ -1,82 +1,113 @@
-import { LayoutWithHeader } from "@/components/layout/layout-with-header";
-import { ThemeProvider } from "@/components/theme-provider";
-import TanstackProvider from "@/shared/providers/tanstack.provider";
-import "@/styles/globals.css";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import type { Metadata } from "next";
-import { Exo_2 } from "next/font/google";
+import { SiteWrapper } from '@/components/layout/site-wrapper';
+import TanstackProvider from '@/shared/providers/tanstack.provider';
+import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from 'next';
+import { Exo_2, Orbitron } from 'next/font/google';
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-orbitron'
+});
 
 const exo2 = Exo_2({
-  subsets: ["latin", "vietnamese", "cyrillic"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-exo2",
+  subsets: ['latin', 'vietnamese', 'cyrillic'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-exo2'
 });
 
 export const metadata: Metadata = {
-  title: "Nathan Phan | Frontend Developer Portfolio",
+  title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
   description:
-    "Explore Nathan Phan's portfolio – a skilled Frontend Developer specializing in Next.js, React, and modern web technologies. Showcasing innovative projects, UI/UX expertise, and high-performance web applications.",
+    "Explore TanTeck's interactive 3D portfolio — featuring an immersive solar system built with Three.js and React Three Fiber. Specializing in Next.js, React, and high-performance web experiences.",
   keywords: [
-    "Frontend Developer",
-    "Next.js Developer",
-    "React Developer",
-    "Nathan Phan Portfolio",
-    "Web Development",
-    "UI/UX Design",
-    "JavaScript",
-    "TypeScript",
-    "Modern Web Technologies",
+    'Frontend Developer',
+    'Next.js Developer',
+    'React Developer',
+    'Three.js Developer',
+    'React Three Fiber',
+    '3D Web Development',
+    'Interactive Portfolio',
+    'Creative Developer',
+    'TanTeck Portfolio',
+    'WebGL',
+    'UI/UX Design',
+    'JavaScript',
+    'TypeScript',
+    'Next.js',
+    'Reactjs',
+    'Web Development',
+    'Framer Motion',
+    'Zustand',
+    "BFF",
+    'Immersive Web'
   ],
   openGraph: {
-    title: "Nathan Phan | Frontend Developer Portfolio",
+    title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
     description:
-      "Discover Nathan Phan's expertise in Frontend Development, React, and Next.js. View projects, case studies, and technical skills.",
-    url: "https://nathan-phan.vercel.app",
-    type: "website",
+      'An interactive 3D solar system portfolio built with Three.js. Navigate planets to explore my skills, experience, and projects. Crafted with React Three Fiber and Next.js for a seamless web experience.',
+    url: 'https://tanteck.net',
+    siteName: 'TanTeck Portfolio',
+    type: 'website',
     images: [
       {
-        url: "",
+        url: '',
         width: 1200,
         height: 630,
-        alt: "Nathan Phan - Frontend Developer Portfolio",
-      },
-    ],
+        alt: 'TanTeck - 3D Interactive Portfolio'
+      }
+    ]
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Nathan Phan | Frontend Developer Portfolio",
+    card: 'summary_large_image',
+    title: 'TanTeck | 3D Frontend Developer',
     description:
-      "Explore Nathan Phan's frontend projects and expertise in React, Next.js, and modern web development.",
-    images: [""],
+      'Explore my interactive 3D solar system portfolio. Built with Three.js, React Three Fiber, and Next.js.',
+    images: ['']
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.ico'
   },
   verification: {
-    google: "z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI",
+    google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI'
   },
+  alternates: {
+    canonical: 'https://tanteck.net'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    }
+  }
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
+
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${exo2.variable} antialiased scroll-smooth w-full max-w-dvw overflow-x-hidden`}
+        suppressHydrationWarning
+        className={`${exo2.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-hidden`}
       >
         <TanstackProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-            enableSystem={false}
-          >
-            <LayoutWithHeader>{children}</LayoutWithHeader>
-          </ThemeProvider>
+          <SiteWrapper>{children}</SiteWrapper>
         </TanstackProvider>
         <Analytics />
         <SpeedInsights />

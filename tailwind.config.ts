@@ -9,8 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // mặc định
-        mono: ['Roboto Mono', 'monospace'] // code blocks
+        sans: ['Inter', 'sans-serif'],
+        mono: ['Roboto Mono', 'monospace'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif']
       }
     }
   },

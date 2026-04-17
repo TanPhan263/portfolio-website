@@ -111,6 +111,7 @@ export const MyUniverse = () => {
             priority
             loading={undefined}
             className="rounded-5xl object-contain"
+            style={{ height: 'auto' }}
           />
         </Lens>
       </div>

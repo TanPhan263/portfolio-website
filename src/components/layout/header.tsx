@@ -1,13 +1,16 @@
 'use client';
 
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import { ModeToggle } from '../ui/mode-toggle';
 import useHomePage from '@/shared/hooks/queries/useHomePage';
+import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 import { cn } from '@/shared/utils/common';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import {
   IconArrowUp,
   IconBrandGithub,
   IconMenu2,
+  IconRocket,
   IconX
 } from '@tabler/icons-react';
 import Image from 'next/image';
@@ -100,14 +103,15 @@ export const Header = () => {
               height={56}
             />
           </div>
-          <div className="flex-1 items-center gap-3 justify-center hidden sm:flex">
+          {/* <div className="flex-1 items-center gap-3 justify-center hidden sm:flex">
             {menu.map((link) => (
               <HeaderLink key={link.text} title={link.text} href={link.url} />
             ))}
-          </div>
+          </div> */}
           <div className="flex items-center gap-2">
+            <ModeToggle className="hidden lg:flex" />
             <a
-              href={'https://buymeacoffee.com/nathanphan99'}
+              href={'https://github.com/TanPhan263/portfolio-website'}
               target="_blank"
               rel="noopener noreferrer"
               className="border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300"
@@ -116,7 +120,7 @@ export const Header = () => {
             </a>
             <AnimatedThemeToggler className="border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300" />
 
-            <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+            {/* <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
               <DrawerTrigger asChild>
                 <Button
                   variant="outline"
@@ -144,7 +148,7 @@ export const Header = () => {
                       width={56}
                       height={56}
                     />
-                    nathan-phan.vercel.app
+                    tanteck.net
                   </DrawerTitle>
                   <DrawerClose
                     asChild
@@ -180,7 +184,7 @@ export const Header = () => {
                   <Separator />
                 </div>
               </DrawerContent>
-            </Drawer>
+            </Drawer> */}
           </div>
         </div>
       </header>

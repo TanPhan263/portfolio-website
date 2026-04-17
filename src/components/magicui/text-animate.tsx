@@ -375,6 +375,18 @@ export function TextAnimate({
       }
     : { container: defaultContainerVariants, item: defaultItemVariants };
 
+  const rawItem = finalVariants.item as Record<string, Record<string, unknown>>;
+  const itemTransition = rawItem?.show?.transition as import('motion/react').Transition | undefined;
+  const cleanItemVariants = Object.fromEntries(
+    Object.entries(rawItem).map(([state, values]) => {
+      if (values && typeof values === 'object' && 'transition' in values) {
+        const { transition: _t, ...rest } = values;
+        return [state, rest];
+      }
+      return [state, values];
+    })
+  );
+
   return (
     <AnimatePresence mode="popLayout">
       <MotionComponent
@@ -390,7 +402,8 @@ export function TextAnimate({
         {segments.map((segment, i) => (
           <motion.span
             key={`${by}-${segment}-${i}`}
-            variants={finalVariants.item}
+            variants={cleanItemVariants as Variants}
+            transition={itemTransition}
             custom={i * staggerTimings[by]}
             className={cn(
               by === 'line' ? 'block' : 'inline-block whitespace-pre',

@@ -1,7 +1,7 @@
 'use client';
 import { IExperience } from '@/shared/services/experience-service/dto';
 import { cn } from '@/shared/utils/common';
-import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 
@@ -42,7 +42,7 @@ export const Timeline = ({ data }: { data: IExperience[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className="w-full overflow-hidden" ref={containerRef}>
+    <div className="w-full overflow-hidden relative" ref={containerRef}>
       <div className="max-w-7xl mx-auto py-6 px-4">
         <h2 className="text-2xl md:text-4xl mb-4 text-black dark:text-white max-w-4xl font-bold">
           My Journey as a Frontend Developer
