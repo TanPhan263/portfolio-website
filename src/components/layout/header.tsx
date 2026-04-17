@@ -1,13 +1,16 @@
 'use client';
 
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import { ModeToggle } from '../ui/mode-toggle';
 import useHomePage from '@/shared/hooks/queries/useHomePage';
+import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 import { cn } from '@/shared/utils/common';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import {
   IconArrowUp,
   IconBrandGithub,
   IconMenu2,
+  IconRocket,
   IconX
 } from '@tabler/icons-react';
 import Image from 'next/image';
@@ -106,8 +109,9 @@ export const Header = () => {
             ))}
           </div>
           <div className="flex items-center gap-2">
+            <ModeToggle className="hidden lg:flex" />
             <a
-              href={'https://buymeacoffee.com/nathanphan99'}
+              href={'https://github.com/tanphan263'}
               target="_blank"
               rel="noopener noreferrer"
               className="border p-2 rounded-2xl hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-300"
