@@ -32,7 +32,7 @@ export const PlanetDrawer = ({
       onOpenChange={(open) => { if (!open) onClose(); }}
       direction="right"
     >
-      <DrawerContent className="w-full! md:w-fit max-w-4xl! z-60 dark:bg-dark/50 backdrop-blur-xl border-l border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden sm:max-w-none! font-orbitron!">
+      <DrawerContent className="w-full! md:w-fit! max-w-4xl z-60 dark:bg-dark/50 backdrop-blur-xl border-l border-white/10 shadow-2xl overflow-y-auto overflow-x-hidden sm:max-w-6xl! font-orbitron!">
         <div className="flex flex-col min-h-full p-0 md:p-6">
           <DrawerHeader className="flex flex-row items-center justify-between mb-10 pb-4 border-b border-white/10">
             <DrawerTitle className="text-2xl font-black text-white uppercase tracking-widest">

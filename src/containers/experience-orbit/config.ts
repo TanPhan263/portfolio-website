@@ -53,7 +53,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
   JUPITER: {
     radius: 68,
     color: '#D39C7E',
-    label: 'Contact Me',
+    label: 'Comming Soon',
     section: 'CommingSoon',
     description: 'The largest planet, a gas giant with 95+ moons and a famous "Great Red Spot" storm.',
     bio: 'Something big is cooking here. Stay tuned fr fr.'
