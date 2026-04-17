@@ -12,7 +12,7 @@ export const metadata = {
     title: "Blog | Nathan Phan",
     description:
       "Read the latest articles about React, Next.js, TypeScript, and modern web development.",
-    url: "https://nathan-phan.vercel.app/blog",
+    url: "https://tanteck.net/blog",
     siteName: "Nathan Phan",
     images: [],
   },
@@ -23,7 +23,7 @@ export const metadata = {
       "Discover insights and tutorials about modern web development from Nathan Phan.",
   },
   alternates: {
-    canonical: "https://nathan-phan.vercel.app/blog",
+    canonical: "https://tanteck.net/blog",
   },
 };
 

@@ -1,7 +1,7 @@
 'use client';
 import { IExperience } from '@/shared/services/experience-service/dto';
 import { cn } from '@/shared/utils/common';
-import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { TimelineCard } from './timeline-card';
 

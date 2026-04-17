@@ -375,12 +375,9 @@ export function TextAnimate({
       }
     : { container: defaultContainerVariants, item: defaultItemVariants };
 
-  // motion v12 does not strip `transition` from item variant states — it tries to animate
-  // it as a CSS property (from 0 → object), causing "[object Object]" warnings.
-  // Extract the transition from the `show` state and pass it as a separate prop instead.
   const rawItem = finalVariants.item as Record<string, Record<string, unknown>>;
   const itemTransition = rawItem?.show?.transition as import('motion/react').Transition | undefined;
-  const cleanItemVariants: Variants = Object.fromEntries(
+  const cleanItemVariants = Object.fromEntries(
     Object.entries(rawItem).map(([state, values]) => {
       if (values && typeof values === 'object' && 'transition' in values) {
         const { transition: _t, ...rest } = values;
@@ -405,7 +402,7 @@ export function TextAnimate({
         {segments.map((segment, i) => (
           <motion.span
             key={`${by}-${segment}-${i}`}
-            variants={cleanItemVariants}
+            variants={cleanItemVariants as Variants}
             transition={itemTransition}
             custom={i * staggerTimings[by]}
             className={cn(

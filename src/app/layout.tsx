@@ -19,40 +19,52 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: 'Nathan Phan | Frontend Developer Portfolio',
+  title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
   description:
-    "Explore Nathan Phan's portfolio – a skilled Frontend Developer specializing in Next.js, React, and modern web technologies. Showcasing innovative projects, UI/UX expertise, and high-performance web applications.",
+    "Explore TanTeck's interactive 3D portfolio — featuring an immersive solar system built with Three.js and React Three Fiber. Specializing in Next.js, React, and high-performance web experiences.",
   keywords: [
     'Frontend Developer',
     'Next.js Developer',
     'React Developer',
-    'Nathan Phan Portfolio',
-    'Web Development',
+    'Three.js Developer',
+    'React Three Fiber',
+    '3D Web Development',
+    'Interactive Portfolio',
+    'Creative Developer',
+    'TanTeck Portfolio',
+    'WebGL',
     'UI/UX Design',
     'JavaScript',
     'TypeScript',
-    'Modern Web Technologies'
+    'Next.js',
+    'Reactjs',
+    'Web Development',
+    'Framer Motion',
+    'Zustand',
+    "BFF",
+    'Immersive Web'
   ],
   openGraph: {
-    title: 'Nathan Phan | Frontend Developer Portfolio',
+    title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
     description:
-      "Discover Nathan Phan's expertise in Frontend Development, React, and Next.js. View projects, case studies, and technical skills.",
-    url: 'https://nathan-phan.vercel.app',
+      'An interactive 3D solar system portfolio built with Three.js. Navigate planets to explore my skills, experience, and projects. Crafted with React Three Fiber and Next.js for a seamless web experience.',
+    url: 'https://tanteck.net',
+    siteName: 'TanTeck Portfolio',
     type: 'website',
     images: [
       {
         url: '',
         width: 1200,
         height: 630,
-        alt: 'Nathan Phan - Frontend Developer Portfolio'
+        alt: 'TanTeck - 3D Interactive Portfolio'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nathan Phan | Frontend Developer Portfolio',
+    title: 'TanTeck | 3D Frontend Developer',
     description:
-      "Explore Nathan Phan's frontend projects and expertise in React, Next.js, and modern web development.",
+      'Explore my interactive 3D solar system portfolio. Built with Three.js, React Three Fiber, and Next.js.',
     images: ['']
   },
   icons: {
@@ -60,6 +72,18 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI'
+  },
+  alternates: {
+    canonical: 'https://tanteck.net'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    }
   }
 };
 

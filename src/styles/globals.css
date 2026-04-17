@@ -60,6 +60,11 @@
     }
   }
 
+  @keyframes shimmer {
+    0% { transform: translateX(-200%); }
+    100% { transform: translateX(400%); }
+  }
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

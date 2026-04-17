@@ -3,7 +3,7 @@
 import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 import { cn } from '@/shared/utils/common';
 import { IconLayoutGrid, IconRocket } from '@tabler/icons-react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import * as React from 'react';
 
 export function ModeToggle({ className }: { className?: string }) {
@@ -12,13 +12,17 @@ export function ModeToggle({ className }: { className?: string }) {
 
   const isUniverse = mode === 'universe';
 
+  const handleToggle = () => {
+    setMode(isUniverse ? 'normal' : 'universe');
+  }
+
   return (
     <div
       className={cn(
         'group relative flex items-center p-1 bg-white/30 backdrop-blur-md border border-black/50 dark:border-black/30 rounded-full cursor-pointer transition-all duration-300',
         className
       )}
-      onClick={() => setMode(isUniverse ? 'normal' : 'universe')}
+      onClick={handleToggle}
     >
       <AnimatePresence>
         {hovered && (

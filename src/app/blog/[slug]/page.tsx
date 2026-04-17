@@ -52,7 +52,7 @@ export async function generateMetadata({
       openGraph: {
         title: post.title,
         description,
-        url: `https://nathan-phan.vercel.app/blog/${slug}`,
+        url: `https://tanteck.net/blog/${slug}`,
         siteName: "Nathan Phan",
         images: post.imageUrl
           ? [
@@ -74,7 +74,7 @@ export async function generateMetadata({
         images: post.imageUrl ? [post.imageUrl] : undefined,
       },
       alternates: {
-        canonical: `https://nathan-phan.vercel.app/blog/${slug}`,
+        canonical: `https://tanteck.net/blog/${slug}`,
       },
       keywords: post.tags?.join(", "),
     };

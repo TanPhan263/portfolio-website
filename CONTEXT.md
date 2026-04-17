@@ -28,10 +28,20 @@ Each planet maps to a portfolio section. The camera tracks the active planet. Us
 src/
 ├── containers/
 │   └── experience-orbit/
-│       ├── index.tsx               # HUD overlay, drawer, top controls
-│       ├── solar-system-scene.tsx  # Three.js Canvas, planets, camera, nav
+│       ├── config.ts               # PlanetConfig type, PLANET_CONFIG, PLANET_ORDER, ZOOM_MIN/MAX
+│       ├── index.tsx               # ExperienceOrbit orchestrator — HUD layer, drawer, Suspense
+│       ├── solar-system-scene.tsx  # Three.js Canvas, planets, camera, PlanetNavItem, zoom controls
 │       ├── planet-components.tsx   # PlanetBody, AsteroidBelt meshes
-│       └── sun-shader.tsx          # Custom GLSL shader for the sun
+│       ├── sun-shader.tsx          # Custom GLSL shader for the sun
+│       ├── hooks/
+│       │   ├── use-scene-controls.ts  # All pointer/wheel/pinch/fov/zoom interaction logic
+│       │   └── use-drawer-lock.ts     # Body overflow lock while drawer is open
+│       └── hud/
+│           ├── loading-screen.tsx  # Satellite spinner shown during dynamic import
+│           ├── top-controls.tsx    # ModeToggle + GitHub + Buy-me-a-coffee links
+│           ├── planet-info.tsx     # AnimatePresence planet label/bio/CTA panel
+│           ├── planet-drawer.tsx   # Vaul Drawer (right-side slide-in, renders active section)
+│           └── status-bar.tsx      # Scroll % + progress bar + control hint
 ├── shared/
 │   └── stores/
 │       ├── use-cosmos-store.ts     # activePlanet, scrollProgress
@@ -175,18 +185,21 @@ Replace these with your own section components. The string value in `PLANET_CONF
 
 ```
 ExperienceOrbit (index.tsx)
-├── <SolarSystemScene locked={isDrawerOpen} />   ← Three.js Canvas layer
-│   ├── <VirtualPilot />          ← lerps scrollProgress toward targetProgress
-│   ├── <CameraRig />             ← camera lerps to active planet position
-│   ├── <Planet /> × 10           ← orbit, mesh, hover, HUD callout (Html)
-│   ├── <AsteroidBelt />          ← instanced mesh between MARS and JUPITER
-│   ├── <Stars />                 ← drei background stars
-│   └── <EffectComposer><Bloom /> ← bloom post-processing
-└── FIXED HUD LAYER (pointer-events-none wrapper)
-    ├── Top-right controls (ModeToggle, GitHub, Coffee links)
-    ├── AnimatePresence → planet info panel (label, bio, "View Details" button)
-    ├── AnimatePresence → slide-in Drawer (renders active section component)
-    └── Bottom status bar (scroll %, progress bar, hint text)
+├── <SolarSystemScene locked={isDrawerOpen} />   ← Three.js Canvas layer (next/dynamic, ssr:false)
+│   ├── useSceneControls(locked)      ← hook: pointer drag, wheel, pinch, FOV, zoom, planet focus
+│   ├── <VirtualPilot />              ← lerps scrollProgress toward targetProgress
+│   ├── <CameraRig />                 ← camera lerps to active planet position + drag + zoom
+│   ├── <Planet /> × 10              ← orbit, mesh, hover, HUD callout (Html)
+│   ├── <PlanetNavItem /> × 10       ← side-nav items (each owns useCosmosStore hook call)
+│   ├── Zoom Controls (+ / − buttons)← call adjustZoom() from useSceneControls
+│   ├── <AsteroidBelt />              ← instanced mesh between MARS and JUPITER
+│   ├── <Stars />                     ← drei background stars
+│   └── <EffectComposer><Bloom />     ← bloom post-processing
+└── ABSOLUTE HUD LAYER (pointer-events-none, mix-blend-difference)
+    ├── <TopControls />               ← ModeToggle, GitHub, Buy-me-a-coffee
+    ├── <PlanetInfo />                ← AnimatePresence planet label/bio/CTA panel
+    ├── <StatusBar />                 ← scroll %, progress bar, hint text
+    └── <PlanetDrawer />              ← Vaul Drawer (right-side), renders active section component
 ```
 
 ---
