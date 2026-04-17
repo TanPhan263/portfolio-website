@@ -477,10 +477,10 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
               />
               <span
                 className={cn(
-                  'text-[9px] font-black transition-colors uppercase tracking-[0.2em] mix-blend-difference',
+                  'text-xs font-black transition-colors uppercase tracking-[0.2em] mix-blend-difference',
                   active
-                    ? 'text-white text-xs'
-                    : 'text-white/20 group-hover:text-white/50'
+                    ? 'text-white text-sm font-bold'
+                    : 'text-white/20 group-hover:text-white/50 font-medium'
                 )}
               >
                 {p}

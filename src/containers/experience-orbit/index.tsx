@@ -3,7 +3,7 @@
 import { useCosmosStore } from '@/shared/stores/use-cosmos-store';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Suspense, useEffect } from 'react';
-import { PLANET_CONFIG } from './solar-system-scene';
+import { PLANET_CONFIG, PLANET_ORDER } from './solar-system-scene';
 
 import { ComingSoonPage } from '@/components/layout/coming-soon';
 import { ExperienceTimeline } from '@/components/ui/experience-timeline';
@@ -100,12 +100,12 @@ export const ExperienceOrbit = () => {
       {/* FIXED HUD LAYER */}
       <div className="fixed inset-0 pointer-events-none z-60 font-orbitron!">
         {/* Top Right Controls */}
-        <div className="absolute top-10 right-10 flex items-center gap-4 pointer-events-auto">
+        <div className="absolute top-10 right-4 md:right-10 flex flex-col md:flex-row items-center gap-4 pointer-events-auto">
           {/* Mode Switcher */}
           <ModeToggle />
 
           {/* Social Links */}
-          <div className="h-10 w-px bg-white/10 mx-2" />
+          <div className="hidden md:block h-10 w-px bg-white/10 mx-2" />
 
           <a
             href="https://github.com/tanphan263"
@@ -133,32 +133,48 @@ export const ExperienceOrbit = () => {
           {!isDrawerOpen && (
             <motion.div
               key={activePlanet}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="absolute bottom-20 right-10 max-w-sm md:max-w-md text-right pointer-events-none pr-10 border-r border-blue-500/30"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+              className="absolute bottom-20 right-4 md:right-10 text-right pointer-events-none"
             >
-              <div className="space-y-4">
-                <h3 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+              <div className="flex flex-col items-end gap-4">
+                {/* Planet index counter */}
+                <div className="flex items-center gap-2">
+                  <div className="w-12 h-px bg-white/15" />
+                  <p className="text-[9px] tracking-[0.4em] text-white/40 uppercase">
+                    {String(PLANET_ORDER.indexOf(activePlanet) + 1).padStart(2, '0')}&nbsp;/&nbsp;{String(PLANET_ORDER.length).padStart(2, '0')}
+                  </p>
+                </div>
+
+                {/* Section title */}
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-white uppercase tracking-widest leading-none">
                   {activeConfig.label}
                 </h3>
-                <div className="h-1 w-20 bg-blue-500 ml-auto" />
-                <p className="text-[#a1a1aa] text-xs font-medium leading-relaxed tracking-wider ml-auto max-w-50">
+
+                {/* Accent line */}
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse" />
+                  <div className="w-10 h-px bg-white/40" />
+                </div>
+
+                {/* Bio */}
+                <p className="text-white/60 text-[10px] font-light leading-relaxed tracking-wide max-w-52">
                   {activeConfig.bio}
                 </p>
 
-                <div className="pointer-events-auto pt-4">
-                  <button
-                    onClick={() => setIsDrawerOpen(true)}
-                    className="group inline-flex items-center gap-2 px-6 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] rounded-sm transition-all"
-                  >
-                    View Details
-                    <IconChevronRight
-                      size={14}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </button>
-                </div>
+                {/* CTA */}
+                <button
+                  onClick={() => setIsDrawerOpen(true)}
+                  className="pointer-events-auto group mt-2 inline-flex items-center gap-2.5 border border-white/20 hover:border-white/50 px-4 py-2 text-white/60 hover:text-white text-[9px] uppercase tracking-[0.3em] transition-all duration-300"
+                >
+                  Explore
+                  <IconChevronRight
+                    size={11}
+                    className="group-hover:translate-x-1 transition-transform duration-300"
+                  />
+                </button>
               </div>
             </motion.div>
           )}
@@ -208,7 +224,7 @@ export const ExperienceOrbit = () => {
         </AnimatePresence>
 
         {/* Status Indicator */}
-        <div className="absolute bottom-10 left-10 flex items-center gap-4">
+        <div className="absolute bottom-3 md:bottom-10 left-4 md:left-10 flex items-center gap-4">
           <span className="text-[10px] font-mono text-white/30">
             {Math.round(scrollProgress * 100)}%
           </span>
@@ -225,7 +241,7 @@ export const ExperienceOrbit = () => {
         </div>
 
         {/* Control Hint */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+        <div className="absolute bottom-10 left-4 md:left-1/2 md:-translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
           <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white">
             Use Mouse Wheel or Navigation to Traverse
           </p>
