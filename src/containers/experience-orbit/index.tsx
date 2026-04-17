@@ -98,7 +98,7 @@ export const ExperienceOrbit = () => {
       </Suspense>
 
       {/* FIXED HUD LAYER */}
-      <div className="fixed inset-0 pointer-events-none z-60 font-orbitron!">
+      <div className="fixed inset-0 pointer-events-none z-60 font-orbitron! mix-blend-difference">
         {/* Top Right Controls */}
         <div className="absolute top-10 right-4 md:right-10 flex flex-col md:flex-row items-center gap-4 pointer-events-auto">
           {/* Mode Switcher */}

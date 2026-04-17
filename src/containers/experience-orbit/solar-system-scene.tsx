@@ -125,6 +125,9 @@ export const PLANET_ORDER: PlanetType[] = [
   'PLUTO'
 ];
 
+const ZOOM_MIN = 0.3;
+const ZOOM_MAX = 3.0;
+
 const OrbitPath = ({ radius, color }: { radius: number; color: string }) => {
   return (
     <mesh rotation={[Math.PI / 2, 0, 0]}>
@@ -237,9 +240,11 @@ const Planet = ({
 };
 
 const CameraRig = ({
-  dragOffset
+  dragOffset,
+  zoomLevel
 }: {
   dragOffset: React.MutableRefObject<{ x: number; y: number }>;
+  zoomLevel: React.MutableRefObject<number>;
 }) => {
   const { camera } = useThree();
   const activePlanet = useCosmosStore((s) => s.activePlanet);
@@ -273,10 +278,11 @@ const CameraRig = ({
     const defaultOffsetY = isSun ? 10 : 2;
 
     // Convert into seamless spherical coordinates
-    const R = Math.sqrt(
+    const baseR = Math.sqrt(
       defaultOffsetZ * defaultOffsetZ + defaultOffsetY * defaultOffsetY
     );
-    const basePhi = Math.acos(defaultOffsetY / R);
+    const R = baseR * zoomLevel.current;
+    const basePhi = Math.acos(defaultOffsetY / baseR);
 
     // Apply drag interactions safely
     const targetPhi = Math.max(
@@ -332,11 +338,13 @@ const VirtualPilot = ({
 
 export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
   const targetProgress = useRef(0);
+  const zoomLevel = useRef(1.0);
 
   // Drag State for Camera Viewport Rotation
   const dragOffset = useRef({ x: 0, y: 0 });
   const isDragging = useRef(false);
   const previousMouse = useRef({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handlePointerDown = (e: React.PointerEvent) => {
     if (locked) return;
@@ -361,17 +369,64 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
     isDragging.current = false;
   };
 
-  // Virtual Scroll Wheel Listener (Outside Canvas is fine)
+  // Wheel: plain = navigate, Ctrl/Meta = zoom
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (locked) return;
-      targetProgress.current = Math.max(
-        0,
-        Math.min(targetProgress.current + e.deltaY * 0.00025, 1)
-      );
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+        zoomLevel.current = Math.max(
+          ZOOM_MIN,
+          Math.min(ZOOM_MAX, zoomLevel.current - e.deltaY * 0.002)
+        );
+      } else {
+        targetProgress.current = Math.max(
+          0,
+          Math.min(targetProgress.current + e.deltaY * 0.00025, 1)
+        );
+      }
     };
-    window.addEventListener('wheel', handleWheel, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
+  }, [locked]);
+
+  // Pinch-to-zoom (mobile)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const getTouchDist = (touches: TouchList) => {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    };
+
+    let startDist: number | null = null;
+    let startZoom = 1.0;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 2) {
+        startDist = getTouchDist(e.touches);
+        startZoom = zoomLevel.current;
+      }
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length === 2 && startDist !== null) {
+        e.preventDefault();
+        const scale = getTouchDist(e.touches) / startDist;
+        zoomLevel.current = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, startZoom / scale));
+      }
+    };
+    const onTouchEnd = () => { startDist = null; };
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: false });
+    el.addEventListener('touchend', onTouchEnd);
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
   }, []);
 
   const [fov, setFov] = useState(50);
@@ -394,6 +449,7 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
 
   return (
     <div
+      ref={containerRef}
       className="h-full w-full relative overflow-hidden select-none bg-[#0a1128] touch-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -434,7 +490,7 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
         />
 
         <VirtualPilot targetProgress={targetProgress} />
-        <CameraRig dragOffset={dragOffset} />
+        <CameraRig dragOffset={dragOffset} zoomLevel={zoomLevel} />
 
         {PLANET_ORDER.map((type, i) => (
           <React.Fragment key={type}>
@@ -488,6 +544,28 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
             </div>
           );
         })}
+      </div>
+
+      {/* Zoom Controls */}
+      <div className="absolute bottom-16 left-4 md:left-1/2 md:-translate-x-1/2 flex flex-row items-center gap-1 z-50 pointer-events-auto font-orbitron!">
+        <button
+          onClick={() => { zoomLevel.current = Math.max(ZOOM_MIN, zoomLevel.current - 0.25); }}
+          className="w-7 h-7 flex items-center justify-center text-white/80 hover:text-white border border-white/50 hover:border-white/45 transition-all duration-200 text-sm leading-none"
+          title="Zoom in"
+        >
+          +
+        </button>
+        <div className="h-px w-2 bg-white/50" />
+        <button
+          onClick={() => { zoomLevel.current = Math.min(ZOOM_MAX, zoomLevel.current + 0.25); }}
+          className="w-7 h-7 flex items-center justify-center text-white/80 hover:text-white border border-white/50 hover:border-white/45 transition-all duration-200 text-sm leading-none"
+          title="Zoom out"
+        >
+          −
+        </button>
+        <p className="ml-2 text-[6px] text-white/80 uppercase tracking-[0.2em] hidden md:block">
+          ctrl+scroll
+        </p>
       </div>
     </div>
   );
