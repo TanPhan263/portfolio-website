@@ -3,8 +3,8 @@
 import { IconSatellite } from '@tabler/icons-react';
 
 export const LoadingScreen = ({ text = '' }: { text?: string }) => (
-  <div className="absolute inset-0 bg-[#152238] flex flex-col items-center justify-center z-100 font-orbitron!">
-    <div className="animate-spin mb-8 text-blue-500">
+  <div className="absolute inset-0 bg-black/50 backdrop-blur-2xl flex flex-col items-center justify-center z-100 font-orbitron!">
+    <div className="mb-8 text-white/80">
       <IconSatellite size={48} stroke={1.5} />
     </div>
 
