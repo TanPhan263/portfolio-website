@@ -23,7 +23,7 @@ const PlanetNavItem = ({
       {/* Index number */}
       <span
         className={cn(
-          'text-[8px] tabular-nums w-4 text-right transition-colors duration-300 mix-blend-difference',
+          'text-[8px] tabular-nums w-4 text-right transition-colors duration-300',
           isActive ? 'text-blue-400' : 'text-white/20 group-hover:text-white/40'
         )}
       >
@@ -43,7 +43,7 @@ const PlanetNavItem = ({
       {/* Planet name */}
       <span
         className={cn(
-          'text-[10px] font-black uppercase tracking-[0.25em] transition-all duration-300 mix-blend-difference',
+          'text-[10px] font-black uppercase tracking-[0.25em] transition-all duration-300',
           isActive
             ? 'text-white'
             : 'text-white/25 group-hover:text-white/60'
@@ -56,7 +56,7 @@ const PlanetNavItem = ({
 };
 
 export const PlanetNav = ({ onFocus }: { onFocus: (i: number) => void }) => (
-  <div className="absolute top-10 md:top-1/2 left-6 md:left-8 md:-translate-y-1/2 z-50 pointer-events-auto font-orbitron! flex flex-col">
+  <div className="absolute top-10 md:top-1/2 left-6 md:left-8 md:-translate-y-1/2 z-50 pointer-events-auto font-orbitron! flex flex-col mix-blend-difference">
     {/* Vertical track */}
     <div className="absolute left-[1.1rem] top-0 bottom-0 w-px bg-white/5" />
 
