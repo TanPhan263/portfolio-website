@@ -109,7 +109,7 @@ export const Header = () => {
             ))}
           </div> */}
           <div className="flex items-center gap-2">
-            <ModeToggle className="hidden lg:flex" />
+            <ModeToggle />
             <a
               href={'https://github.com/TanPhan263/portfolio-website'}
               target="_blank"

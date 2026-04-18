@@ -12,8 +12,7 @@ import { AsteroidBelt, PlanetBody } from './planet-components';
 import { BoilingSun } from './sun-shader';
 import { PLANET_CONFIG, PLANET_ORDER, ZOOM_MIN, ZOOM_MAX } from './config';
 import { useSceneControls } from './hooks/use-scene-controls';
-
-// Re-export for consumers that still import from this file
+import { PlanetNav } from './hud/planet-nav';
 export { PLANET_CONFIG, PLANET_ORDER } from './config';
 
 // ─── Three.js Internal Components ────────────────────────────────────────────
@@ -226,45 +225,6 @@ const VirtualPilot = ({
   return null;
 };
 
-// ─── UI Sub-Components (outside Canvas) ──────────────────────────────────────
-
-/** Extracted to fix Rules of Hooks violation — hooks cannot be called inside .map() callbacks */
-const PlanetNavItem = ({
-  type,
-  index,
-  onFocus
-}: {
-  type: PlanetType;
-  index: number;
-  onFocus: (i: number) => void;
-}) => {
-  const isActive = useCosmosStore((s) => s.activePlanet === type);
-
-  return (
-    <div
-      className="flex items-center gap-4 group cursor-pointer"
-      onClick={() => onFocus(index)}
-    >
-      <div
-        className={cn(
-          'w-1 h-6 transition-all duration-500',
-          isActive ? 'bg-blue-500 scale-y-150' : 'bg-white/10'
-        )}
-      />
-      <span
-        className={cn(
-          'text-xs font-black transition-colors uppercase tracking-[0.2em] mix-blend-difference',
-          isActive
-            ? 'text-white text-sm font-bold'
-            : 'text-white/20 group-hover:text-white/50 font-medium'
-        )}
-      >
-        {type}
-      </span>
-    </div>
-  );
-};
-
 export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
   const {
     containerRef,
@@ -342,12 +302,7 @@ export const SolarSystemScene = ({ locked }: { locked?: boolean }) => {
         </EffectComposer>
       </Canvas>
 
-      {/* Side Navigation — PlanetNavItem owns the hook call to avoid Rules of Hooks violation */}
-      <div className="absolute top-10 md:top-1/2 left-8 md:left-10 md:-translate-y-1/2 flex flex-col z-50 pointer-events-auto mix-blend-difference font-orbitron!">
-        {PLANET_ORDER.map((type, i) => (
-          <PlanetNavItem key={type} type={type} index={i} onFocus={handlePlanetFocus} />
-        ))}
-      </div>
+      <PlanetNav onFocus={handlePlanetFocus} />
 
       {/* Zoom Controls */}
       <div className="absolute bottom-16 left-4 md:left-1/2 md:-translate-x-1/2 flex flex-row items-center gap-1 z-50 pointer-events-auto font-orbitron!">

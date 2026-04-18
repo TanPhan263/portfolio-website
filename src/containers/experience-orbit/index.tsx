@@ -2,7 +2,7 @@
 
 import { useCosmosStore } from '@/shared/stores/use-cosmos-store';
 import { Suspense } from 'react';
-import { PLANET_CONFIG, PLANET_ORDER } from './config';
+import { PLANET_CONFIG } from './config';
 
 import { ComingSoonPage } from '@/components/layout/coming-soon';
 import { ExperienceTimeline } from '@/components/ui/experience-timeline';
@@ -51,7 +51,7 @@ export const ExperienceOrbit = () => {
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-[#192841] select-none">
-      <Suspense fallback={<LoadingScreen />}>
+      <Suspense fallback={'Solar System Loading...'}>
         <SolarSystemScene locked={isDrawerOpen} />
       </Suspense>
 

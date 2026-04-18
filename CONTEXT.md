@@ -37,10 +37,11 @@ src/
 │       │   ├── use-scene-controls.ts  # All pointer/wheel/pinch/fov/zoom interaction logic
 │       │   └── use-drawer-lock.ts     # Body overflow lock while drawer is open
 │       └── hud/
-│           ├── loading-screen.tsx  # Satellite spinner shown during dynamic import
+│           ├── loading-screen.tsx  # Satellite spinner shown during Suspense fallback
 │           ├── top-controls.tsx    # ModeToggle + GitHub + Buy-me-a-coffee links
 │           ├── planet-info.tsx     # AnimatePresence planet label/bio/CTA panel
 │           ├── planet-drawer.tsx   # Vaul Drawer (right-side slide-in, renders active section)
+│           ├── planet-nav.tsx      # Side-nav with PlanetNavItem — index numbers, tick-line, glow
 │           └── status-bar.tsx      # Scroll % + progress bar + control hint
 ├── shared/
 │   └── stores/
@@ -190,7 +191,7 @@ ExperienceOrbit (index.tsx)
 │   ├── <VirtualPilot />              ← lerps scrollProgress toward targetProgress
 │   ├── <CameraRig />                 ← camera lerps to active planet position + drag + zoom
 │   ├── <Planet /> × 10              ← orbit, mesh, hover, HUD callout (Html)
-│   ├── <PlanetNavItem /> × 10       ← side-nav items (each owns useCosmosStore hook call)
+│   ├── <PlanetNav />                ← side-nav (hud/planet-nav.tsx), owns PlanetNavItem hook calls
 │   ├── Zoom Controls (+ / − buttons)← call adjustZoom() from useSceneControls
 │   ├── <AsteroidBelt />              ← instanced mesh between MARS and JUPITER
 │   ├── <Stars />                     ← drei background stars
@@ -247,10 +248,12 @@ Sun stays at `(0, 0, 0)` — its radius is `0`.
 - Uses `font-orbitron` class for typography.
 - `pointer-events-none` on wrapper; `pointer-events-auto` on the card only.
 
-### 7. Side navigation
-- Rendered as an absolutely-positioned div **outside** the `<Canvas>` but inside the same relative wrapper.
-- Dot indicator (active = larger white dot, inactive = small dim dot).
-- Labels use `font-orbitron`, `uppercase`, `tracking-[0.22em]`.
+### 7. Side navigation (`hud/planet-nav.tsx`)
+- Rendered as an absolutely-positioned element **outside** the `<Canvas>` but inside the same relative wrapper via `<PlanetNav onFocus={handlePlanetFocus} />`.
+- Each `PlanetNavItem` owns its own `useCosmosStore` hook call (fixes Rules of Hooks violation in `.map()`).
+- Design: two-digit index number (`01`, `02`…) + animated tick-line (active glows blue with box-shadow, inactive expands on hover) + planet name.
+- Subtle vertical track line runs down the left of the list.
+- Labels use `font-orbitron`, `uppercase`, `tracking-[0.25em]`, `mix-blend-difference`.
 
 ### 8. Drawer
 - Full-height right-side panel, `max-w-4xl`.
@@ -321,3 +324,4 @@ Custom GLSL procedural shader (`sun-shader.tsx`):
 | Hydration mismatch from browser extensions | Extension injecting attributes into `<body>` | Add `suppressHydrationWarning` to `<body>` in layout |
 | `[object Object]` warning from motion v12 | `transition` inside variant state objects — motion v12 treats them as animatable CSS | Extract `transition` from variant states and pass as separate `transition` prop |
 | Three.js SSR crash | Canvas uses `window` / WebGL | Always `dynamic(() => import(...), { ssr: false })` for the Canvas component |
+| Loading screen flickers twice (show/hide/show/hide) | Both `dynamic(loading: ...)` and `<Suspense fallback>` fire independently | Remove `loading` from `dynamic()` and use only `<Suspense fallback={<LoadingScreen />}>` as the single gatekeeper |
