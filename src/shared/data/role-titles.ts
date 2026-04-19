@@ -4,8 +4,8 @@ export const ROLE_TITLES = [
   'JavaScript Developer',
   'TypeScript Developer',
   'React.js Developer',
-  'Vue.js Developer',
   'Next.js Developer',
   'Animation Developer',
-  'Smooth Transition'
+  'Smooth Transitions',
+  'Real-Time Interactions',
 ];

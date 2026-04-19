@@ -1,7 +1,7 @@
 'use client';
 
 import { useCosmosStore } from '@/shared/stores/use-cosmos-store';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { PLANET_CONFIG } from './config';
 
 import { ComingSoonPage } from '@/components/layout/coming-soon';
@@ -21,6 +21,7 @@ import { PlanetInfo } from './hud/planet-info';
 import { StatusBar } from './hud/status-bar';
 import { TopControls } from './hud/top-controls';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SECTION_MAP: Record<string, React.ComponentType<any>> = {
   PersonalIntroduction: PersonalIntroduction,
   MyTechStack: MyTechStack,
@@ -34,24 +35,30 @@ const SolarSystemScene = dynamic(
   () => import('./solar-system-scene').then(mod => mod.SolarSystemScene),
   {
     ssr: false,
-    loading: () => <LoadingScreen />,
   }
 );
 
 export const ExperienceOrbit = () => {
+  const [hasHydrated, setHasHydrated] = useState(false);
   const activePlanet = useCosmosStore(s => s.activePlanet);
   const scrollProgress = useCosmosStore(s => s.scrollProgress);
   const isDrawerOpen = useSiteSettingStore(s => s.openDrawer);
   const setIsDrawerOpen = useSiteSettingStore(s => s.setOpenDrawer);
 
   useDrawerLock(isDrawerOpen);
+  useEffect(() => {
+    setTimeout(() => {
+      setHasHydrated(true);
+    }, 1000);
+  }, []);
 
   const activeConfig = PLANET_CONFIG[activePlanet];
   const ActiveComponent = SECTION_MAP[activeConfig.section] || null;
 
   return (
     <section className="relative w-full h-screen overflow-hidden bg-[#192841] select-none">
-      <Suspense fallback={'Solar System Loading...'}>
+      {!hasHydrated && <LoadingScreen />}
+      <Suspense fallback={<LoadingScreen />}>
         <SolarSystemScene locked={isDrawerOpen} />
       </Suspense>
 

@@ -19,7 +19,7 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
+  title: 'TanTeck | Frontend Developer & Creative Engineer',
   description:
     "Explore TanTeck's interactive 3D portfolio — featuring an immersive solar system built with Three.js and React Three Fiber. Specializing in Next.js, React, and high-performance web experiences.",
   keywords: [

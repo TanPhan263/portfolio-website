@@ -143,7 +143,7 @@ export function ExperienceTimeline() {
     if (!data) return [];
     const flat: ProjectData[] = [];
     [...data]
-      .sort((a, b) => Number(a.year) - Number(b.year))
+      .sort((a, b) => Number(b.year) - Number(a.year))
       .forEach(exp => exp.projects.forEach(proj => flat.push({ ...proj, year: exp.year })));
     return flat;
   }, [data]);
@@ -162,7 +162,6 @@ export function ExperienceTimeline() {
       },
       {
         root: null,
-
         rootMargin: '-15% 0px -30% 0px',
         threshold: 0,
       }
