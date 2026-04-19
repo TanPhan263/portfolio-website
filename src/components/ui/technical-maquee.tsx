@@ -8,7 +8,7 @@ import { useCallback } from 'react';
 export function TechnicalMarquee({
   className,
   images,
-  transform = 'translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)'
+  transform = 'translateX(-100px) translateY(0px) translateZ(-100px) rotateX(20deg) rotateY(-10deg) rotateZ(20deg)',
 }: {
   className?: string;
   transform?: string;
@@ -45,7 +45,7 @@ export function TechnicalMarquee({
       <div
         className="flex flex-row items-center gap-4"
         style={{
-          transform: transform
+          transform: transform,
         }}
       >
         <Marquee className="[--duration:20s]" vertical>

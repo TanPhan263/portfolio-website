@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useMemo, useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Badge } from '@/components/ui/badge';
+import { StackBrand, stacks } from '@/shared/data/experience';
 import useExperiencePage from '@/shared/hooks/queries/useExperiences';
 import { IProject } from '@/shared/services/experience-service/dto';
-import Image from 'next/image';
 import { getCloudinaryUrl } from '@/shared/utils/common';
-import { StackBrand, stacks } from '@/shared/data/experience';
-import { Badge } from '@/components/ui/badge';
-import { IconCircleCheck, IconX, IconChevronRight } from '@tabler/icons-react';
+import { IconChevronRight, IconCircleCheck, IconX } from '@tabler/icons-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import AppImage from './app-image';
 import { Safari } from './safari';
 
 function TimelineSkeleton() {
@@ -48,85 +48,89 @@ const DetailsModal = ({
   project: ProjectData;
   setSelectedProject: (project: ProjectData | null) => void;
 }) => {
-  if (!project) return null;
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-    onClick={() => setSelectedProject(null)}
-  >
+  return (
     <motion.div
-      initial={{ scale: 0.95, y: 20, opacity: 0 }}
-      animate={{ scale: 1, y: 0, opacity: 1 }}
-      exit={{ scale: 0.95, y: 20, opacity: 0 }}
-      transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-      className="bg-white dark:bg-[#0f0f0f] border border-neutral-200 dark:border-neutral-800 rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col"
-      onClick={e => e.stopPropagation()}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      onClick={() => setSelectedProject(null)}
     >
-      <button
-        className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 rounded-full text-white backdrop-blur-md transition-colors"
-        onClick={() => setSelectedProject(null)}
+      <motion.div
+        initial={{ scale: 0.95, y: 20, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.95, y: 20, opacity: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        className="bg-white dark:bg-[#0f0f0f] border border-neutral-200 dark:border-neutral-800 rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col"
+        onClick={e => e.stopPropagation()}
       >
-        <IconX size={20} />
-      </button>
+        <button
+          className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 rounded-full text-white backdrop-blur-md transition-colors"
+          onClick={() => setSelectedProject(null)}
+        >
+          <IconX size={20} />
+        </button>
 
-      <div className="relative h-64 md:h-80 w-full shrink-0 bg-neutral-100 dark:bg-neutral-900">
-        {project.imageUrl ? (
-          <Image
-            src={getCloudinaryUrl(project.imageUrl)}
-            alt={project.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <span className="text-neutral-500">No Image Available</span>
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0f0f0f] via-transparent to-transparent" />
-      </div>
-
-      <div className="p-6 md:p-8 overflow-y-auto">
-        <span className="mb-4 inline-block px-3 py-1 bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest rounded-full border border-blue-200 dark:border-blue-500/20">
-          {project.year}
-        </span>
-        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-4">
-          {project.title}
-        </h3>
-        <p className="text-neutral-600 dark:text-neutral-300 mb-8 leading-relaxed text-sm md:text-base">
-          {project.summary}
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {project.stacks && project.stacks.length > 0 && (
-            <div>
-              <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-3">
-                Technologies Used
-              </h4>
-              <KeySkills skills={stacks(...project.stacks)} />
+        <div className="relative h-64 md:h-80 w-full shrink-0 bg-neutral-100 dark:bg-neutral-900">
+          {project.imageUrl ? (
+            <AppImage
+              src={getCloudinaryUrl(project.imageUrl)}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 60vw, 25vw"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-neutral-500">No Image Available</span>
             </div>
           )}
-          {project.achievements && project.achievements.length > 0 && (
-            <div>
-              <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-3">
-                Key Achievements
-              </h4>
-              <ul className="space-y-2">
-                {project.achievements.map((ach, i) => (
-                  <li key={i} className="flex gap-2 text-sm text-neutral-600 dark:text-neutral-300">
-                    <IconCircleCheck className="size-5 text-emerald-500 shrink-0" />
-                    <span className="leading-tight">{ach}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0f0f0f] via-transparent to-transparent" />
         </div>
-      </div>
+
+        <div className="p-6 md:p-8 overflow-y-auto">
+          <span className="mb-4 inline-block px-3 py-1 bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest rounded-full border border-blue-200 dark:border-blue-500/20">
+            {project.year}
+          </span>
+          <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-4">
+            {project.title}
+          </h3>
+          <p className="text-neutral-600 dark:text-neutral-300 mb-8 leading-relaxed text-sm md:text-base">
+            {project.summary}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {project.stacks && project.stacks.length > 0 && (
+              <div>
+                <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-3">
+                  Technologies Used
+                </h4>
+                <KeySkills skills={stacks(...project.stacks)} />
+              </div>
+            )}
+            {project.achievements && project.achievements.length > 0 && (
+              <div>
+                <h4 className="text-xs font-bold text-neutral-500 uppercase tracking-widest mb-3">
+                  Key Achievements
+                </h4>
+                <ul className="space-y-2">
+                  {project.achievements.map((ach, i) => (
+                    <li
+                      key={i}
+                      className="flex gap-2 text-sm text-neutral-600 dark:text-neutral-300"
+                    >
+                      <IconCircleCheck className="size-5 text-emerald-500 shrink-0" />
+                      <span className="leading-tight">{ach}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
-  </motion.div>;
+  );
 };
 
 export function ExperienceTimeline() {
@@ -284,7 +288,7 @@ export function ExperienceTimeline() {
           >
             <div className="w-full h-[30vh] rounded-2xl overflow-hidden relative bg-neutral-100 dark:bg-neutral-900 shadow-lg">
               {proj.imageUrl ? (
-                <Image
+                <AppImage
                   src={getCloudinaryUrl(proj.imageUrl)}
                   fill
                   className="object-cover"

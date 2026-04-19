@@ -1,26 +1,14 @@
-"use client";
-import { IHomeContent, ISocial } from "@/shared/services/home-service/dto";
-import { cn, getCloudinaryUrl } from "@/shared/utils/common";
-import {
-  IconDotsVertical,
-  IconHeartFilled,
-  IconMessage2,
-} from "@tabler/icons-react";
-import { motion } from "motion/react";
-import Image from "next/image";
-import { useMemo, useState } from "react";
-import { TechnicalMarquee } from "./technical-maquee";
-import useHomePage from "@/shared/hooks/queries/useHomePage";
+'use client';
+import useHomePage from '@/shared/hooks/queries/useHomePage';
+import { IHomeContent, ISocial } from '@/shared/services/home-service/dto';
+import { cn, getCloudinaryUrl } from '@/shared/utils/common';
+import { IconDotsVertical, IconHeartFilled, IconMessage2 } from '@tabler/icons-react';
+import { motion } from 'motion/react';
+import { useMemo, useState } from 'react';
+import { TechnicalMarquee } from './technical-maquee';
+import AppImage from './app-image';
 
-export const SocialCard = ({
-  _id,
-  text,
-  tags,
-  images,
-  name,
-  createdAt,
-  likes,
-}: ISocial) => {
+export const SocialCard = ({ _id, text, tags, images, name, createdAt, likes }: ISocial) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const { data, updateHomeContentMutation } = useHomePage();
@@ -28,7 +16,7 @@ export const SocialCard = ({
   const handleLike = () => {
     const updatedLikes = isClicked ? likes - 1 : likes + 1;
     setIsClicked(!isClicked);
-    const updatedSocials = [...(data?.socials || [])].map((social) => {
+    const updatedSocials = [...(data?.socials || [])].map(social => {
       if (social._id === _id) {
         return {
           ...social,
@@ -45,15 +33,15 @@ export const SocialCard = ({
   };
 
   const imageList = useMemo(() => {
-    return images.map((image) => getCloudinaryUrl(image));
+    return images.map(image => getCloudinaryUrl(image));
   }, [images]);
 
   return (
     <div className="shadow-md max-w-md border-0.75 relative flex h-fit flex-col justify-between gap-2 md:gap-3 overflow-hidden rounded-xl p-3 md:p-4 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2 ">
-          <Image
-            src={getCloudinaryUrl("avt")}
+          <AppImage
+            src={getCloudinaryUrl('avt')}
             alt="thumbnail"
             width={60}
             height={60}
@@ -62,9 +50,7 @@ export const SocialCard = ({
           />
           <div>
             <p className="dark:text-white font-semibold line-clamp-1">{name}</p>
-            <p className="text-black dark:text-white text-sm line-clamp-1">
-              {createdAt}
-            </p>
+            <p className="text-black dark:text-white text-sm line-clamp-1">{createdAt}</p>
           </div>
         </div>
         <div className="text-black dark:text-white cursor-pointer">
@@ -78,10 +64,7 @@ export const SocialCard = ({
         <p className="text-black dark:text-white">{text}</p>
         <div className="flex flex-wrap">
           {tags.map((tag, index) => (
-            <a
-              className="text-blue-700 dark:text-blue-400 text-xs"
-              key={tag + index}
-            >
+            <a className="text-blue-700 dark:text-blue-400 text-xs" key={tag + index}>
               #{tag}
             </a>
           ))}
@@ -89,10 +72,7 @@ export const SocialCard = ({
       </div>
 
       <div className="grid grid-cols-3 min-h-40 auto-rows-[60px] md:auto-rows-[50px] lg:auto-rows-[90px] gap-0.5 rounded-sm overflow-hidden">
-        <TechnicalMarquee
-          className="col-span-full row-span-2"
-          images={imageList}
-        />
+        <TechnicalMarquee className="col-span-full row-span-2" images={imageList} />
       </div>
       <hr className="bg-gray-950 dark:bg-gray-600" />
       <div className="flex items-center justify-between text-black dark:text-white">
@@ -106,10 +86,10 @@ export const SocialCard = ({
               <IconHeartFilled
                 className={cn(
                   {
-                    "fill-pink-500 dark:fill-pink-700": isClicked,
-                    "fill-white": !isClicked,
+                    'fill-pink-500 dark:fill-pink-700': isClicked,
+                    'fill-white': !isClicked,
                   },
-                  "transition-colors duration-300"
+                  'transition-colors duration-300'
                 )}
               />
             </motion.div>

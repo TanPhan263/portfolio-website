@@ -16,10 +16,10 @@ import dynamic from 'next/dynamic';
 
 import { useDrawerLock } from './hooks/use-drawer-lock';
 import { LoadingScreen } from './hud/loading-screen';
-import { TopControls } from './hud/top-controls';
-import { PlanetInfo } from './hud/planet-info';
 import { PlanetDrawer } from './hud/planet-drawer';
+import { PlanetInfo } from './hud/planet-info';
 import { StatusBar } from './hud/status-bar';
+import { TopControls } from './hud/top-controls';
 
 const SECTION_MAP: Record<string, React.ComponentType<any>> = {
   PersonalIntroduction: PersonalIntroduction,

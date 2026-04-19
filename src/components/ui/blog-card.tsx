@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { BlogCardProps } from "@/types/blog";
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import { Badge } from "./badge";
+import { BlogCardProps } from '@/types/blog';
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import AppImage from './app-image';
+import { Badge } from './badge';
 
 export const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
   const { id, title, imageUrl, tags = [] } = post;
@@ -12,7 +12,7 @@ export const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
   const href = `/blog/${id}`;
 
   // Create excerpt from content
-  const displayExcerpt = post.content.slice(0, 150) + "...";
+  const displayExcerpt = post.content.slice(0, 150) + '...';
 
   return (
     <motion.div
@@ -30,10 +30,10 @@ export const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
         <motion.div
           className="relative overflow-hidden rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm transition-all duration-300"
           whileHover={{
-            boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
             scale: 1.02,
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
           {/* Gradient overlay on hover */}
           <motion.div
@@ -46,10 +46,10 @@ export const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
             <div className="relative aspect-[16/9] overflow-hidden">
               <motion.div
                 whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="w-full h-full"
               >
-                <Image
+                <AppImage
                   src={imageUrl}
                   alt={title}
                   fill
@@ -92,7 +92,7 @@ export const BlogCard = ({ post, index = 0 }: BlogCardProps) => {
             <motion.h3
               className="text-xl font-semibold text-gray-900 dark:text-white mb-3 line-clamp-2 transition-colors duration-300"
               whileHover={{ x: 4 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               {title}
             </motion.h3>

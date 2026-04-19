@@ -1,28 +1,19 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { FollowerPointerCard } from "@/components/ui/following-pointer";
+import AppImage from '@/components/ui/app-image';
+import { FollowerPointerCard } from '@/components/ui/following-pointer';
 
 export function Resume() {
   return (
     <div className="mx-auto w-80">
       <FollowerPointerCard
-        title={
-          <TitleComponent
-            title={blogContent.author}
-            avatar={blogContent.authorAvatar}
-          />
-        }
+        title={<TitleComponent title={blogContent.author} avatar={blogContent.authorAvatar} />}
       >
         <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100"></div>
+          <div className="relative aspect-16/10 w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100"></div>
           <div className="p-4">
-            <h2 className="my-4 text-lg font-bold text-zinc-700">
-              {blogContent.title}
-            </h2>
-            <h2 className="my-4 text-sm font-normal text-zinc-500">
-              {blogContent.description}
-            </h2>
+            <h2 className="my-4 text-lg font-bold text-zinc-700">{blogContent.title}</h2>
+            <h2 className="my-4 text-sm font-normal text-zinc-500">{blogContent.description}</h2>
             <div className="mt-10 flex flex-row items-center justify-between">
               <span className="text-sm text-gray-500">{blogContent.date}</span>
               <div className="relative z-10 block rounded-xl bg-black px-6 py-2 text-xs font-bold text-white">
@@ -37,25 +28,19 @@ export function Resume() {
 }
 
 const blogContent = {
-  slug: "amazing-tailwindcss-grid-layouts",
-  author: "Manu Arora",
-  date: "28th March, 2023",
-  title: "Amazing Tailwindcss Grid Layout Examples",
+  slug: 'amazing-tailwindcss-grid-layouts',
+  author: 'Manu Arora',
+  date: '28th March, 2023',
+  title: 'Amazing Tailwindcss Grid Layout Examples',
   description:
-    "Grids are cool, but Tailwindcss grids are cooler. In this article, we will learn how to create amazing Grid layouts with Tailwindcs grid and React.",
-  image: "/demo/thumbnail.png",
-  authorAvatar: "/images/emoji.webp",
+    'Grids are cool, but Tailwindcss grids are cooler. In this article, we will learn how to create amazing Grid layouts with Tailwindcs grid and React.',
+  image: '/demo/thumbnail.png',
+  authorAvatar: '/images/emoji.webp',
 };
 
-const TitleComponent = ({
-  title,
-  avatar,
-}: {
-  title: string;
-  avatar: string;
-}) => (
+const TitleComponent = ({ title, avatar }: { title: string; avatar: string }) => (
   <div className="flex items-center space-x-2">
-    <Image
+    <AppImage
       src={avatar}
       height="20"
       width="20"

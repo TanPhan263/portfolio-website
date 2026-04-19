@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useBlogPost } from "@/shared/hooks/queries/useBlog";
-import { notFound } from "next/navigation";
-import { motion } from "motion/react";
-import Image from "next/image";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ShareButtons } from "@/components/ui/share-buttons";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { ShareButtons } from '@/components/ui/share-buttons';
+import { useBlogPost } from '@/shared/hooks/queries/useBlog';
+import { IconArrowLeft } from '@tabler/icons-react';
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import AppImage from '../ui/app-image';
 
 interface BlogDetailsProps {
   index: number | string;
@@ -50,7 +50,7 @@ export const BlogDetails = ({ index }: BlogDetailsProps) => {
   const { title, content, imageUrl, tags = [] } = data;
 
   // Get current URL for sharing
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,10 +79,7 @@ export const BlogDetails = ({ index }: BlogDetailsProps) => {
         transition={{ duration: 0.5, delay: 0.1 }}
         className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8"
       >
-        <Link
-          href="/"
-          className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-        >
+        <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
           Home
         </Link>
         <span>/</span>
@@ -93,9 +90,7 @@ export const BlogDetails = ({ index }: BlogDetailsProps) => {
           Blog
         </Link>
         <span>/</span>
-        <span className="text-gray-900 dark:text-white font-medium truncate">
-          {title}
-        </span>
+        <span className="text-gray-900 dark:text-white font-medium truncate">{title}</span>
       </motion.nav>
 
       {/* Article Header */}
@@ -147,7 +142,7 @@ export const BlogDetails = ({ index }: BlogDetailsProps) => {
           <ShareButtons
             url={currentUrl}
             title={title}
-            description={content.slice(0, 150) + "..."}
+            description={content.slice(0, 150) + '...'}
           />
         </motion.div>
       </motion.header>
@@ -160,7 +155,7 @@ export const BlogDetails = ({ index }: BlogDetailsProps) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
         >
-          <Image
+          <AppImage
             src={imageUrl}
             alt={title}
             fill

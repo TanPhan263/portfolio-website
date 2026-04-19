@@ -4,8 +4,9 @@ import { useOutsideClick } from '@/shared/hooks/use-outside-click';
 import { cn } from '@/shared/utils/common';
 import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
-import Image, { ImageProps } from 'next/image';
+import { ImageProps } from 'next/image';
 import React, { createContext, JSX, useContext, useEffect, useRef, useState } from 'react';
+import AppImage from './app-image';
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -285,7 +286,7 @@ export const Card = ({
 export const BlurImage = ({ height, width, src, className, alt, ...rest }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
   return (
-    <Image
+    <AppImage
       className={cn('transition duration-300', isLoading ? 'blur-sm' : 'blur-0', className)}
       onLoad={() => setLoading(false)}
       src={src}

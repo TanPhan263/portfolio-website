@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FullScreen } from '../full-screen';
 import { AnimatedSpan, Terminal, TypingAnimation } from '../magicui/terminal';
+import AppImage from '../ui/app-image';
 import { HoverBorderGradient } from '../ui/hover-border-gradient';
-import Image from 'next/image';
 
 export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
   const [mounted, setMounted] = useState(false);
@@ -78,8 +78,20 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
           className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 cursor-pointer"
           onClick={() => router.push('/')}
         >
-          <Image className='hidden dark:block' src="/logo-dark.png" alt="Logo" width={56} height={56} />
-          <Image className='dark:hidden' src="/logo-light.png" alt="Logo" width={56} height={56} />
+          <AppImage
+            className="hidden dark:block"
+            src="/logo-dark.png"
+            alt="Logo"
+            width={56}
+            height={56}
+          />
+          <AppImage
+            className="dark:hidden"
+            src="/logo-light.png"
+            alt="Logo"
+            width={56}
+            height={56}
+          />
           <span>Back to home</span>
         </HoverBorderGradient>
       </div>

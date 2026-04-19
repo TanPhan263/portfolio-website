@@ -1,43 +1,24 @@
 'use client';
 
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
-import { ModeToggle } from '../ui/mode-toggle';
 import useHomePage from '@/shared/hooks/queries/useHomePage';
-import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 import { cn } from '@/shared/utils/common';
-import { Separator } from '@radix-ui/react-dropdown-menu';
-import {
-  IconArrowUp,
-  IconBrandGithub,
-  IconMenu2,
-  IconRocket,
-  IconX
-} from '@tabler/icons-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { IconArrowUp, IconBrandGithub } from '@tabler/icons-react';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import AppImage from '../ui/app-image';
 import { Button } from '../ui/button';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger
-} from '../ui/drawer';
+import { ModeToggle } from '../ui/mode-toggle';
 
 const pathNameDisableHeaderScroll = [''];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const pathname = usePathname();
 
-  const isDisableHeaderScroll = pathNameDisableHeaderScroll.includes(
-    pathname as string
-  );
+  const isDisableHeaderScroll = pathNameDisableHeaderScroll.includes(pathname as string);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -69,16 +50,11 @@ export const Header = () => {
   const { data } = useHomePage();
   if (!data) return <></>;
 
-  const { menu } = data;
+  // const { menu } = data;
 
   return (
     <>
-      <header
-        className={cn(
-          'top-8 sm:top-10 z-50',
-          !isDisableHeaderScroll && 'sticky'
-        )}
-      >
+      <header className={cn('top-8 sm:top-10 z-50', !isDisableHeaderScroll && 'sticky')}>
         <div
           className={cn(
             'mx-auto flex justify-between items-center transition-all duration-300 p-4 z-50',
@@ -88,14 +64,14 @@ export const Header = () => {
           )}
         >
           <div className="flex items-center gap-2">
-            <Image
+            <AppImage
               className="hidden dark:block"
               src="/logo-dark.png"
               alt="Logo"
               width={56}
               height={56}
             />
-            <Image
+            <AppImage
               className="dark:hidden"
               src="/logo-light.png"
               alt="Logo"
@@ -134,14 +110,14 @@ export const Header = () => {
               <DrawerContent className="min-h-dvh">
                 <DrawerHeader className="flex justify-between">
                   <DrawerTitle className="flex items-center gap-2">
-                    <Image
+                    <AppImage
                       className="hidden dark:block"
                       src="/logo-dark.png"
                       alt="Logo"
                       width={56}
                       height={56}
                     />
-                    <Image
+                    <AppImage
                       className="dark:hidden"
                       src="/logo-light.png"
                       alt="Logo"
@@ -219,7 +195,7 @@ const ScrollToTopButton = () => {
       onClick={() => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
       }}
     >
@@ -228,19 +204,19 @@ const ScrollToTopButton = () => {
   );
 };
 
-const HeaderLink = ({ title, href }: { title: string; href: string }) => {
-  const pathname = usePathname() || '/';
-  const isActive = href === pathname;
-  return (
-    <div
-      className={cn(
-        'flex items-center gap-2 px-3 py-2 rounded-full transition-colors',
-        isActive
-          ? 'dark:bg-white dark:text-black bg-zinc-900 text-white'
-          : 'dark:hover:bg-zinc-800 hover:bg-zinc-100'
-      )}
-    >
-      <Link href={href}>{title}</Link>
-    </div>
-  );
-};
+// const HeaderLink = ({ title, href }: { title: string; href: string }) => {
+//   const pathname = usePathname() || '/';
+//   const isActive = href === pathname;
+//   return (
+//     <div
+//       className={cn(
+//         'flex items-center gap-2 px-3 py-2 rounded-full transition-colors',
+//         isActive
+//           ? 'dark:bg-white dark:text-black bg-zinc-900 text-white'
+//           : 'dark:hover:bg-zinc-800 hover:bg-zinc-100'
+//       )}
+//     >
+//       <Link href={href}>{title}</Link>
+//     </div>
+//   );
+// };
