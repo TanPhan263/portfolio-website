@@ -1,30 +1,16 @@
-"use client";
+'use client';
 
-import { BlurImage } from "@/components/ui/apple-cards-carousel";
-import { Compare } from "@/components/ui/compare";
-import { Cover } from "@/components/ui/cover";
-import { Lens } from "@/components/ui/lens";
-import { TypeWriter } from "@/components/ui/type-writer";
-import TypewriterArray from "@/components/ui/type-writer-array";
-import useHomePage from "@/shared/hooks/queries/useHomePage";
-import { cn, getCloudinaryUrl } from "@/shared/utils/common";
-import { useTheme } from "next-themes";
-import { useMemo, useState } from "react";
+import { BlurImage } from '@/components/ui/apple-cards-carousel';
+import { Cover } from '@/components/ui/cover';
+import { Lens } from '@/components/ui/lens';
+import { TypeWriter } from '@/components/ui/type-writer';
+import TypewriterArray from '@/components/ui/type-writer-array';
+import useHomePage from '@/shared/hooks/queries/useHomePage';
+import { cn, getCloudinaryUrl } from '@/shared/utils/common';
+import { useTheme } from 'next-themes';
+import { useMemo, useState } from 'react';
 
-// const animationTypes: AnimationVariant[] = [
-//   'fadeIn',
-//   'blurIn',
-//   'blurInUp',
-//   'blurInDown',
-//   'slideUp',
-//   'slideDown',
-//   'slideLeft',
-//   'slideRight',
-//   'scaleUp',
-//   'scaleDown'
-// ];
-
-export const MyUniverse = () => {
+export const PersonalIntroduction = () => {
   const [hovering, setHovering] = useState(false);
   const { theme } = useTheme();
   const { data } = useHomePage();
@@ -32,9 +18,7 @@ export const MyUniverse = () => {
   const imageSrc = useMemo(
     () =>
       getCloudinaryUrl(
-        (theme === "light"
-          ? data?.greeting?.image
-          : data?.greeting?.imageDark) as string
+        (theme === 'light' ? data?.greeting?.image : data?.greeting?.imageDark) as string
       ),
     [theme, data?.greeting?.image, data?.greeting?.imageDark]
   );
@@ -48,11 +32,10 @@ export const MyUniverse = () => {
       <div className="flex-1 relative w-full lg:w-auto">
         <div className="flex flex-row gap-4 my-4 lg:my-0 lg:block items-center sm:items-start">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700">
-            <TypeWriter text="Hello," />
+            <TypeWriter text="Hello, I'm" />
           </h1>
 
           <h1 className="flex flex-row sm:flex-col items-center sm:items-start text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700 gap-2">
-            <TypeWriter text="I'm" />
             <Cover>
               <TypeWriter text={greeting?.name as string} />
             </Cover>
@@ -62,8 +45,8 @@ export const MyUniverse = () => {
         <div className="flex items-center justify-center md:justify-start">
           <div
             className={cn(
-              "relative md:w-fit w-full py-2 px-4 sm:px-8 text-base sm:text-lg md:text-xl font-bold my-5 pt-2 pb-3 text-center text-black dark:text-white",
-              "border-y border-dashed dark:border-white border-gray-600"
+              'relative md:w-fit w-full py-2 px-4 sm:px-8 text-base sm:text-lg md:text-xl font-bold my-5 pt-2 pb-3 text-center text-black dark:text-white',
+              'border-y border-dashed dark:border-white border-gray-600'
             )}
           >
             <div className="absolute -top-2 left-2 h-[calc(100%+1rem)] w-[calc(100%-1rem)] border-x border-dashed dark:border-white border-gray-600" />
@@ -118,18 +101,3 @@ export const MyUniverse = () => {
     </div>
   );
 };
-
-export function CompareDemo() {
-  return (
-    <div className="w-full border rounded-3xl dark:bg-neutral-900 bg-neutral-100 border-neutral-200 dark:border-neutral-800">
-      <Compare
-        firstImage="https://voocgavdbpy2gucg.public.blob.vercel-storage.com/portfolio/image%20%283%29-9ohWXR6mPsqfP9GC3OXB6l23pKXqpS.png"
-        secondImage="https://voocgavdbpy2gucg.public.blob.vercel-storage.com/portfolio/image%20%284%29-Z38KH4uoJOoyhY6YDXVDNxRu8uWZUS.png"
-        firstImageClassName="object-cover object-left-top"
-        secondImageClassname="object-cover object-left-top"
-        className="h-[200px] sm:h-[250px] md:h-[400px] lg:h-[500px] w-full"
-        slideMode="hover"
-      />
-    </div>
-  );
-}

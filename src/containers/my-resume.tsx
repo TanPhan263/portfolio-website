@@ -1,5 +1,5 @@
 'use client';
-import { CompareDemo } from './my-universe';
+import { CompareDemo } from './personal-introduction';
 
 export function MyResume() {
   return (
@@ -44,16 +44,8 @@ const Beams = () => {
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur
-            stdDeviation="56"
-            result="effect1_foregroundBlur_120_7473"
-          />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur stdDeviation="56" result="effect1_foregroundBlur_120_7473" />
         </filter>
         <filter
           id="filter1_f_120_7473"
@@ -65,16 +57,8 @@ const Beams = () => {
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur
-            stdDeviation="80"
-            result="effect1_foregroundBlur_120_7473"
-          />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
         </filter>
         <filter
           id="filter2_f_120_7473"
@@ -86,16 +70,8 @@ const Beams = () => {
           colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur
-            stdDeviation="80"
-            result="effect1_foregroundBlur_120_7473"
-          />
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur stdDeviation="80" result="effect1_foregroundBlur_120_7473" />
         </filter>
       </defs>
     </svg>

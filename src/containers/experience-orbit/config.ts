@@ -14,9 +14,9 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     radius: 0,
     color: '#ffcc33',
     label: 'About Me',
-    section: 'MyUniverse',
+    section: 'PersonalIntroduction',
     description: 'A star at the center, providing energy to the entire system.',
-    bio: "Hey, i'm Tan — i build things for the web and lowkey obsess over clean code and good UX."
+    bio: "Hey, i'm Tan — i build things for the web and lowkey obsess over clean code and good UX.",
   },
   MERCURY: {
     radius: 15,
@@ -24,7 +24,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Tech Stack',
     section: 'MyTechStack',
     description: 'Smallest planet, closest to the Sun, with extreme temperatures.',
-    bio: 'My go-to stack. not gatekeeping — this is literally what i use to ship.'
+    bio: 'My go-to stack. not gatekeeping — this is literally what i use to ship.',
   },
   VENUS: {
     radius: 24,
@@ -32,7 +32,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Core Values',
     section: 'PersonalValuation',
     description: 'Hottest planet due to a dense, greenhouse-gas-filled atmosphere.',
-    bio: 'The stuff I actually care about. No corporate fluff, just real values I live by.'
+    bio: 'The stuff I actually care about. No corporate fluff, just real values I live by.',
   },
   EARTH: {
     radius: 36,
@@ -40,7 +40,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Experiences',
     section: 'ExperienceTimeline',
     description: 'Our home, the only planet known to support life with liquid water.',
-    bio: "Places I've been, things I've built. The full arc, no cap."
+    bio: "Places I've been, things I've built. The full arc, no cap.",
   },
   MARS: {
     radius: 48,
@@ -48,15 +48,16 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Contact Me',
     section: 'ContactSection',
     description: 'The "Red Planet," known for its thin atmosphere, deserts, and extinct volcanoes.',
-    bio: 'Slide into my inbox fr. collabs, opportunities, or just vibes — all welcome.'
+    bio: 'Slide into my inbox fr. collabs, opportunities, or just vibes — all welcome.',
   },
   JUPITER: {
     radius: 68,
     color: '#D39C7E',
     label: 'Comming Soon',
     section: 'CommingSoon',
-    description: 'The largest planet, a gas giant with 95+ moons and a famous "Great Red Spot" storm.',
-    bio: 'Something big is cooking here. Stay tuned fr fr.'
+    description:
+      'The largest planet, a gas giant with 95+ moons and a famous "Great Red Spot" storm.',
+    bio: 'Something big is cooking here. Stay tuned fr fr.',
   },
   SATURN: {
     radius: 90,
@@ -64,7 +65,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Comming Soon',
     section: 'CommingSoon',
     description: 'Famous for its extensive, bright ring system and 146+ moons.',
-    bio: "Still loading... but trust, it's gonna hit different."
+    bio: "Still loading... but trust, it's gonna hit different.",
   },
   URANUS: {
     radius: 110,
@@ -72,7 +73,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Comming Soon',
     section: 'CommingSoon',
     description: 'An ice giant that rotates on its side, with a faint ring system.',
-    bio: 'Doing its own thing, unbothered. New content incoming, no rush.'
+    bio: 'Doing its own thing, unbothered. New content incoming, no rush.',
   },
   NEPTUNE: {
     radius: 130,
@@ -80,7 +81,7 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Comming Soon',
     section: 'CommingSoon',
     description: 'The coldest and farthest planet, known for high-speed winds and deep blue color.',
-    bio: "Deep in the sauce rn. Launching when it's ready, not before."
+    bio: "Deep in the sauce rn. Launching when it's ready, not before.",
   },
   PLUTO: {
     radius: 150,
@@ -88,8 +89,8 @@ export const PLANET_CONFIG: Record<PlanetType, PlanetConfig> = {
     label: 'Comming Soon',
     section: 'CommingSoon',
     description: 'A dwarf planet in the Kuiper belt, known for its icy surface.',
-    bio: "Yeah Pluto's a dwarf planet, and this section is still a wip. Respect the process."
-  }
+    bio: "Yeah Pluto's a dwarf planet, and this section is still a wip. Respect the process.",
+  },
 };
 
 export const PLANET_ORDER: PlanetType[] = [
@@ -102,7 +103,7 @@ export const PLANET_ORDER: PlanetType[] = [
   'SATURN',
   'URANUS',
   'NEPTUNE',
-  'PLUTO'
+  'PLUTO',
 ];
 
 export const ZOOM_MIN = 0.3;

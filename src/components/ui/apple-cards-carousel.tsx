@@ -2,21 +2,10 @@
 'use client';
 import { useOutsideClick } from '@/shared/hooks/use-outside-click';
 import { cn } from '@/shared/utils/common';
-import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconX
-} from '@tabler/icons-react';
+import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Image, { ImageProps } from 'next/image';
-import React, {
-  createContext,
-  JSX,
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react';
+import React, { createContext, JSX, useContext, useEffect, useRef, useState } from 'react';
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -36,7 +25,7 @@ export const CarouselContext = createContext<{
   currentIndex: number;
 }>({
   onCardClose: () => {},
-  currentIndex: 0
+  currentIndex: 0,
 });
 
 export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
@@ -79,7 +68,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
         left: scrollPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
       setCurrentIndex(index);
     }
@@ -90,9 +79,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   };
 
   return (
-    <CarouselContext.Provider
-      value={{ onCardClose: handleCardClose, currentIndex }}
-    >
+    <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
         <div className="flex justify-end gap-2">
           <button
@@ -131,7 +118,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
               <motion.div
                 initial={{
                   opacity: 0,
-                  y: 20
+                  y: 20,
                 }}
                 animate={{
                   opacity: 1,
@@ -139,9 +126,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   transition: {
                     duration: 0.5,
                     delay: 0.2 * index,
-                    ease: 'easeOut'
+                    ease: 'easeOut',
                     // once: true
-                  }
+                  },
                 }}
                 key={'card' + index}
                 className="last:pr-[5%] md:last:pr-[5%]  rounded-3xl"
@@ -160,7 +147,7 @@ export const Card = ({
   card,
   index,
   layout = false,
-  techStack
+  techStack,
 }: {
   card: Card;
   index: number;
@@ -246,10 +233,10 @@ export const Card = ({
         onClick={handleOpen}
         className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-80 md:h-[33rem] md:w-[26rem] overflow-hidden flex flex-col items-start justify-start relative z-10"
         whileHover={{
-          transform: 'translateY(-10px)'
+          transform: 'translateY(-10px)',
         }}
         transition={{
-          duration: 0.3
+          duration: 0.3,
         }}
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
@@ -270,7 +257,7 @@ export const Card = ({
         {techStack?.length && (
           <AnimatePresence>
             <div className="absolute z-40 bottom-0 left-0 p-3 md:p-8 flex flex-wrap gap-1">
-              {techStack.map((tech) => (
+              {techStack.map(tech => (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -295,22 +282,11 @@ export const Card = ({
   );
 };
 
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
+export const BlurImage = ({ height, width, src, className, alt, ...rest }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
   return (
     <Image
-      className={cn(
-        'transition duration-300',
-        isLoading ? 'blur-sm' : 'blur-0',
-        className
-      )}
+      className={cn('transition duration-300', isLoading ? 'blur-sm' : 'blur-0', className)}
       onLoad={() => setLoading(false)}
       src={src}
       width={width}

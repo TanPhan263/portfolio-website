@@ -1,8 +1,8 @@
 'use client';
 
-import { ContactSection } from '@/containers/contact-section';
+import { ContactSection } from '@/containers/contact';
 import { ExperienceOrbit } from '@/containers/experience-orbit';
-import { MyUniverse } from '@/containers/my-universe';
+import { PersonalIntroduction } from '@/containers/personal-introduction';
 import { PersonalValuation } from '@/containers/personal-valuation';
 import { MyTechStack } from '@/containers/techstacks';
 import { ExperienceTimeline } from '@/components/ui/experience-timeline';
@@ -10,16 +10,16 @@ import { FullScreen } from '@/components/full-screen';
 import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 
 export function HomeClient() {
-  const mode = useSiteSettingStore((s) => s.mode);
+  const mode = useSiteSettingStore(s => s.mode);
 
   return (
     <>
       {mode === 'universe' ? (
         <ExperienceOrbit />
       ) : (
-        <div className="flex flex-col gap-20 py-20 pb-40">
+        <div className="overflow-visible flex flex-col gap-20 py-20 pb-40">
           <FullScreen className="w-full xl:w-[85%] mx-auto">
-            <MyUniverse />
+            <PersonalIntroduction />
           </FullScreen>
 
           <FullScreen className="w-full xl:w-[85%] mx-auto">
@@ -30,9 +30,9 @@ export function HomeClient() {
             <PersonalValuation />
           </FullScreen>
 
-          <FullScreen className="w-full xl:w-[85%] mx-auto">
+          <div className="w-full xl:w-[85%] overflow-visible mx-auto">
             <ExperienceTimeline />
-          </FullScreen>
+          </div>
 
           <FullScreen className="w-full xl:w-[85%] mx-auto">
             <ContactSection />

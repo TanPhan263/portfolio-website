@@ -1,5 +1,5 @@
 'use client';
-import { SVGProps } from 'react';
+import React, { SVGProps, useState } from 'react';
 
 type SafariMode = 'default' | 'simple';
 
@@ -21,6 +21,7 @@ export function Safari({
   mode = 'default',
   ...props
 }: SafariProps) {
+  const [hasError, setHasError] = useState(false);
   return (
     <svg
       width={width}
@@ -47,24 +48,9 @@ export function Safari({
           d="M1.06738 12C1.06738 5.92487 5.99225 1 12.0674 1H1189.93C1196.01 1 1200.93 5.92487 1200.93 12V51H1.06738V12Z"
           className="fill-white dark:fill-[#262626]"
         />
-        <circle
-          cx="27"
-          cy="25"
-          r="6"
-          className="fill-[#E5E5E5] dark:fill-[#404040]"
-        />
-        <circle
-          cx="47"
-          cy="25"
-          r="6"
-          className="fill-[#E5E5E5] dark:fill-[#404040]"
-        />
-        <circle
-          cx="67"
-          cy="25"
-          r="6"
-          className="fill-[#E5E5E5] dark:fill-[#404040]"
-        />
+        <circle cx="27" cy="25" r="6" className="fill-[#E5E5E5] dark:fill-[#404040]" />
+        <circle cx="47" cy="25" r="6" className="fill-[#E5E5E5] dark:fill-[#404040]" />
+        <circle cx="67" cy="25" r="6" className="fill-[#E5E5E5] dark:fill-[#404040]" />
         <path
           d="M286 17C286 13.6863 288.686 11 292 11H946C949.314 11 952 13.6863 952 17V35C952 38.3137 949.314 41 946 41H292C288.686 41 286 38.3137 286 35V17Z"
           className="fill-[#E5E5E5] dark:fill-[#404040]"
@@ -76,13 +62,7 @@ export function Safari({
           />
         </g>
         <g className="mix-blend-luminosity">
-          <text
-            x="580"
-            y="30"
-            fill="#A3A3A3"
-            fontSize="12"
-            fontFamily="Arial, sans-serif"
-          >
+          <text x="580" y="30" fill="#A3A3A3" fontSize="12" fontFamily="Arial, sans-serif">
             {url}
           </text>
         </g>
@@ -138,7 +118,7 @@ export function Safari({
             </g>
           </>
         ) : null}
-        {imageSrc && (
+        {imageSrc && !hasError && (
           <image
             href={imageSrc}
             width="1200"
@@ -147,6 +127,7 @@ export function Safari({
             y="52"
             preserveAspectRatio="xMidYMid slice"
             clipPath="url(#roundedBottom)"
+            onError={() => setHasError(true)}
           />
         )}
         {videoSrc && (
@@ -167,6 +148,18 @@ export function Safari({
               playsInline
             />
           </foreignObject>
+        )}
+        {(!imageSrc || hasError) && !videoSrc && (
+          <text
+            x="50%"
+            y="55%"
+            dominantBaseline="middle"
+            textAnchor="middle"
+            className="fill-neutral-500 dark:fill-neutral-400 font-medium"
+            fontSize="32"
+          >
+            No preview image
+          </text>
         )}
       </g>
       <defs>

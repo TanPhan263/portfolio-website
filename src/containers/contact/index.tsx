@@ -28,7 +28,7 @@ export function ContactSection() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name, email, message }),
       });
 
       const data = await res.json();
@@ -61,17 +61,14 @@ export function ContactSection() {
           <div className="lg:col-span-2 space-y-4">
             <div className="inline-flex items-center gap-2">
               <IconMailFilled className="size-6" />
-              <span className="text-sm font-semibold uppercase tracking-wide">
-                Get in Touch
-              </span>
+              <span className="text-sm font-semibold uppercase tracking-wide">Get in Touch</span>
             </div>
             <h2 className="text-2xl md:text-4xl font-bold text-black dark:text-white">
               Let&apos;s Work Together
             </h2>
             <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base max-w-md">
-              Have a project in mind, want to collaborate, or just want to say
-              hi? Drop me a message and I&apos;ll get back to you as soon as
-              possible.
+              Have a project in mind, want to collaborate, or just want to say hi? Drop me a message
+              and I&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
@@ -96,7 +93,7 @@ export function ContactSection() {
                         id="name"
                         placeholder="Your name"
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={e => setName(e.target.value)}
                         required
                         disabled={status === 'sending'}
                       />
@@ -108,7 +105,7 @@ export function ContactSection() {
                         type="email"
                         placeholder="your@email.com"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                         required
                         disabled={status === 'sending'}
                       />
@@ -122,7 +119,7 @@ export function ContactSection() {
                       placeholder="Tell me about your project or just say hello..."
                       rows={5}
                       value={message}
-                      onChange={(e) => setMessage(e.target.value)}
+                      onChange={e => setMessage(e.target.value)}
                       required
                       disabled={status === 'sending'}
                     />
@@ -146,11 +143,7 @@ export function ContactSection() {
                     </Button>
 
                     {status === 'success' && (
-                      <p
-                        className={cn(
-                          'text-sm font-medium text-green-600 dark:text-green-400'
-                        )}
-                      >
+                      <p className={cn('text-sm font-medium text-green-600 dark:text-green-400')}>
                         Message sent! I&apos;ll get back to you soon.
                       </p>
                     )}

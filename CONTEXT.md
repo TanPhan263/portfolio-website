@@ -169,7 +169,7 @@ Map planet `section` keys to React components:
 
 ```ts
 const SECTION_MAP: Record<string, React.ComponentType<any>> = {
-  MyUniverse: MyUniverse,         // SUN  — About Me
+  PersonalIntroduction: PersonalIntroduction,         // SUN  — About Me
   MyTechStack: MyTechStack,       // MERCURY — Tech Stack
   PersonalValuation: PersonalValuation, // VENUS — Core Values
   ExperienceTimeline: ExperienceTimeline, // EARTH — Experiences

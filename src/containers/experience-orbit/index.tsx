@@ -6,8 +6,8 @@ import { PLANET_CONFIG } from './config';
 
 import { ComingSoonPage } from '@/components/layout/coming-soon';
 import { ExperienceTimeline } from '@/components/ui/experience-timeline';
-import { ContactSection } from '../contact-section';
-import { MyUniverse } from '../my-universe';
+import { ContactSection } from '../contact';
+import { PersonalIntroduction } from '../personal-introduction';
 import { PersonalValuation } from '../personal-valuation';
 import { MyTechStack } from '../techstacks';
 
@@ -22,27 +22,27 @@ import { PlanetDrawer } from './hud/planet-drawer';
 import { StatusBar } from './hud/status-bar';
 
 const SECTION_MAP: Record<string, React.ComponentType<any>> = {
-  MyUniverse: MyUniverse,
+  PersonalIntroduction: PersonalIntroduction,
   MyTechStack: MyTechStack,
   PersonalValuation: PersonalValuation,
   ExperienceTimeline: ExperienceTimeline,
   ContactSection: ContactSection,
-  CommingSoon: ComingSoonPage
+  CommingSoon: ComingSoonPage,
 };
 
 const SolarSystemScene = dynamic(
-  () => import('./solar-system-scene').then((mod) => mod.SolarSystemScene),
+  () => import('./solar-system-scene').then(mod => mod.SolarSystemScene),
   {
     ssr: false,
-    loading: () => <LoadingScreen />
+    loading: () => <LoadingScreen />,
   }
 );
 
 export const ExperienceOrbit = () => {
-  const activePlanet = useCosmosStore((s) => s.activePlanet);
-  const scrollProgress = useCosmosStore((s) => s.scrollProgress);
-  const isDrawerOpen = useSiteSettingStore((s) => s.openDrawer);
-  const setIsDrawerOpen = useSiteSettingStore((s) => s.setOpenDrawer);
+  const activePlanet = useCosmosStore(s => s.activePlanet);
+  const scrollProgress = useCosmosStore(s => s.scrollProgress);
+  const isDrawerOpen = useSiteSettingStore(s => s.openDrawer);
+  const setIsDrawerOpen = useSiteSettingStore(s => s.setOpenDrawer);
 
   useDrawerLock(isDrawerOpen);
 

@@ -9,13 +9,13 @@ import { Exo_2, Orbitron } from 'next/font/google';
 const orbitron = Orbitron({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-orbitron'
+  variable: '--font-orbitron',
 });
 
 const exo2 = Exo_2({
   subsets: ['latin', 'vietnamese', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-exo2'
+  variable: '--font-exo2',
 });
 
 export const metadata: Metadata = {
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     'Web Development',
     'Framer Motion',
     'Zustand',
-    "BFF",
-    'Immersive Web'
+    'BFF',
+    'Immersive Web',
   ],
   openGraph: {
     title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
@@ -56,25 +56,25 @@ export const metadata: Metadata = {
         url: '',
         width: 1200,
         height: 630,
-        alt: 'TanTeck - 3D Interactive Portfolio'
-      }
-    ]
+        alt: 'TanTeck - 3D Interactive Portfolio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'TanTeck | 3D Frontend Developer',
     description:
       'Explore my interactive 3D solar system portfolio. Built with Three.js, React Three Fiber, and Next.js.',
-    images: ['']
+    images: [''],
   },
   icons: {
-    icon: '/favicon.ico'
+    icon: '/favicon.ico',
   },
   verification: {
-    google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI'
+    google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI',
   },
   alternates: {
-    canonical: 'https://tanteck.net'
+    canonical: 'https://tanteck.net',
   },
   robots: {
     index: true,
@@ -83,8 +83,8 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       'max-image-preview': 'large',
-    }
-  }
+    },
+  },
 };
 
 export const viewport = {
@@ -92,11 +92,10 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-}
-
+};
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -104,7 +103,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${exo2.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-hidden`}
+        className={`${exo2.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-clip`}
       >
         <TanstackProvider>
           <SiteWrapper>{children}</SiteWrapper>
