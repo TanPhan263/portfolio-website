@@ -14,12 +14,12 @@ export function ModeToggle({ className }: { className?: string }) {
 
   const handleToggle = () => {
     setMode(isUniverse ? 'normal' : 'universe');
-  }
+  };
 
   return (
     <div
       className={cn(
-        'group relative flex items-center p-1 bg-white/30 backdrop-blur-md border border-black/50 dark:border-black/30 rounded-full cursor-pointer transition-all duration-300',
+        'group relative flex items-center p-1 border rounded-full cursor-pointer transition-all duration-300',
         className
       )}
       onClick={handleToggle}
@@ -40,9 +40,9 @@ export function ModeToggle({ className }: { className?: string }) {
 
       {/* Moving background slider */}
       <motion.div
-        className="absolute h-8 w-8 bg-white dark:bg-zinc-900/60 rounded-full shadow-sm z-0"
+        className="absolute h-8 w-8 bg-white dark:bg-zinc-900/80 backdrop-blur-2xl rounded-full shadow-sm z-0"
         animate={{
-          x: isUniverse ? '32px' : '0px'
+          x: isUniverse ? '32px' : '0px',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       />

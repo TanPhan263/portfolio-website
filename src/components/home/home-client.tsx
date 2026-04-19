@@ -6,7 +6,7 @@ import { ContactSection } from '@/containers/contact';
 import { ExperienceOrbit } from '@/containers/experience-orbit';
 import { PersonalIntroduction } from '@/containers/personal-introduction';
 import { PersonalValuation } from '@/containers/personal-valuation';
-import { MyTechStack } from '@/containers/techstacks';
+import { MyTechStackMarquee } from '@/containers/techstacks';
 import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 
 export function HomeClient() {
@@ -22,16 +22,14 @@ export function HomeClient() {
             <PersonalIntroduction />
           </FullScreen>
 
-          <FullScreen className="w-full xl:w-[85%] mx-auto">
-            <MyTechStack />
-          </FullScreen>
+          <MyTechStackMarquee />
 
           <FullScreen className="w-full xl:w-[85%] mx-auto">
             <PersonalValuation />
           </FullScreen>
 
           <div className="w-full xl:w-[85%] overflow-visible mx-auto">
-            <ExperienceTimeline />
+            <ExperienceTimeline showHeader={true} />
           </div>
 
           <FullScreen className="w-full xl:w-[85%] mx-auto">
