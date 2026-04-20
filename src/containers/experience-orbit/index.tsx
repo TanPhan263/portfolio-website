@@ -28,22 +28,22 @@ const SECTION_MAP: Record<string, React.ComponentType<any>> = {
   PersonalValuation: PersonalValuation,
   ExperienceTimeline: ExperienceTimeline,
   ContactSection: ContactSection,
-  CommingSoon: ComingSoonPage,
+  CommingSoon: ComingSoonPage
 };
 
 const SolarSystemScene = dynamic(
-  () => import('./solar-system-scene').then(mod => mod.SolarSystemScene),
+  () => import('./solar-system-scene').then((mod) => mod.SolarSystemScene),
   {
-    ssr: false,
+    ssr: false
   }
 );
 
 export const ExperienceOrbit = () => {
   const [hasHydrated, setHasHydrated] = useState(false);
-  const activePlanet = useCosmosStore(s => s.activePlanet);
-  const scrollProgress = useCosmosStore(s => s.scrollProgress);
-  const isDrawerOpen = useSiteSettingStore(s => s.openDrawer);
-  const setIsDrawerOpen = useSiteSettingStore(s => s.setOpenDrawer);
+  const activePlanet = useCosmosStore((s) => s.activePlanet);
+  const scrollProgress = useCosmosStore((s) => s.scrollProgress);
+  const isDrawerOpen = useSiteSettingStore((s) => s.openDrawer);
+  const setIsDrawerOpen = useSiteSettingStore((s) => s.setOpenDrawer);
 
   useDrawerLock(isDrawerOpen);
   useEffect(() => {
@@ -56,7 +56,7 @@ export const ExperienceOrbit = () => {
   const ActiveComponent = SECTION_MAP[activeConfig.section] || null;
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-[#192841] select-none">
+    <section className="relative w-full h-screen overflow-hidden bg-dark select-none">
       {!hasHydrated && <LoadingScreen />}
       <Suspense fallback={<LoadingScreen />}>
         <SolarSystemScene locked={isDrawerOpen} />

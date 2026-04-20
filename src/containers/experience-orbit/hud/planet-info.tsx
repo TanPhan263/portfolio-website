@@ -1,8 +1,8 @@
 'use client';
 
 import type { PlanetType } from '@/shared/stores/use-cosmos-store';
-import { AnimatePresence, motion } from 'motion/react';
 import { IconChevronRight } from '@tabler/icons-react';
+import { AnimatePresence, motion } from 'motion/react';
 import { PLANET_CONFIG, PLANET_ORDER } from '../config';
 
 interface PlanetInfoProps {
@@ -11,7 +11,11 @@ interface PlanetInfoProps {
   onExplore: () => void;
 }
 
-export const PlanetInfo = ({ activePlanet, isVisible, onExplore }: PlanetInfoProps) => {
+export const PlanetInfo = ({
+  activePlanet,
+  isVisible,
+  onExplore
+}: PlanetInfoProps) => {
   const config = PLANET_CONFIG[activePlanet];
   const planetIndex = PLANET_ORDER.indexOf(activePlanet) + 1;
 
@@ -30,7 +34,7 @@ export const PlanetInfo = ({ activePlanet, isVisible, onExplore }: PlanetInfoPro
             {/* Planet index counter */}
             <div className="flex items-center gap-2">
               <div className="w-12 h-px bg-white/15" />
-              <p className="text-[9px] tracking-[0.4em] text-white/40 uppercase">
+              <p className="text-[9px] tracking-[0.4em] text-white uppercase">
                 {String(planetIndex).padStart(2, '0')}&nbsp;/&nbsp;
                 {String(PLANET_ORDER.length).padStart(2, '0')}
               </p>
@@ -48,14 +52,14 @@ export const PlanetInfo = ({ activePlanet, isVisible, onExplore }: PlanetInfoPro
             </div>
 
             {/* Bio */}
-            <p className="text-white/60 text-[10px] font-light leading-relaxed tracking-wide max-w-52">
+            <p className="text-white text-[10px] font-light leading-relaxed tracking-wide max-w-52">
               {config.bio}
             </p>
 
             {/* CTA */}
             <button
               onClick={onExplore}
-              className="pointer-events-auto group mt-2 inline-flex items-center gap-2.5 border border-white/20 hover:border-white/50 px-4 py-2 text-white/60 hover:text-white text-[9px] uppercase tracking-[0.3em] transition-all duration-300"
+              className="pointer-events-auto group mt-2 inline-flex items-center gap-2.5 border border-white/20 hover:border-white/50 px-4 py-2 text-white hover:text-white text-[9px] uppercase tracking-[0.3em] transition-all duration-300"
             >
               Explore
               <IconChevronRight

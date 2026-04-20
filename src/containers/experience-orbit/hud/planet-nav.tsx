@@ -24,7 +24,7 @@ const PlanetNavItem = ({
       <span
         className={cn(
           'text-[8px] tabular-nums w-4 text-right transition-colors duration-300',
-          isActive ? 'text-blue-400' : 'text-white/20 group-hover:text-white/40'
+          isActive ? 'text-blue-400' : 'text-white/60 group-hover:text-white/60'
         )}
       >
         {String(index + 1).padStart(2, '0')}
@@ -45,8 +45,8 @@ const PlanetNavItem = ({
         className={cn(
           'text-[10px] font-black uppercase tracking-[0.25em] transition-all duration-300',
           isActive
-            ? 'text-white'
-            : 'text-white/25 group-hover:text-white/60'
+            ? 'text-white text-sm'
+            : 'text-white/60 group-hover:text-white/60'
         )}
       >
         {type}
