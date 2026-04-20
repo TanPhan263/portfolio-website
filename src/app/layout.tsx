@@ -9,13 +9,13 @@ import { Exo_2, Orbitron } from 'next/font/google';
 const orbitron = Orbitron({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-orbitron',
+  variable: '--font-orbitron'
 });
 
 const exo2 = Exo_2({
   subsets: ['latin', 'vietnamese', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-exo2',
+  variable: '--font-exo2'
 });
 
 export const metadata: Metadata = {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     'Framer Motion',
     'Zustand',
     'BFF',
-    'Immersive Web',
+    'Immersive Web'
   ],
   openGraph: {
     title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
@@ -53,28 +53,30 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '',
-        width: 1200,
-        height: 630,
-        alt: 'TanTeck - 3D Interactive Portfolio',
-      },
-    ],
+        url: 'https://res.cloudinary.com/dfpgw5yw2/image/upload/q_auto/f_auto/v1759852582/avt-card-dark.png',
+        width: 800,
+        height: 800,
+        alt: 'TanTeck - 3D Interactive Portfolio'
+      }
+    ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TanTeck | 3D Frontend Developer',
+    title: 'TanTeck | Frontend Developer & Creative Engineer',
     description:
       'Explore my interactive 3D solar system portfolio. Built with Three.js, React Three Fiber, and Next.js.',
-    images: [''],
+    images: [
+      'https://res.cloudinary.com/dfpgw5yw2/image/upload/q_auto/f_auto/v1759852582/avt-card-dark.png'
+    ]
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.ico'
   },
   verification: {
-    google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI',
+    google: 'z4IXz38vVCl7Os2TOx7m0t5MzpAYOGK2tZ2tRsjKvrI'
   },
   alternates: {
-    canonical: 'https://tanteck.net',
+    canonical: 'https://tanteck.net'
   },
   robots: {
     index: true,
@@ -82,20 +84,20 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-image-preview': 'large',
-    },
-  },
+      'max-image-preview': 'large'
+    }
+  }
 };
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
+  userScalable: false
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
