@@ -5,7 +5,13 @@ import AppImage from '@/components/ui/app-image';
 export const LoadingScreen = ({ text = '' }: { text?: string }) => (
   <div className="absolute inset-0 bg-black backdrop-blur-2xl flex flex-col items-center justify-center z-100 font-orbitron!">
     <div className="mb-8 text-white/80">
-      <AppImage src="/logo-light.png" alt="Logo" width={128} height={128} />
+      <AppImage
+        src="/logo-light.png"
+        loading="eager"
+        alt="Logo"
+        width={128}
+        height={128}
+      />
     </div>
 
     <div className="relative w-48 h-1 bg-white/10 rounded-full overflow-hidden mb-4">

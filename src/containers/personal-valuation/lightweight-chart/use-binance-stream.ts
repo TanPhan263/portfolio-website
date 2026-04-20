@@ -1,10 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { BinanceKlineMessage, StreamState } from './types';
-import type { ChartCandle, ChartVolume } from './types';
-import { CHART_COLORS } from './config';
 import { Time } from 'lightweight-charts';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { CHART_COLORS } from './config';
+import type {
+  BinanceKlineMessage,
+  ChartCandle,
+  ChartVolume,
+  StreamState
+} from './types';
 
 interface UseStreamOptions {
   wsUrl: string;
@@ -12,19 +16,27 @@ interface UseStreamOptions {
   onStateChange?: (state: Partial<StreamState>) => void;
 }
 
-export function useBinanceStream({ wsUrl, onCandle, onStateChange }: UseStreamOptions) {
+export function useBinanceStream({
+  wsUrl,
+  onCandle,
+  onStateChange
+}: UseStreamOptions) {
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const onCandleRef = useRef(onCandle);
   const onStateRef = useRef(onStateChange);
 
-  // Keep refs up to date without re-triggering effect
-  useEffect(() => { onCandleRef.current = onCandle; }, [onCandle]);
-  useEffect(() => { onStateRef.current = onStateChange; }, [onStateChange]);
+  useEffect(() => {
+    onCandleRef.current = onCandle;
+  }, [onCandle]);
+
+  useEffect(() => {
+    onStateRef.current = onStateChange;
+  }, [onStateChange]);
 
   const connect = useCallback(() => {
-    // Avoid duplicate connections
+    console.log('Connecting to Binance WebSocket', wsRef.current?.readyState);
     if (wsRef.current?.readyState === WebSocket.OPEN) return;
 
     const ws = new WebSocket(wsUrl);
@@ -36,14 +48,16 @@ export function useBinanceStream({ wsUrl, onCandle, onStateChange }: UseStreamOp
     };
 
     ws.onclose = () => {
-      setIsConnected(false);
+      if (wsRef.current?.url === wsUrl) {
+        setIsConnected(false);
+      }
       onStateRef.current?.({ isConnected: false });
       reconnectTimerRef.current = setTimeout(connect, 3000);
     };
 
     ws.onerror = () => ws.close();
 
-    ws.onmessage = event => {
+    ws.onmessage = (event) => {
       const msg: BinanceKlineMessage = JSON.parse(event.data);
       const k = msg.k;
 
@@ -52,7 +66,7 @@ export function useBinanceStream({ wsUrl, onCandle, onStateChange }: UseStreamOp
         open: parseFloat(k.o),
         high: parseFloat(k.h),
         low: parseFloat(k.l),
-        close: parseFloat(k.c),
+        close: parseFloat(k.c)
       };
 
       const closePrice = parseFloat(k.c);
@@ -60,7 +74,10 @@ export function useBinanceStream({ wsUrl, onCandle, onStateChange }: UseStreamOp
       const volume: ChartVolume = {
         time: Math.floor(k.t / 1000) as Time,
         value: parseFloat(k.v),
-        color: closePrice >= openPrice ? CHART_COLORS.volumeUp : CHART_COLORS.volumeDown,
+        color:
+          closePrice >= openPrice
+            ? CHART_COLORS.volumeUp
+            : CHART_COLORS.volumeDown
       };
 
       onCandleRef.current(candle, volume);

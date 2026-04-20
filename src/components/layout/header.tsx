@@ -18,7 +18,9 @@ export const Header = () => {
   // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const pathname = usePathname();
 
-  const isDisableHeaderScroll = pathNameDisableHeaderScroll.includes(pathname as string);
+  const isDisableHeaderScroll = pathNameDisableHeaderScroll.includes(
+    pathname as string
+  );
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -54,7 +56,12 @@ export const Header = () => {
 
   return (
     <>
-      <header className={cn('top-8 sm:top-10 z-50', !isDisableHeaderScroll && 'sticky')}>
+      <header
+        className={cn(
+          'top-8 sm:top-10 z-50',
+          !isDisableHeaderScroll && 'sticky'
+        )}
+      >
         <div
           className={cn(
             'mx-auto flex justify-between items-center transition-all duration-300 p-4 z-50',
@@ -68,12 +75,14 @@ export const Header = () => {
               className="hidden dark:block"
               src="/logo-dark.png"
               alt="Logo"
+              loading="eager"
               width={56}
               height={56}
             />
             <AppImage
               className="dark:hidden"
               src="/logo-light.png"
+              loading="eager"
               alt="Logo"
               width={56}
               height={56}
@@ -195,7 +204,7 @@ const ScrollToTopButton = () => {
       onClick={() => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth',
+          behavior: 'smooth'
         });
       }}
     >

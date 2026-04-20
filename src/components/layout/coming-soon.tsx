@@ -84,6 +84,7 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
             alt="Logo"
             width={56}
             height={56}
+            loading="eager"
           />
           <AppImage
             className="dark:hidden"
@@ -91,6 +92,7 @@ export const ComingSoonPage = ({ pageName }: { pageName?: string }) => {
             alt="Logo"
             width={56}
             height={56}
+            loading="eager"
           />
           <span>Back to home</span>
         </HoverBorderGradient>

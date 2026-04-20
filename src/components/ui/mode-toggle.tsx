@@ -41,8 +41,9 @@ export function ModeToggle({ className }: { className?: string }) {
       {/* Moving background slider */}
       <motion.div
         className="absolute h-8 w-8 bg-white dark:bg-zinc-900/80 backdrop-blur-2xl rounded-full shadow-sm z-0"
+        initial={false}
         animate={{
-          x: isUniverse ? '32px' : '0px',
+          x: isUniverse ? 32 : 0,
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       />
