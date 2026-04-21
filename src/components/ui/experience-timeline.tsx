@@ -41,7 +41,13 @@ const KeySkills = ({ skills }: { skills: StackBrand[] }) => (
   </div>
 );
 
-const DetailsModal = ({ project, onClose }: { project: ProjectData; onClose: () => void }) => {
+const DetailsModal = ({
+  project,
+  onClose
+}: {
+  project: ProjectData;
+  onClose: () => void;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -56,7 +62,7 @@ const DetailsModal = ({ project, onClose }: { project: ProjectData; onClose: () 
         exit={{ scale: 0.95, y: 20, opacity: 0 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
         className="bg-white dark:bg-[#0f0f0f] border border-neutral-200 dark:border-neutral-800 rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 rounded-full text-white backdrop-blur-md transition-colors"
@@ -129,10 +135,12 @@ const DetailsModal = ({ project, onClose }: { project: ProjectData; onClose: () 
 
 const TimelineHeader = () => (
   <div className="w-full px-4 lg:px-10 mb-8 lg:mb-12">
-    <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white">My Journey</h2>
+    <h2 className="text-3xl lg:text-5xl font-bold text-black dark:text-white">
+      My Journey
+    </h2>
     <p className="text-neutral-500 dark:text-neutral-400 italic text-sm lg:text-base mt-2 lg:mt-3">
-      After graduating from university, I began my journey as an intern at a small outsourcing
-      company, taking the first steps in my career.
+      After graduating from university, I began my journey as an intern at a
+      small outsourcing company, taking the first steps in my career.
     </p>
   </div>
 );
@@ -141,7 +149,7 @@ const DesktopTimeline = ({
   projects,
   activeIndex,
   onProjectClick,
-  imageRefs,
+  imageRefs
 }: {
   projects: ProjectData[];
   activeIndex: number;
@@ -162,9 +170,6 @@ const DesktopTimeline = ({
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="flex flex-col"
           >
-            <span className="mb-4 text-xs font-semibold px-3 py-1 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded-md self-start">
-              {active?.year}
-            </span>
             <h3 className="text-4xl font-bold text-black dark:text-white leading-tight line-clamp-2 mb-3">
               {active?.title}
             </h3>
@@ -185,7 +190,10 @@ const DesktopTimeline = ({
             <button
               key={i}
               onClick={() =>
-                imageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                imageRefs.current[i]?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                })
               }
               className={`rounded-full transition-all duration-300 ${
                 i === activeIndex
@@ -201,15 +209,20 @@ const DesktopTimeline = ({
         {projects.map((proj, i) => (
           <div
             key={i}
-            ref={el => {
+            ref={(el) => {
               imageRefs.current[i] = el;
             }}
             data-index={i}
             className={`w-3/5 rounded-2xl cursor-pointer transition-all duration-500 relative ${
-              i === activeIndex ? 'opacity-100 scale-100' : 'opacity-40 hover:opacity-60 scale-90'
+              i === activeIndex
+                ? 'opacity-100 scale-100'
+                : 'opacity-40 hover:opacity-60 scale-90'
             }`}
             onClick={() =>
-              imageRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              imageRefs.current[i]?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              })
             }
           >
             {proj.imageUrl ? (
@@ -235,7 +248,7 @@ const DesktopTimeline = ({
 
 const MobileTimeline = ({
   projects,
-  onProjectClick,
+  onProjectClick
 }: {
   projects: ProjectData[];
   onProjectClick: (project: ProjectData) => void;
@@ -264,7 +277,9 @@ const MobileTimeline = ({
         <span className="text-xs font-semibold px-2 py-1 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded-md self-start">
           {proj.year}
         </span>
-        <h3 className="text-2xl font-bold text-black dark:text-white">{proj.title}</h3>
+        <h3 className="text-2xl font-bold text-black dark:text-white">
+          {proj.title}
+        </h3>
         <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
           {proj.summary}
         </p>
@@ -279,9 +294,15 @@ const MobileTimeline = ({
   </div>
 );
 
-export function ExperienceTimeline({ showHeader = false }: { showHeader?: boolean }) {
+export function ExperienceTimeline({
+  showHeader = false
+}: {
+  showHeader?: boolean;
+}) {
   const { data, isLoading } = useExperiencePage();
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
+    null
+  );
   const [activeIndex, setActiveIndex] = useState(0);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -290,7 +311,9 @@ export function ExperienceTimeline({ showHeader = false }: { showHeader?: boolea
     const flat: ProjectData[] = [];
     [...data]
       .sort((a, b) => Number(b.year) - Number(a.year))
-      .forEach(exp => exp.projects.forEach(proj => flat.push({ ...proj, year: exp.year })));
+      .forEach((exp) =>
+        exp.projects.forEach((proj) => flat.push({ ...proj, year: exp.year }))
+      );
     return flat;
   }, [data]);
 
@@ -298,8 +321,8 @@ export function ExperienceTimeline({ showHeader = false }: { showHeader?: boolea
     if (projects.length === 0) return;
 
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const idx = Number(entry.target.getAttribute('data-index'));
             if (!isNaN(idx)) setActiveIndex(idx);
@@ -309,11 +332,11 @@ export function ExperienceTimeline({ showHeader = false }: { showHeader?: boolea
       {
         root: null,
         rootMargin: '-15% 0px -30% 0px',
-        threshold: 0,
+        threshold: 0
       }
     );
 
-    imageRefs.current.forEach(el => {
+    imageRefs.current.forEach((el) => {
       if (el) observer.observe(el);
     });
 
@@ -335,7 +358,10 @@ export function ExperienceTimeline({ showHeader = false }: { showHeader?: boolea
       <MobileTimeline projects={projects} onProjectClick={setSelectedProject} />
       <AnimatePresence>
         {selectedProject && (
-          <DetailsModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+          <DetailsModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         )}
       </AnimatePresence>
     </>
