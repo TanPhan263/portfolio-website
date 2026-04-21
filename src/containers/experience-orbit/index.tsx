@@ -9,7 +9,7 @@ import { ExperienceTimeline } from '@/components/ui/experience-timeline';
 import { ContactSection } from '../contact';
 import { PersonalIntroduction } from '../personal-introduction';
 import { PersonalValuation } from '../personal-valuation';
-import { MyTechStack } from '../techstacks';
+import { MyTechStackIconCloud } from '../techstacks';
 
 import { useSiteSettingStore } from '@/shared/stores/use-site-setting-store';
 import dynamic from 'next/dynamic';
@@ -24,7 +24,7 @@ import { TopControls } from './hud/top-controls';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SECTION_MAP: Record<string, React.ComponentType<any>> = {
   PersonalIntroduction: PersonalIntroduction,
-  MyTechStack: MyTechStack,
+  MyTechStack: MyTechStackIconCloud,
   PersonalValuation: PersonalValuation,
   ExperienceTimeline: ExperienceTimeline,
   ContactSection: ContactSection,
