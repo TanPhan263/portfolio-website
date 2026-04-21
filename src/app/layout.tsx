@@ -19,9 +19,9 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: 'TanTeck | Frontend Developer & Creative Engineer',
+  title: 'TanTeck | Frontend Developer',
   description:
-    "Explore TanTeck's interactive 3D portfolio — featuring an immersive solar system built with Three.js and React Three Fiber. Specializing in Next.js, React, and high-performance web experiences.",
+    "Explore TanTeck's interactive 3D portfolio. Specializing in Next.js, React, and high-performance web experiences.",
   keywords: [
     'Frontend Developer',
     'Next.js Developer',
@@ -45,15 +45,15 @@ export const metadata: Metadata = {
     'Immersive Web'
   ],
   openGraph: {
-    title: 'TanTeck | 3D Frontend Developer & Creative Engineer',
+    title: 'TanTeck | Frontend Developer',
     description:
-      'An interactive 3D solar system portfolio built with Three.js. Navigate planets to explore my skills, experience, and projects. Crafted with React Three Fiber and Next.js for a seamless web experience.',
+      'An interactive 3D solar system portfolio. Navigate planets to explore my skills, experience, and projects.',
     url: 'https://tanteck.net',
     siteName: 'TanTeck Portfolio',
     type: 'website',
     images: [
       {
-        url: 'https://res.cloudinary.com/dfpgw5yw2/image/upload/q_auto/f_auto/v1759852582/avt-card-dark.png',
+        url: 'https://res.cloudinary.com/dfpgw5yw2/image/upload/q_auto/f_auto/w_300/h_300/v1759852582/avt-card-dark.png',
         width: 800,
         height: 800,
         alt: 'TanTeck - 3D Interactive Portfolio'
@@ -62,9 +62,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TanTeck | Frontend Developer & Creative Engineer',
-    description:
-      'Explore my interactive 3D solar system portfolio. Built with Three.js, React Three Fiber, and Next.js.',
+    title: 'TanTeck | Frontend Developer',
+    description: 'Explore my interactive 3D solar system portfolio.',
     images: [
       'https://res.cloudinary.com/dfpgw5yw2/image/upload/q_auto/f_auto/v1759852582/avt-card-dark.png'
     ]
