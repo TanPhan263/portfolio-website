@@ -8,6 +8,7 @@ import { getCloudinaryUrl } from '@/shared/utils/common';
 import { IconChevronRight, IconCircleCheck, IconX } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import Iphone15Pro from '../magicui/iphone-15-pro';
 import AppImage from './app-image';
 import { Safari } from './safari';
 
@@ -226,10 +227,20 @@ const DesktopTimeline = ({
             }
           >
             {proj.imageUrl ? (
-              <Safari
-                imageSrc={getCloudinaryUrl(proj.imageUrl)}
-                className="object-cover object-center"
-              />
+              <div className="relative group">
+                <Safari
+                  imageSrc={getCloudinaryUrl(proj.imageUrl)}
+                  className="object-cover object-center"
+                />
+                {proj.imageUrlMobile && (
+                  <div className="absolute -bottom-8 -right-11/12 w-2/3 min-w-[100px] max-w-[200px] z-20 drop-shadow-2xl">
+                    <Iphone15Pro
+                      src={getCloudinaryUrl(proj.imageUrlMobile)}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                )}
+              </div>
             ) : (
               <div className="w-full h-full aspect-video flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 rounded-xl">
                 <span className="text-neutral-500">No Image</span>
