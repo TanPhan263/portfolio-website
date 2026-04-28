@@ -4,7 +4,7 @@ import '@/styles/globals.css';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import { Exo_2, Orbitron } from 'next/font/google';
+import { Geist, Orbitron } from 'next/font/google';
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -12,10 +12,10 @@ const orbitron = Orbitron({
   variable: '--font-orbitron'
 });
 
-const exo2 = Exo_2({
-  subsets: ['latin', 'vietnamese', 'cyrillic'],
+const geist = Geist({
+  subsets: ['latin', 'latin-ext', 'cyrillic'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
-  variable: '--font-exo2'
+  variable: '--font-geist'
 });
 
 export const metadata: Metadata = {
@@ -104,7 +104,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${exo2.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-clip`}
+        className={`${geist.variable} ${orbitron.variable} antialiased scroll-smooth w-full relative min-h-screen overflow-x-clip`}
       >
         <TanstackProvider>
           <SiteWrapper>{children}</SiteWrapper>

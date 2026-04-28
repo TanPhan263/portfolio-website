@@ -106,13 +106,13 @@ export function MyTechStack() {
 }
 
 const TechItem = React.memo(({ url, name }: { url: string; name: string }) => (
-  <div className="relative p-4 overflow-hidden rounded-2xl border border-dark/30 bg-blue-950/5 backdrop-blur-md transition-all duration-300 hover:bg-dark-900/20 hover:scale-110 group shrink-0">
+  <div className="relative p-3 overflow-hidden rounded-2xl border border-dark/30 bg-blue-950/5 backdrop-blur-md transition-all duration-300 hover:bg-dark-900/20 hover:scale-110 group shrink-0">
     <AppImage
-      className="rounded-lg h-[60px] w-[60px] md:h-[100px] md:w-[100px] object-contain transition-all duration-500"
+      className="rounded-lg h-[60px] w-[60px] md:h-[80px] md:w-[80px] object-contain transition-all duration-500"
       src={url}
       alt={name}
-      width={100}
-      height={100}
+      width={60}
+      height={60}
       loading="lazy"
     />
   </div>

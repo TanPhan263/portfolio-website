@@ -18,7 +18,9 @@ export const PersonalIntroduction = () => {
   const imageSrc = useMemo(
     () =>
       getCloudinaryUrl(
-        (theme === 'light' ? data?.greeting?.image : data?.greeting?.imageDark) as string
+        (theme === 'light'
+          ? data?.greeting?.image
+          : data?.greeting?.imageDark) as string
       ),
     [theme, data?.greeting?.image, data?.greeting?.imageDark]
   );
@@ -28,10 +30,10 @@ export const PersonalIntroduction = () => {
   const { greeting } = data;
 
   return (
-    <div className="w-full flex flex-col lg:flex-row justify-between items-center md:gap-20 px-4 md:px-6 lg:mt-8">
+    <div className="w-full flex flex-col lg:flex-row justify-between md:gap-20 px-4 md:px-6">
       <div className="flex-1 relative w-full lg:w-auto">
-        <div className="flex flex-row gap-4 my-4 lg:my-0 lg:block items-center sm:items-start">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight sm:my-6 dark:text-zinc-300 text-zinc-700">
+        <div className="flex flex-row gap-4 mb-4 lg:my-0 lg:block items-center sm:items-start">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight sm:mb-6 dark:text-zinc-300 text-zinc-700">
             <TypeWriter text="Hello, I'm" />
           </h1>
 

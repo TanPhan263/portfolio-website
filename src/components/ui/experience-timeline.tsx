@@ -264,11 +264,11 @@ const MobileTimeline = ({
   projects: ProjectData[];
   onProjectClick: (project: ProjectData) => void;
 }) => (
-  <div className="lg:hidden w-full flex flex-col px-4 py-10 gap-10">
+  <div className="lg:hidden w-full flex flex-col px-4 py-10 gap-5">
     {projects.map((proj, i) => (
       <div
         key={i}
-        className="flex flex-col gap-4 border-b border-neutral-200 dark:border-neutral-800 pb-10 last:border-0"
+        className="flex flex-col gap-4 border-b border-neutral-200 dark:border-white/40 pb-5 last:border-0"
       >
         <div className="w-full h-[30vh] rounded-2xl overflow-hidden relative bg-neutral-100 dark:bg-neutral-900 shadow-lg">
           {proj.imageUrl ? (
@@ -285,18 +285,15 @@ const MobileTimeline = ({
             </div>
           )}
         </div>
-        <span className="text-xs font-semibold px-2 py-1 bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded-md self-start">
-          {proj.year}
-        </span>
         <h3 className="text-2xl font-bold text-black dark:text-white">
           {proj.title}
         </h3>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed">
+        <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed line-clamp-3">
           {proj.summary}
         </p>
         <button
           onClick={() => onProjectClick(proj)}
-          className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold self-start"
+          className="flex items-center gap-1 text-white/80 dark:text-white/80 font-semibold self-start border border-white/80 dark:border-white/80 px-2 py-1 rounded-xs"
         >
           View details <IconChevronRight size={18} />
         </button>
